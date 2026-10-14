@@ -1,0 +1,429 @@
+{
+  "current_committee": "2026-27",
+  "committees": [
+    {
+      "session": "2026-27",
+      "label": "2026 – 2027",
+      "total_members": 8,
+      "members": [
+        {
+          "initial": "E",
+          "role": "Chief Engineer",
+          "name": "Elon Musk",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "New bio from test",
+          "socials": [
+            {
+              "type": "twitter",
+              "label": "Twitter / X",
+              "url": "https://x.com/elonmusk"
+            },
+            {
+              "type": "linkedin",
+              "label": "LinkedIn",
+              "url": "https://linkedin.com/in/elonmusk"
+            }
+          ],
+          "student_id": "2020001",
+          "icon_link": "executives/1792004731687-xvwl5w.png",
+          "cv_link": "members/elon-musk/cv.json",
+          "profile_link": "members/elon-musk/profile.json"
+        },
+        {
+          "initial": "J",
+          "role": "AI Architect",
+          "name": "Jensen Huang",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "Founder and CEO of NVIDIA. Pioneer of GPU computing and the modern AI revolution.",
+          "socials": [
+            {
+              "type": "linkedin",
+              "label": "LinkedIn",
+              "url": "https://linkedin.com/in/jensenhuang"
+            }
+          ],
+          "student_id": "2020002",
+          "cv_link": "members/jensen-huang/cv.json",
+          "profile_link": "members/jensen-huang/profile.json",
+          "icon_link": "executives/jensen-huang.jpg"
+        },
+        {
+          "initial": "S",
+          "role": "LLM Strategist",
+          "name": "Sam Altman",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "CEO of OpenAI. Leading the development of AGI to ensure it benefits all of humanity.",
+          "socials": [
+            {
+              "type": "twitter",
+              "label": "Twitter / X",
+              "url": "https://x.com/samaltman"
+            }
+          ],
+          "student_id": "2020003",
+          "icon_link": "executives/sam-altman.webp",
+          "cv_link": "members/sam-altman/cv.json",
+          "profile_link": ""
+        },
+        {
+          "initial": "D",
+          "role": "Research Lead",
+          "name": "Demis Hassabis",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "CEO and Co-founder of Google DeepMind. Combining neuroscience and AI to solve intelligence.",
+          "socials": [
+            {
+              "type": "twitter",
+              "label": "Twitter / X",
+              "url": "https://x.com/demishassabis"
+            }
+          ],
+          "student_id": "2020004",
+          "icon_link": "executives/demis-hassabis.webp",
+          "cv_link": "members/demis-hassabis/cv.json",
+          "profile_link": "members/demis-hassabis/profile.json"
+        },
+        {
+          "initial": "S",
+          "role": "Cloud Visionary",
+          "name": "Satya Nadella",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "CEO of Microsoft. Transformed the company into a cloud-first, AI-first powerhouse.",
+          "socials": [
+            {
+              "type": "linkedin",
+              "label": "LinkedIn",
+              "url": "https://linkedin.com/in/satyanadella"
+            }
+          ],
+          "student_id": "2020005",
+          "icon_link": "executives/satya-nadella.webp",
+          "cv_link": "members/satya-nadella/cv.json",
+          "profile_link": "members/satya-nadella/profile.json"
+        },
+        {
+          "initial": "T",
+          "role": "Operations Master",
+          "name": "Tim Cook",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "CEO of Apple. Master of supply chain and ecosystem growth, scaling Apple to historic heights.",
+          "socials": [
+            {
+              "type": "twitter",
+              "label": "Twitter / X",
+              "url": "https://x.com/tim_cook"
+            }
+          ],
+          "student_id": "2020006",
+          "icon_link": "executives/tim-cook.webp",
+          "cv_link": "members/tim-cook/cv.json",
+          "profile_link": "members/tim-cook/profile.json"
+        },
+        {
+          "initial": "S",
+          "role": "Search Architect",
+          "name": "Sundar Pichai",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "CEO of Alphabet and Google. Orchestrating the shift toward the AI-driven web.",
+          "socials": [
+            {
+              "type": "linkedin",
+              "label": "LinkedIn",
+              "url": "https://linkedin.com/in/sundarpichai"
+            }
+          ],
+          "student_id": "2020007",
+          "icon_link": "executives/sundar-pichai.webp",
+          "cv_link": "members/sundar-pichai/cv.json",
+          "profile_link": "members/sundar-pichai/profile.json"
+        },
+        {
+          "initial": "M",
+          "role": "Social Engineer",
+          "name": "Mark Zuckerberg",
+          "session": "2026-27",
+          "highlight": false,
+          "bio": "Founder of Meta. Pivoting the social web toward the Metaverse and open-source AI with Llama.",
+          "socials": [
+            {
+              "type": "twitter",
+              "label": "Twitter / X",
+              "url": "https://x.com/zuck"
+            }
+          ],
+          "student_id": "2020008",
+          "icon_link": "executives/mark-zuckerberg.webp",
+          "cv_link": "members/mark-zuckerberg/cv.json",
+          "profile_link": "members/mark-zuckerberg/profile.json"
+        }
+      ]
+    },
+    {
+      "session": "2025-26",
+      "label": "2025 – 2026",
+      "total_members": 7,
+      "members": [
+        {
+          "initial": "J",
+          "role": "Logistics Titan",
+          "name": "Jeff Bezos",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "Founder of Amazon and Blue Origin. Revolutionized e-commerce and global logistics.",
+          "socials": [
+            {
+              "type": "twitter",
+              "label": "Twitter / X",
+              "url": "https://x.com/jeffbezos"
+            }
+          ],
+          "student_id": "2020009"
+        },
+        {
+          "initial": "L",
+          "role": "Algorithm Lead",
+          "name": "Larry Page",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "Co-founder of Google. Invented PageRank, fundamentally changing how we find information.",
+          "socials": [],
+          "student_id": "2020010"
+        },
+        {
+          "initial": "S",
+          "role": "Systems Lead",
+          "name": "Sergey Brin",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "Co-founder of Google. A pioneer in large-scale distributed systems and AI research.",
+          "socials": [],
+          "student_id": "2020011"
+        },
+        {
+          "initial": "R",
+          "role": "Stream Architect",
+          "name": "Reed Hastings",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "Co-founder of Netflix. Disrupted the entire entertainment industry with the subscription model.",
+          "socials": [],
+          "student_id": "2020012"
+        },
+        {
+          "initial": "P",
+          "role": "Venture Strategist",
+          "name": "Peter Thiel",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "Co-founder of PayPal and Palantir. Philosopher of zero-to-one growth and contrarian investing.",
+          "socials": [],
+          "student_id": "2020013"
+        },
+        {
+          "initial": "J",
+          "role": "Market Pioneer",
+          "name": "Jack Ma",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "Founder of Alibaba. Built the digital infrastructure for trade across Asia.",
+          "socials": [],
+          "student_id": "2020014"
+        },
+        {
+          "initial": "M",
+          "role": "Capital Catalyst",
+          "name": "Masayoshi Son",
+          "session": "2025-26",
+          "highlight": false,
+          "bio": "CEO of SoftBank. Orchestrated some of the largest tech investments in human history.",
+          "socials": [],
+          "student_id": "2020015"
+        }
+      ]
+    },
+    {
+      "session": "2024-25",
+      "label": "2024 – 2025",
+      "total_members": 8,
+      "members": [
+        {
+          "initial": "S",
+          "role": "Design Visionary",
+          "name": "Steve Jobs",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "Co-founder of Apple. Merged calligraphy and computing to create an era of intuitive technology.",
+          "socials": [],
+          "student_id": "2020016"
+        },
+        {
+          "initial": "S",
+          "role": "Hardware Legend",
+          "name": "Steve Wozniak",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "Co-founder of Apple. Designed the Apple I and II, proving a hobbyist could change the world.",
+          "socials": [],
+          "student_id": "2020017",
+          "cv_link": "members/steve-wozniak/cv.json",
+          "profile_link": "members/steve-wozniak/profile.json",
+          "icon_link": "executives/steve-wozniak.jpg"
+        },
+        {
+          "initial": "P",
+          "role": "Software Pioneer",
+          "name": "Paul Allen",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "Co-founder of Microsoft. A visionary in early computing and passionate about biodiversity.",
+          "socials": [],
+          "student_id": "2020018"
+        },
+        {
+          "initial": "A",
+          "role": "Scaling Expert",
+          "name": "Andy Grove",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "Former CEO of Intel. Coined 'Only the Paranoid Survive' and defined modern management.",
+          "socials": [],
+          "student_id": "2020019"
+        },
+        {
+          "initial": "A",
+          "role": "Computing Father",
+          "name": "Alan Turing",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "The father of theoretical computer science and artificial intelligence. Cracked the Enigma code.",
+          "socials": [],
+          "student_id": "2020020"
+        },
+        {
+          "initial": "A",
+          "role": "Algorithm Architect",
+          "name": "Ada Lovelace",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "The first computer programmer. Recognized that machines could do more than just calculate numbers.",
+          "socials": [],
+          "student_id": "2020021"
+        },
+        {
+          "initial": "G",
+          "role": "Compiler Lead",
+          "name": "Grace Hopper",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "Pioneer of COBOL and the concept of the computer compiler. Found the first 'bug' in a relay.",
+          "socials": [],
+          "student_id": "2020022"
+        },
+        {
+          "initial": "C",
+          "role": "Information Guru",
+          "name": "Claude Shannon",
+          "session": "2024-25",
+          "highlight": false,
+          "bio": "The father of information theory. Defined the 'bit' and established the mathematical basis of communication.",
+          "socials": [],
+          "student_id": "2020023"
+        }
+      ]
+    },
+    {
+      "session": "2023-24",
+      "label": "2023 – 2024",
+      "total_members": 8,
+      "members": [
+        {
+          "initial": "A",
+          "role": "Physics Titan",
+          "name": "Albert Einstein",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Developed the theory of relativity. Redefined our understanding of space, time, and gravity.",
+          "socials": [],
+          "student_id": "2020024"
+        },
+        {
+          "initial": "I",
+          "role": "Calculus Pioneer",
+          "name": "Isaac Newton",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Formulated the laws of motion and universal gravitation. Co-invented calculus.",
+          "socials": [],
+          "student_id": "2020025"
+        },
+        {
+          "initial": "N",
+          "role": "Energy Visionary",
+          "name": "Nikola Tesla",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Pioneered AC electricity and wireless communication. A futuristic thinker ahead of his time.",
+          "socials": [],
+          "student_id": "2020026"
+        },
+        {
+          "initial": "M",
+          "role": "Radiation Expert",
+          "name": "Marie Curie",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Pioneer in radioactivity. First person to win two Nobel Prizes in different scientific fields.",
+          "socials": [],
+          "student_id": "2020027"
+        },
+        {
+          "initial": "R",
+          "role": "Quantum Master",
+          "name": "Richard Feynman",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Known for his work in quantum electrodynamics and his exceptional ability to explain complex physics.",
+          "socials": [],
+          "student_id": "2020028"
+        },
+        {
+          "initial": "S",
+          "role": "Cosmos Lead",
+          "name": "Stephen Hawking",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Theorized black hole radiation and the origin of the universe. A symbol of intellectual perseverance.",
+          "socials": [],
+          "student_id": "2020029"
+        },
+        {
+          "initial": "C",
+          "role": "Evolution Lead",
+          "name": "Charles Darwin",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Proposed the theory of evolution by natural selection, changing biology forever.",
+          "socials": [],
+          "student_id": "2020030"
+        },
+        {
+          "initial": "N",
+          "role": "Atomic Architect",
+          "name": "Niels Bohr",
+          "session": "2023-24",
+          "highlight": false,
+          "bio": "Developed the Bohr model of the atom and contributed to the foundation of quantum mechanics.",
+          "socials": [],
+          "student_id": "2020031"
+        }
+      ]
+    }
+  ]
+}

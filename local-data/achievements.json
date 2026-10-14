@@ -1,0 +1,134 @@
+{
+  "tally": [
+    {
+      "value": "12",
+      "label": "Nobel Prizes"
+    },
+    {
+      "value": "8",
+      "label": "Turing Awards"
+    },
+    {
+      "value": "15",
+      "label": "Industry Firsts"
+    },
+    {
+      "value": "42",
+      "label": "Breakthroughs"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Pioneering the Multi-Planetary Era",
+      "event": "SpaceX Starship Flight Test",
+      "category": "Aerospace",
+      "year": "2026",
+      "tier": "gold",
+      "team_label": "Visionary",
+      "members": [
+        "2020001"
+      ]
+    },
+    {
+      "title": "The GPU Revolution — Accelerating AI",
+      "event": "NVIDIA CUDA Architecture Launch",
+      "category": "Computing",
+      "year": "2024",
+      "tier": "gold",
+      "team_label": "Architect",
+      "members": [
+        "2020002"
+      ]
+    },
+    {
+      "title": "AGI Foundations — Scaling Law Discovery",
+      "event": "OpenAI GPT-Series Research",
+      "category": "AI Research",
+      "year": "2024",
+      "tier": "special",
+      "team_label": "Strategist",
+      "members": [
+        "2020003",
+        "2020004"
+      ]
+    },
+    {
+      "title": "Nobel Prize in Physics — Theory of Relativity",
+      "event": "Royal Swedish Academy of Sciences",
+      "category": "Theoretical Physics",
+      "year": "1921",
+      "tier": "gold",
+      "team_label": "Scientist",
+      "members": [
+        "2020024"
+      ]
+    },
+    {
+      "title": "Double Nobel Prize — Radioactivity",
+      "event": "Nobel Prize in Physics & Chemistry",
+      "category": "Science",
+      "year": "1911",
+      "tier": "gold",
+      "team_label": "Pioneer",
+      "members": [
+        "2020027"
+      ]
+    },
+    {
+      "title": "Turing Award — Foundational Computing",
+      "event": "Association for Computing Machinery",
+      "category": "Turing Award",
+      "year": "1950",
+      "tier": "special",
+      "team_label": "Father of CS",
+      "members": [
+        "2020020"
+      ]
+    },
+    {
+      "title": "The First Computer Program",
+      "event": "Analytical Engine Specifications",
+      "category": "Programming",
+      "year": "1843",
+      "tier": "gold",
+      "team_label": "Architect",
+      "members": [
+        "2020021"
+      ]
+    },
+    {
+      "title": "Laws of Motion and Universal Gravitation",
+      "event": "Philosophiæ Naturalis Principia Mathematica",
+      "category": "Mathematics",
+      "year": "1687",
+      "tier": "gold",
+      "team_label": "Pioneer",
+      "members": [
+        "2020025"
+      ]
+    },
+    {
+      "title": "World's First Programmable Computer",
+      "event": "Apple I & II Design",
+      "category": "Hardware",
+      "year": "1976",
+      "tier": "gold",
+      "team_label": "Legend",
+      "members": [
+        "2020017",
+        "2020016"
+      ]
+    },
+    {
+      "title": "Information Theory Foundation",
+      "event": "A Mathematical Theory of Communication",
+      "category": "Information Theory",
+      "year": "1948",
+      "tier": "special",
+      "team_label": "Guru",
+      "members": [
+        "2020023"
+      ]
+    }
+  ]
+}

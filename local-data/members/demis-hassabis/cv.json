@@ -1,0 +1,127 @@
+{
+  "name": "Demis Hassabis",
+  "role": "Research Lead & CEO",
+  "location": "London, UK",
+  "email": "demis@deepmind.com",
+  "github": "github.com/demishassabis",
+  "languages": ["English"],
+  "education": [
+    {
+      "degree": "PhD in Cognitive Neuroscience",
+      "institution": "University College London",
+      "year": "2009",
+      "cgpa": "null /4.0"
+    },
+    {
+      "degree": "BSc in Computer Science",
+      "institution": "University of Cambridge",
+      "year": "1997",
+      "cgpa": "null /4.0"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Global AI Pioneer",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "CEO & Co-founder",
+      "dates": "2010 - Present",
+      "subtitle": "Google DeepMind",
+      "bullets": [
+        {
+          "text": "Unifying Neuroscience and AI",
+          "children": [
+            "Leading the research and development of general-purpose AI systems through deep reinforcement learning.",
+            "Spearheaded breakthroughs like AlphaGo, which defeated a professional Go player.",
+            "Directed the development of AlphaFold, solving the protein-folding grand challenge.",
+            "Orchestrating the fusion of large-scale compute, biology, and deep learning.",
+            "Managing the integration of DeepMind into Google's core AI ecosystem."
+          ]
+        },
+        {
+          "text": "Strategic AI Leadership",
+          "children": [
+            "Leading a world-class team of researchers, engineers, and scientists.",
+            "Driving the research agenda for the next generation of artificial general intelligence.",
+            "Establishing DeepMind as the global leader in transformative AI research."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Co-founder & Director",
+      "dates": "2000 - 2010",
+      "subtitle": "Various (Gaming & Research)",
+      "bullets": [
+        {
+          "text": "Game AI & Cognitive Research",
+          "children": [
+            "Developed highly advanced AI for commercial video games, demonstrating early expertise in agentic behavior.",
+            "Conducted research in neuroscience and cognitive psychology to inform AI development.",
+            "Built highly successful game-based AI architectures."
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "AlphaFold",
+      "subtitle": "Deep Learning for Biology",
+      "bullets": [
+        "Developed an AI system capable of predicting the 3D structure of proteins from their amino acid sequences.",
+        "Solved a 50-year-old grand challenge in biology with unprecedented accuracy.",
+        "Accelerated drug discovery and biological research globally through open access to protein structures.",
+        "Integrated deep learning with geometric and physical constraints to ensure biological plausibility."
+      ]
+    },
+    {
+      "title": "AlphaGo",
+      "subtitle": "Deep Reinforcement Learning",
+      "bullets": [
+        "Created the first AI system to master the game of Go, demonstrating superhuman strategic capability.",
+        "Combined deep neural networks with Monte Carlo tree search to solve complex decision-making tasks.",
+        "Proved the effectiveness of deep reinforcement learning in highly complex environments."
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "title": "AI Research Leadership",
+      "subtitle": "Global Scientific Community",
+      "dates": "Ongoing",
+      "bullets": [
+        "Advocating for the safe and beneficial development of AGI.",
+        "Collaborating with biologists and chemists to apply AI to scientific discovery.",
+        "Promoting interdisciplinary research between neuroscience and computer science."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "AI & Science",
+      "commas": ["Deep Reinforcement Learning", "Neuroscience-inspired AI", "AlphaZero", "AlphaFold", "Large-scale Neural Networks", "Game Theory", "Computational Biology"]
+    },
+    {
+      "subtitle": "Core Engineering",
+      "commas": ["Python", "C++", "TensorFlow", "JAX", "Distributed Systems", "Neuroscience Modeling"]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Mastering the game of Go with deep neural networks and tree search",
+      "subtitle": "Nature Journal",
+      "dates": "2016",
+      "bullets": ["Groundbreaking research paper on deep reinforcement learning and tree search."]
+    },
+    {
+      "title": "Predicting protein structures with AlphaFold",
+      "subtitle": "Nature Journal",
+      "dates": "2021",
+      "bullets": ["Seminal work on applying deep learning to the fundamental challenges of biology."]
+    }
+  ]
+}

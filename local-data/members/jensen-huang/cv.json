@@ -1,0 +1,185 @@
+{
+  "name": "Jensen Huang",
+  "role": "AI Architect",
+  "location": "Santa Clara, CA (Dhaka Branch)",
+  "email": "jensen@nvidia.com",
+  "github": "github.com/jensen-huang-nvidia",
+  "languages": [
+    "English (Native)",
+    "Mandarin (Fluent)"
+  ],
+  "education": [
+    {
+      "degree": "Ph.D. (Honorary) in Computer Science",
+      "institution": "Stanford University",
+      "year": "2000"
+    },
+    {
+      "degree": "M.S. in Electrical Engineering",
+      "institution": "Stanford University",
+      "year": "1992"
+    },
+    {
+      "degree": "B.S. in Electrical Engineering",
+      "institution": "Oregon State University",
+      "year": "1984"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Advanced CUDA Programming Mastery (NVIDIA DLI)"
+    },
+    {
+      "title": "High Performance Computing Architecture (Stanford)"
+    },
+    {
+      "title": "Neuromorphic Computing Specialist",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "AI Architect",
+      "subtitle": "Statistics Programming Club",
+      "dates": "2026 – Present",
+      "bullets": [
+        "Designed the club's GPU-accelerated deep learning compute cluster, optimizing throughput for large-scale statistical simulations.",
+        "Mentored 120+ students in parallel programming using CUDA and PyTorch, focusing on hardware-aware AI optimization.",
+        "Implemented a custom distributed training framework for high-dimensional data analysis across multiple GPU nodes.",
+        "Led the integration of NVIDIA H100s into the club's infrastructure, reducing training times by 10x for graduate research."
+      ]
+    },
+    {
+      "title": "CEO & Founder",
+      "subtitle": "NVIDIA",
+      "dates": "1993 – Present",
+      "bullets": [
+        "Pioneered GPU-accelerated computing, transforming gaming, scientific research, and artificial intelligence.",
+        "Scaled the company from a startup to a global leader in AI hardware and software, overseeing the development of the Ampere, Hopper, and Blackwell architectures.",
+        "Strategically pivoted NVIDIA from a graphics company to an AI computing company, enabling the modern LLM revolution.",
+        "Oversaw the development of CUDA, creating the world's most widely used parallel computing platform.",
+        "Established the NVIDIA Omniverse, a platform for industrial digitalization and real-time 3D simulation."
+      ]
+    },
+    {
+      "title": "Director of Engineering",
+      "subtitle": "LSI Logic",
+      "dates": "1985 – 1993",
+      "bullets": [
+        "Led the design of high-performance ASIC systems for early semiconductor applications.",
+        "Developed foundational architectures for high-speed data processing that influenced early GPU design."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Hardware & Systems",
+      "commas": [
+        "CUDA",
+        "GPU Architecture",
+        "Parallel Programming",
+        "Tensor Core optimization",
+        "InfiniBand Networking",
+        "NVLink",
+        "FPGA Design"
+      ]
+    },
+    {
+      "subtitle": "AI & Deep Learning",
+      "commas": [
+        "PyTorch",
+        "TensorRT",
+        "LLM Pretraining",
+        "Neural Graphics",
+        "Omniverse",
+        "Reinforcement Learning",
+        "Diffusion Models"
+      ]
+    },
+    {
+      "subtitle": "Tools",
+      "commas": [
+        "C++",
+        "Python",
+        "Git",
+        "LaTeX",
+        "Verilog",
+        "SystemVerilog"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "CUDA Platform Development",
+      "subtitle": "CUDA, C++, Parallel Computing, GPU",
+      "bullets": [
+        "Created a parallel computing platform and programming model that enables dramatic increases in computing performance by harnessing the power of the graphics processing unit (GPU).",
+        "Developed the compiler toolchain and runtime library that allows C++ developers to write GPU kernels.",
+        "Established the CUDA ecosystem, including libraries like cuBLAS, cuDNN, and cuFFT.",
+        "GitHub: https://github.com/nvidia/cuda-samples | Demo: https://developer.nvidia.com/cuda-zone"
+      ]
+    },
+    {
+      "title": "Toyon Supercomputer Design",
+      "subtitle": "HPC, PyTorch, InfiniBand",
+      "bullets": [
+        "Co-designed and built a custom deep learning supercomputer cluster for high-dimensional statistical model validation and generative AI workloads.",
+        "Implemented a low-latency communication layer using InfiniBand to optimize multi-node gradient synchronization.",
+        "Optimized the software stack for maximum TFLOPS utilization during large-scale model training.",
+        "GitHub: https://github.com/nvidia/toyon"
+      ]
+    },
+    {
+      "title": "Omniverse Industrial Digital Twin",
+      "subtitle": "USD, RTX, AI",
+      "bullets": [
+        "Designed a real-time 3D simulation platform for industrial digital twins, allowing companies to simulate entire factories in physically accurate environments.",
+        "Integrated NVIDIA RTX technology for photorealistic rendering and physically based simulation.",
+        "Developed a collaborative framework based on Universal Scene Description (USD) for seamless 3D asset integration."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Accelerating Deep Learning with GPUs",
+      "subtitle": "IEEE Micro",
+      "dates": "2017",
+      "bullets": [
+        "Paper: https://ieeexplore.ieee.org/document/example"
+      ]
+    },
+    {
+      "title": "CUDA: A General-Purpose Parallel Computing Architecture",
+      "subtitle": "ACM Communications",
+      "dates": "2008",
+      "bullets": [
+        "Paper: https://dl.acm.org/doi/example"
+      ]
+    },
+    {
+      "title": "The Future of Generative AI and Computing",
+      "subtitle": "Industry Whitepaper",
+      "dates": "2023",
+      "bullets": [
+        "Analysis of the shift towards generative AI and the requirements for next-generation AI supercomputers."
+      ]
+    }
+  ],
+  "honors_and_awards": [
+    {
+      "title": "IEEE Founder's Medal",
+      "subtitle": "IEEE",
+      "dates": "2020"
+    },
+    {
+      "title": "Robert N. Noyce Award",
+      "subtitle": "SIA",
+      "dates": "2021"
+    },
+    {
+      "title": "Time Person of the Year (AI Category)",
+      "subtitle": "Time Magazine",
+      "dates": "2023"
+    }
+  ]
+}

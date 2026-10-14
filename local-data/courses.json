@@ -1,0 +1,44 @@
+{
+  "courses": [
+    {
+      "id": "c-001",
+      "title": "Deep Learning Specialization",
+      "provider": "DeepLearning.AI / Coursera",
+      "type": "course",
+      "year": "2024",
+      "description": "Comprehensive series covering neural networks, CNNs, RNNs, and hyperparameter tuning.",
+      "link": "https://www.coursera.org/specializations/deep-learning",
+      "featured": false
+    },
+    {
+      "id": "c-002",
+      "title": "Applied Data Science with Python",
+      "provider": "University of Michigan / Coursera",
+      "type": "course",
+      "year": "2023",
+      "description": "Practical application of pandas, matplotlib, and scikit-learn for data analysis.",
+      "link": "https://www.coursera.org/specializations/data-science-python",
+      "featured": false
+    },
+    {
+      "id": "cert-001",
+      "title": "Google Data Analytics Professional Certificate",
+      "provider": "Google",
+      "type": "certificate",
+      "year": "2023",
+      "description": "Professional certification covering the entire data analysis process from cleaning to visualization.",
+      "link": "https://www.coursera.org/professional-certificates/google-data-analytics",
+      "featured": false
+    },
+    {
+      "id": "cert-002",
+      "title": "TensorFlow Developer Professional Certificate",
+      "provider": "Google / Coursera",
+      "type": "certificate",
+      "year": "2024",
+      "description": "Validation of skills in building and deploying machine learning models using TensorFlow.",
+      "link": "https://www.coursera.org/professional-certificates/tensorflow-developer",
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "name": "Tim Cook",
+  "role": "CEO & Operations Master",
+  "location": "Cupertino, USA",
+  "email": "tim@apple.com",
+  "github": "github.com/timcook",
+  "languages": ["English"],
+  "education": [
+    {
+      "degree": "MBA",
+      "institution": "Duke University",
+      "year": "1998",
+      "cgpa": "null /4.0"
+    },
+    {
+      "degree": "B.S. in Industrial Engineering",
+      "institution": "Auburn University",
+      "year": "1982",
+      "cgpa": "null /4.0"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Operational Excellence Expert",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "CEO",
+      "dates": "2011 - Present",
+      "subtitle": "Apple Inc.",
+      "bullets": [
+        {
+          "text": "Scaling the Global Ecosystem",
+          "children": [
+            "Leading Apple's strategic expansion into Services, Wearables, and emerging technology sectors.",
+            "Driving massive revenue growth and multi-trillion-dollar market capitalization through ecosystem integration.",
+            "Managing the global rollout of products like the Apple Watch, AirPods, and Apple Silicon.",
+            "Overseeing the diversification of Apple's business model from hardware-only to a services-centric powerhouse."
+          ]
+        },
+        {
+          "text": "Sustainability & Social Impact",
+          "children": [
+            "Leading Apple's commitment to becoming carbon neutral across its entire supply chain by 2030.",
+            "Implementing advanced environmental standards for material sourcing and manufacturing.",
+            "Championing privacy and security as a fundamental human right within the Apple ecosystem."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Chief Operating Officer",
+      "dates": "1998 - 2011",
+      "subtitle": "Apple Inc.",
+      "bullets": [
+        {
+          "text": "Global Supply Chain Optimization",
+          "children": [
+            "Transformed Apple's supply chain into a highly efficient, world-class operation.",
+            "Optimized inventory management and vendor relationships to minimize waste and maximize responsiveness.",
+            "Developed the logistics and manufacturing framework that enabled the massive scale of the iPod and iPhone era."
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Apple Services Revolution",
+      "subtitle": "Ecosystem Growth",
+      "bullets": [
+        "Orchestrated the massive growth of Apple Services (iCloud, Apple Music, App Store, etc.).",
+        "Created a highly integrated and profitable ecosystem that drives recurring revenue.",
+        "Established Apple as a leader in the services-driven business model."
+      ]
+    },
+    {
+      "title": "Apple Silicon Transition",
+      "subtitle": "Hardware & Architecture",
+      "bullets": [
+        "Overseeing the transition from Intel-based Mac computers to custom Apple Silicon (M-series chips).",
+        "Leading the development of high-performance, energy-efficient architecture for consumer electronics.",
+        "Driving vertical integration in hardware and software design."
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "title": "Global Supply Chain Advocacy",
+      "subtitle": "Industry Leadership",
+      "dates": "Ongoing",
+      "bullets": [
+        "Promoting sustainable and ethical manufacturing practices globally.",
+        "Speaking on the importance of operational excellence in the modern era.",
+        "Advocating for technological accessibility and privacy."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Operations & Logistics",
+      "commas": ["Global Supply Chain Management", "Operational Excellence", "Inventory Optimization", "Vendor Management", "Logistics", "Manufacturing Strategy"]
+    },
+    {
+      "subtitle": "Leadership & Strategy",
+      "commas": ["Strategic Execution", "Corporate Governance", "Sustainability Leadership", "Ecosystem Growth", "Crisis Management", "Scaling Operations"]
+    }
+  ],
+  "publications": []
+}

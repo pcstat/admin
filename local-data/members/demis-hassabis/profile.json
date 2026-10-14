@@ -1,0 +1,79 @@
+{
+  "name": "Demis Hassabis",
+  "tagline": "unifying neuroscience and AI to solve intelligence.",
+  "role": "Research Lead",
+  "subtitle": "Neuro-symbolic AI & DeepMind",
+  "photo": "",
+  "bio": "Demis Hassabis is the Research Lead for the Statistics Programming Club. As the CEO and Co-founder of Google DeepMind, he is a world leader in artificial intelligence research, specifically in combining neuroscience insights with deep learning to solve fundamental problems of intelligence.",
+  "location": "London, UK",
+  "session": "2026-27",
+  "socials": [
+    { "type": "twitter", "label": "Twitter / X", "url": "https://x.com/demishassabis" }
+  ],
+  "stats": [
+    { "value": "2", "label": "Nobel Prize Winners (AI related)" },
+    { "value": "AlphaGo", "label": "Breakthrough" }
+  ],
+  "focus_areas": ["Deep Reinforcement Learning", "Neuroscience", "General AI", "Game Theory"],
+  "skills": [
+    {
+      "category": "AI Research",
+      "icon": "brain",
+      "items": ["Deep Learning", "Reinforcement Learning", "Neuroscience-inspired AI", "AlphaZero"]
+    },
+    {
+      "category": "Computing",
+      "icon": "code",
+      "items": ["Python", "C++", "TensorFlow", "JAX"]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "CEO & Co-founder",
+      "start": "2010",
+      "end": "present",
+      "description": "Leading DeepMind in developing general-purpose AI systems.\nSpearheaded breakthroughs like AlphaGo, AlphaFold, and Gemini.",
+      "short_desc": "Leading DeepMind in developing general-purpose AI systems.",
+      "tags": ["AI", "Research", "Leadership"],
+      "company": "Google DeepMind",
+      "type": "Full-time"
+    },
+    {
+      "role": "Researcher / Game Designer",
+      "start": "1990s",
+      "end": "2010",
+      "description": "Contributed to neuroscience research and game development.\nEngaged in both academic research and high-level gaming competitive scenes.",
+      "short_desc": "Contributed to neuroscience research and game development.",
+      "tags": ["Neuroscience", "Game AI"],
+      "company": "Various",
+      "type": "Professional"
+    }
+  ],
+  "projects": [
+    {
+      "title": "AlphaFold",
+      "description": "A breakthrough AI system that predicts protein structures with high accuracy.\nSolving a 50-year-old grand challenge in biology.",
+      "tags": ["Biology", "AI", "Protein Folding"],
+      "featured": true,
+      "links": { "url": "https://deepmind.google/technologies/alphafold/" }
+    },
+    {
+      "title": "AlphaGo",
+      "description": "The first AI system to defeat a professional Go player.\nDemonstrating the power of deep reinforcement learning.",
+      "tags": ["Reinforcement Learning", "Game AI"],
+      "featured": true,
+      "links": { "url": "https://deepmind.google/technologies/alphago/" }
+    }
+  ],
+  "publications": [
+    {
+      "title": "Mastering the game of Go with deep neural networks and tree search",
+      "venue": "Nature · 2016",
+      "tags": ["AI", "Go", "Deep Learning"],
+      "featured": true,
+      "links": { "paper": "https://www.nature.com/articles/10.1038/nature16961" }
+    }
+  ],
+  "achievements": [],
+  "cv_link": ""
+}

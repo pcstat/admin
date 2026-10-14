@@ -1,0 +1,38 @@
+name: Deploy admin panel to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # The pnpm version comes from the "packageManager" field in package.json.
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm cf:build
+
+      # The Worker's runtime secrets (GITHUB_TOKEN, ADMIN_PASSWORD_HASH, AUTH_SESSION_SECRET) live in
+      # Cloudflare and its plain settings in wrangler.toml — NOT here. This job only needs the
+      # Cloudflare API credentials to upload the build.
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

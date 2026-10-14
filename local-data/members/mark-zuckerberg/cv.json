@@ -1,0 +1,93 @@
+{
+  "name": "Mark Zuckerberg",
+  "role": "Founder & CEO",
+  "location": "Menlo Park, USA",
+  "email": "zuck@meta.com",
+  "github": "github.com/zuck",
+  "languages": ["English"],
+  "education": [
+    {
+      "degree": "Psychology",
+      "institution": "Harvard University",
+      "year": "2004",
+      "cgpa": "null /4.0"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Metaverse Pioneer",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "Founder & CEO",
+      "dates": "2004 - Present",
+      "subtitle": "Meta (formerly Facebook)",
+      "bullets": [
+        {
+          "text": "The Social Network Revolution",
+          "children": [
+            "Founded and grew the world's largest social networking platform from a dorm room project.",
+            "Orchestrated the acquisition and integration of key platforms like Instagram and WhatsApp.",
+            "Managed the transition from a web-centric platform to a mobile-first ecosystem.",
+            "Directed the evolution of the social web for billions of users worldwide."
+          ]
+        },
+        {
+          "text": "The Metaverse & Open Source AI Transition",
+          "children": [
+            "Leading the strategic pivot toward the Metaverse through augmented and virtual reality.",
+            "Championing the development of open-source AI through the Llama model family.",
+            "Building the hardware and software foundation for immersive digital social spaces.",
+            "Driving innovation in spatial computing and social connection technologies."
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Llama (Open Source AI)",
+      "subtitle": "Advancing Generative AI",
+      "bullets": [
+        "Developed and released state-of-the-art open-source large language models.",
+        "Empowered the global AI research community through open access to foundational models.",
+        "Established Meta as a key leader in the open-source AI ecosystem.",
+        "Managed the massive-scale training and deployment of advanced transformer architectures."
+      ]
+    },
+    {
+      "title": "Metaverse Hardware & Software",
+      "subtitle": "Immersive Social Connection",
+      "bullets": [
+        "Directing the development of VR/AR hardware (Quest series) and social software.",
+        "Building the foundational technologies for digital presence and spatial computing.",
+        "Creating immersive social environments that redefine human interaction."
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "title": "Open Source Advocacy",
+      "subtitle": "AI Research Leadership",
+      "dates": "Ongoing",
+      "bullets": [
+        "Promoting the importance of open-source AI for innovation and safety.",
+        "Collaborating with researchers worldwide on foundational AI models.",
+        "Advocating for democratic access to advanced artificial intelligence."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Technology & Platforms",
+      "commas": ["Social Networking", "Metaverse Architecture", "VR/AR Systems", "Large Language Models", "Open Source AI", "Product Development", "Scaling Social Platforms"]
+    },
+    {
+      "subtitle": "Leadership & Vision",
+      "commas": ["Strategic Pivot", "Ecosystem Management", "Global Scaling", "Founder Leadership", "Innovation Management"]
+    }
+  ],
+  "publications": []
+}

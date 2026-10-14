@@ -1,0 +1,113 @@
+{
+  "name": "Sundar Pichai",
+  "role": "CEO & Search Architect",
+  "location": "Mountain View, USA",
+  "email": "sundar@google.com",
+  "github": "github.com/sundarpichai",
+  "languages": ["English"],
+  "education": [
+    {
+      "degree": "M.S. in Materials Science and Engineering",
+      "institution": "Stanford University",
+      "year": "1995",
+      "cgpa": "null /4.0"
+    },
+    {
+      "degree": "B.Tech in Metallurgical Engineering",
+      "institution": "IIT Kharagpur",
+      "year": "1989",
+      "cgpa": "null /4.0"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Global Tech Visionary",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "CEO",
+      "dates": "2015 - Present",
+      "subtitle": "Alphabet / Google",
+      "bullets": [
+        {
+          "text": "Leading the AI-First Evolution",
+          "children": [
+            "Orchestrating the fundamental shift of Google towards being an AI-first company.",
+            "Driving the integration of generative AI into core products like Search, Android, and Workspace.",
+            "Directing massive-scale research and deployment of foundational AI models.",
+            "Managing the strategic direction of Alphabet's diverse portfolio of companies."
+          ]
+        },
+        {
+          "text": "Global Platform Leadership",
+          "children": [
+            "Overseeing the growth and evolution of core platforms like Search, YouTube, and Android.",
+            "Scaling the global ecosystem of developers and users across Google's product suite.",
+            "Driving innovation in cloud computing and enterprise AI services."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Senior Vice President, Product",
+      "dates": "2004 - 2015",
+      "subtitle": "Google",
+      "bullets": [
+        {
+          "text": "Product Innovation & Growth",
+          "children": [
+            "Led the development and massive expansion of Google Search and Chrome.",
+            "Managed the growth and integration of the Android ecosystem.",
+            "Oversaw the product evolution of Google Maps and other key consumer services.",
+            "Drove strategic product roadmaps that achieved billions of active users."
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "AI-Driven Search Transformation",
+      "subtitle": "The Future of Information Retrieval",
+      "bullets": [
+        "Leading the evolution of Search through generative AI and semantic understanding.",
+        "Redefining how the world accesses and interacts with information online.",
+        "Managing the massive-scale deployment of AI-enhanced search results."
+      ]
+    },
+    {
+      "title": "Android Ecosystem Growth",
+      "subtitle": "Mobile Platform Leadership",
+      "bullets": [
+        "Directed the strategic expansion of the Android operating system globally.",
+        "Built one of the world's largest mobile ecosystems, empowering billions of users.",
+        "Managed the integration of core Google services into the Android platform."
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "title": "Global Tech Leadership",
+      "subtitle": "Industry Advocacy",
+      "dates": "Ongoing",
+      "bullets": [
+        "Advocating for the responsible and ethical development of artificial intelligence.",
+        "Speaking at major global forums on the future of technology and the internet.",
+        "Promoting digital accessibility and information equity through Google's products."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Search & Platforms",
+      "commas": ["Search Algorithms", "Information Retrieval", "Android Ecosystem", "Chrome Browser", "Product Management", "Platform Strategy", "Mobile Ecosystems"]
+    },
+    {
+      "subtitle": "Leadership & AI",
+      "commas": ["AI-First Strategy", "Global Operations", "Strategic Transformation", "Large-scale Product Management", "Corporate Leadership", "Ecosystem Building"]
+    }
+  ],
+  "publications": []
+}

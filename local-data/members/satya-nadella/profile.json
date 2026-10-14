@@ -1,0 +1,64 @@
+{
+  "name": "Satya Nadella",
+  "tagline": "empowering every person and organization on the planet to achieve more.",
+  "role": "Cloud Visionary",
+  "subtitle": "Cloud Computing & AI Ecosystems",
+  "photo": "",
+  "bio": "Satya Nadella is the Cloud Visionary for the Statistics Programming Club. As the CEO of Microsoft, he has transformed the company into a cloud-first, AI-first powerhouse, leading the era of Azure and large-scale enterprise AI.",
+  "location": "Redmond, WA",
+  "session": "2026-27",
+  "socials": [
+    { "type": "linkedin", "label": "LinkedIn", "url": "https://linkedin.com/in/satyanadella" }
+  ],
+  "stats": [
+    { "value": "Cloud-First", "label": "Strategic Shift" },
+    { "value": "Azure", "label": "Primary Engine" }
+  ],
+  "focus_areas": ["Cloud Computing", "Enterprise AI", "Software Ecosystems", "Machine Learning"],
+  "skills": [
+    {
+      "category": "Cloud & Infrastructure",
+      "icon": "cloud",
+      "items": ["Microsoft Azure", "Cloud Architecture", "Distributed Systems", "Hybrid Cloud"]
+    },
+    {
+      "category": "Leadership",
+      "icon": "users",
+      "items": ["Strategic Transformation", "Enterprise Scale", "Growth Mindset"]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "CEO",
+      "start": "2014",
+      "end": "present",
+      "description": "Leading Microsoft's strategic pivot to cloud and AI-first services.\nDriving the growth of Azure and embedding AI across the Microsoft ecosystem.",
+      "short_desc": "Leading Microsoft's strategic pivot to cloud and AI-first services.",
+      "tags": ["Cloud", "AI", "Leadership"],
+      "company": "Microsoft",
+      "type": "Full-time"
+    },
+    {
+      "role": "Executive Vice President, Cloud & Enterprise",
+      "start": "2011",
+      "end": "2014",
+      "description": "Directing the Cloud and Enterprise group to drive Azure adoption.\nScaling Microsoft's cloud-based offerings for global enterprises.",
+      "short_desc": "Directing the Cloud and Enterprise group.",
+      "tags": ["Cloud", "Enterprise"],
+      "company": "Microsoft",
+      "type": "Full-time"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Azure Cloud Transformation",
+      "description": "Leading the massive scale-up of Microsoft Azure as a global cloud platform.\nEmpowering enterprises with scalable, reliable, and secure cloud services.",
+      "tags": ["Cloud", "Enterprise", "Infrastructure"],
+      "featured": true,
+      "links": { "url": "https://azure.microsoft.com" }
+    }
+  ],
+  "publications": [],
+  "achievements": [],
+  "cv_link": ""
+}

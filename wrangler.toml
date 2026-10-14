@@ -1,0 +1,20 @@
+name = "programming-club-admin"
+main = ".open-next/worker.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# Plain (non-secret) configuration. Secrets are NOT set here — set them once with
+#   pnpm wrangler secret put GITHUB_TOKEN
+#   pnpm wrangler secret put ADMIN_PASSWORD_HASH
+#   pnpm wrangler secret put AUTH_SESSION_SECRET
+# (or from the Cloudflare dashboard) so they never sit in a committed file.
+[vars]
+DATA_PROVIDER = "github"
+DATABASE_REPO = "Test-12345test/programming-club-demo-data"   # "owner/name" of the database repo
+DATABASE_BRANCH = "main"
+# Links shown in the admin panel's sidebar (optional).
+NEXT_PUBLIC_WEBSITE_URL = "https://programming-club-demo.pages.dev"

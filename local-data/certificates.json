@@ -1,0 +1,51 @@
+{
+  "issued_certificates": [
+    {
+      "id": "SPC-2024-0001",
+      "recipient": "Alexandra Fontaine",
+      "course": "Advanced Data Science & Machine Learning",
+      "date": "May 23, 2026",
+      "status": "verified",
+      "reason": "In recognition of outstanding dedication and excellence in the completion of",
+      "reason2": "demonstrating exceptional proficiency and commitment throughout the programme",
+      "person1": "Prof. D. Harrington",
+      "post1": "PROGRAMME DIRECTOR",
+      "person2": "Dr. S. Okafor",
+      "post2": "ACADEMIC REGISTRAR",
+      "template": "Certificate_A.svg"
+    },
+    {
+      "id": "SPC-2024-0002",
+      "recipient": "John Doe",
+      "course": "Introduction to R Programming",
+      "date": "June 15, 2026",
+      "status": "verified",
+      "reason": "This is to certify that",
+      "reason2": "8-WEEK INTENSIVE PROGRAM · SPRING 2026",
+      "person1": "Dr. Sarah Mitchell",
+      "post1": "CLUB PRESIDENT",
+      "person2": "Prof. James Wei",
+      "post2": "CLUB MODERATOR",
+      "template": "Certificate_B.svg"
+    },
+    {
+      "id": "SPC-2024-0003",
+      "recipient": "Jane Smith",
+      "course1": "Competitive Programming",
+      "course2": "Basics & Algorithms",
+      "date": "July 10, 2026",
+      "status": "verified",
+      "reason": "In recognition of outstanding dedication and excellence in the completion of",
+      "reason2": "demonstrating exceptional proficiency and commitment throughout the programme",
+      "person1": "Prof. D. Harrington",
+      "post1": "PROGRAMME DIRECTOR",
+      "person2": "Dr. S. Okafor",
+      "post2": "ACADEMIC REGISTRAR",
+      "modules": "12",
+      "hours": "120",
+      "score": "92.5%",
+      "grade": "DISTINCTION",
+      "template": "Certificate_C.svg"
+    }
+  ]
+}

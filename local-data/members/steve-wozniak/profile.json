@@ -1,0 +1,183 @@
+{
+  "name": "Steve Wozniak",
+  "tagline": "Designing the future, one chip at a time.",
+  "role": "Hardware Legend",
+  "subtitle": "Hardware engineering & Embedded systems",
+  "photo": "",
+  "bio": "Steve Wozniak is the Hardware Legend of the Statistics Programming Club. He pioneered the design of Apple I and Apple II, showcasing that hobbyist electrical engineering can revolutionize global computing. Known for his obsession with efficiency and minimalism, Woz continues to inspire engineers to build things that are not just functional, but elegant in their simplicity.",
+  "location": "San Jose, CA",
+  "session": "2024-25",
+  "socials": [
+    {
+      "type": "github",
+      "label": "GitHub",
+      "url": "https://github.com/woz-apple-legend"
+    },
+    {
+      "type": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/stevewozniak"
+    }
+  ],
+  "stats": [
+    {
+      "value": "40+",
+      "label": "Years of Experience"
+    },
+    {
+      "value": "2",
+      "label": "Iconic Computers Designed"
+    },
+    {
+      "value": "1000s",
+      "label": "Lives Changed"
+    },
+    {
+      "value": "0",
+      "label": "Wasted Chips"
+    }
+  ],
+  "focus_areas": [
+    "Hardware Engineering",
+    "Embedded Systems",
+    "Microprocessor Programming",
+    "Retro Computing",
+    "Minimalist Design",
+    "Digital Logic"
+  ],
+  "skills": [
+    {
+      "category": "Hardware",
+      "icon": "tools",
+      "items": [
+        "Breadboarding",
+        "PCB Design",
+        "6502 Assembly",
+        "Disk II Controller Design",
+        "Analog Circuitry",
+        "Digital Logic Gates"
+      ]
+    },
+    {
+      "category": "Software",
+      "icon": "code",
+      "items": [
+        "Integer BASIC",
+        "Machine Code",
+        "Assembly Language",
+        "Embedded C"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "Co-founder & Chief Hardware Engineer, Apple Computer",
+      "start": "1976",
+      "end": "1985",
+      "description": "Pioneered the design of Apple I and Apple II.\nRevolutionized global computing through hobbyist electrical engineering.",
+      "short_desc": "Pioneered the design of Apple I and Apple II.",
+      "tags": ["Apple II", "Hardware Design"],
+      "company": "Apple Computer",
+      "type": "Full-time"
+    },
+    {
+      "role": "CL 15 Educator, Los Gatos School District",
+      "start": "1990",
+      "end": "1998",
+      "description": "Served as an educator within the Los Gatos School District.\nFocused on early computer literacy and technology education.",
+      "short_desc": "Educator in Los Gatos School District.",
+      "tags": ["Education"],
+      "company": "Los Gatos School District",
+      "type": "Professional"
+    },
+    {
+      "role": "Hardware Legend / Mentor, Statistics Programming Club",
+      "start": "2024",
+      "end": "present",
+      "description": "Inspiring engineers to build things that are not just functional, but elegant in their simplicity.\nMentoring next-generation hardware pioneers.",
+      "short_desc": "Inspiring engineers to build elegant hardware.",
+      "tags": ["Hardware", "Mentorship"],
+      "company": "Statistics Programming Club",
+      "type": "Professional"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Apple II Computer Design",
+      "description": "Designed the entire architecture of the Apple II.\nOne of the first highly successful mass-produced microcomputers, featuring color graphics and expansion slots.",
+      "tags": [
+        "Apple II",
+        "6502 Assembly",
+        "Hardware Design"
+      ],
+      "featured": true,
+      "links": {
+        "github": "https://github.com/apple/apple-ii-source"
+      }
+    },
+    {
+      "title": "Disk II Controller",
+      "description": "Invented a highly optimized floppy disk controller.\nUsed minimal logic gates, making external storage affordable for home users.",
+      "tags": [
+        "Hardware",
+        "Floppy Disk",
+        "Logic Gates"
+      ],
+      "featured": false,
+      "links": {}
+    },
+    {
+      "title": "The Woz-Box (Custom Synth)",
+      "description": "Designed and built a custom analog synthesizer.\nExplored the intersection of music and electronics using discrete components.",
+      "tags": [
+        "Analog Circuits",
+        "Signal Processing",
+        "DIY Electronics"
+      ],
+      "featured": false,
+      "links": {}
+    }
+  ],
+  "publications": [
+    {
+      "title": "System Description: The Apple II",
+      "venue": "Byte Magazine · 1977",
+      "tags": [
+        "Hardware",
+        "Microcomputers"
+      ],
+      "featured": true,
+      "links": {
+        "paper": "https://archive.org/details/byte-magazine-1977-05"
+      }
+    },
+    {
+      "title": "The Art of Minimalist Hardware Design",
+      "venue": "Engineering Review · 1982",
+      "tags": [
+        "Hardware",
+        "Minimalism"
+      ],
+      "featured": false,
+      "links": {}
+    }
+  ],
+  "achievements": [
+    {
+      "title": "National Medal of Technology",
+      "event": "US President",
+      "year": "1985"
+    },
+    {
+      "title": "Heinz Award for Technology",
+      "event": "Heinz Family Foundation",
+      "year": "2001"
+    },
+    {
+      "title": "Legendary Pioneer Award",
+      "event": "Computer History Museum",
+      "year": "2010"
+    }
+  ],
+  "cv_link": ""
+}

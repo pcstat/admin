@@ -1,0 +1,64 @@
+{
+  "name": "Sundar Pichai",
+  "tagline": "orchestrating the shift toward the AI-driven web.",
+  "role": "Search Architect",
+  "subtitle": "Search & AI Ecosystems",
+  "photo": "",
+  "bio": "Sundar Pichai is the Search Architect for the Statistics Programming Club. As the CEO of Alphabet and Google, he is orchestrating the fundamental shift of the global web toward an AI-first paradigm through Search, Android, and large-scale AI models.",
+  "location": "Mountain View, CA",
+  "session": "2026-27",
+  "socials": [
+    { "type": "linkedin", "label": "LinkedIn", "url": "https://linkedin.com/in/sundarpichai" }
+  ],
+  "stats": [
+    { "value": "Alphabet", "label": "Core Engine" },
+    { "value": "Search", "label": "Global Reach" }
+  ],
+  "focus_areas": ["Search Technology", "AI Integration", "Large-scale Platforms", "Android Ecosystem"],
+  "skills": [
+    {
+      "category": "Search & Platforms",
+      "icon": "search",
+      "items": ["Search Algorithms", "Information Retrieval", "Android Ecosystem", "Chrome Browser"]
+    },
+    {
+      "category": "AI & Tech",
+      "icon": "brain",
+      "items": ["Generative AI", "Deep Learning", "Product Strategy"]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "CEO",
+      "start": "2015",
+      "end": "present",
+      "description": "Leading Alphabet and Google's global operations and strategic direction.\nDirecting the transition toward AI-first products and services.",
+      "short_desc": "Leading Alphabet and Google's global operations and strategic direction.",
+      "tags": ["AI", "Leadership", "Platforms"],
+      "company": "Alphabet / Google",
+      "type": "Full-time"
+    },
+    {
+      "role": "SVP, Product",
+      "start": "2004",
+      "end": "2015",
+      "description": "Leading the development of core products like Google Search and Chrome.\nDriving massive user growth and platform dominance.",
+      "short_desc": "Leading the development of core products like Google Search and Chrome.",
+      "tags": ["Product", "Search", "Platforms"],
+      "company": "Google",
+      "type": "Full-time"
+    }
+  ],
+  "projects": [
+    {
+      "title": "AI-First Search Evolution",
+      "description": "Orchestrating the integration of generative AI into the core Google Search experience.\nRedefining how users find information on the web.",
+      "tags": ["Search", "AI", "UX"],
+      "featured": true,
+      "links": { "url": "https://google.com" }
+    }
+  ],
+  "publications": [],
+  "achievements": [],
+  "cv_link": ""
+}

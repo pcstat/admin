@@ -1,0 +1,146 @@
+{
+  "name": "Steve Wozniak",
+  "role": "Hardware Legend",
+  "location": "San Jose, CA",
+  "email": "woz@apple.com",
+  "github": "github.com/woz-apple-legend",
+  "languages": [
+    "English (Native)"
+  ],
+  "education": [
+    {
+      "degree": "B.S. in Electrical Engineering and Computer Science",
+      "institution": "University of California, Berkeley",
+      "year": "1986"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Homebrew Computer Club Certified Pioneer"
+    },
+    {
+      "title": "Master of Micro-Architecture",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "Hardware Legend / Mentor",
+      "subtitle": "Statistics Programming Club",
+      "dates": "2024 – Present",
+      "bullets": [
+        "Led workshops on single-board computer design and low-level microprocessor programming, emphasizing the 'elegant' design philosophy.",
+        "Mentored students in the art of minimizing component counts to maximize reliability and performance.",
+        "Developed a curriculum for retro-computing, teaching the fundamentals of 8-bit architecture to a new generation of engineers.",
+        "Consulted on the design of custom PCBs for student-led hardware projects."
+      ]
+    },
+    {
+      "title": "Co-founder & Chief Hardware Engineer",
+      "subtitle": "Apple Computer",
+      "dates": "1976 – 1985",
+      "bullets": [
+        "Single-handedly designed the Apple I and Apple II hardware and operating software, creating the blueprint for the modern personal computer.",
+        "Invented the Disk II floppy disk controller, which replaced expensive and complex controllers with a streamlined, software-driven approach.",
+        "Developed the Apple II's color graphics capability using a novel timing-based approach to the NTSC signal.",
+        "Optimized the 6502 microprocessor's utility through highly efficient machine code, enabling a high-performance OS in limited memory."
+      ]
+    },
+    {
+      "title": "CL 15 Educator",
+      "subtitle": "Los Gatos School District",
+      "dates": "1990 – 1998",
+      "bullets": [
+        "Taught computer science and mathematics to elementary school students, promoting early exposure to logical thinking.",
+        "Designed a custom educational software suite for young learners to understand basic circuitry and logic."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Hardware",
+      "commas": [
+        "Breadboarding",
+        "PCB Design",
+        "6502 Assembly",
+        "Disk II Controller Design",
+        "Analog Circuitry",
+        "Digital Logic Gates",
+        "FPGA Implementation"
+      ]
+    },
+    {
+      "subtitle": "Software",
+      "commas": [
+        "Integer BASIC",
+        "Machine Code",
+        "Assembly Language",
+        "Embedded C",
+        "Low-Level OS Kernels"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Apple II Computer Design",
+      "subtitle": "Apple II, 6502 Assembly, Hardware Design",
+      "bullets": [
+        "Designed the entire architecture of the Apple II, one of the first highly successful mass-produced microcomputers, featuring color graphics and expansion slots.",
+        "Implemented an efficient memory mapping system that allowed the 6502 to access expanded RAM and ROM seamlessly.",
+        "Developed a custom keyboard controller to reduce CPU overhead.",
+        "GitHub: https://github.com/apple/apple-ii-source"
+      ]
+    },
+    {
+      "title": "Disk II Controller",
+      "subtitle": "Hardware, Floppy Disk, Logic Gates",
+      "bullets": [
+        "Invented a highly optimized floppy disk controller using minimal logic gates, making external storage affordable for home users.",
+        "Shifted the complexity from hardware to software, using the CPU to time the data pulses, a revolutionary approach at the time."
+      ]
+    },
+    {
+      "title": "The Woz-Box (Custom Synth)",
+      "subtitle": "Analog Circuits, Signal Processing",
+      "bullets": [
+        "Designed and built a custom analog synthesizer using discrete components to explore the intersection of music and electronics.",
+        "Implemented variable frequency oscillators and multi-stage filters for complex sound synthesis."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "System Description: The Apple II",
+      "subtitle": "Byte Magazine",
+      "dates": "1977",
+      "bullets": [
+        "Paper: https://archive.org/details/byte-magazine-1977-05"
+      ]
+    },
+    {
+      "title": "The Art of Minimalist Hardware Design",
+      "subtitle": "Engineering Review",
+      "dates": "1982",
+      "bullets": [
+        "Essay on the philosophy of reducing chip counts to increase reliability."
+      ]
+    }
+  ],
+  "honors_and_awards": [
+    {
+      "title": "National Medal of Technology",
+      "subtitle": "US President",
+      "dates": "1985"
+    },
+    {
+      "title": "Heinz Award for Technology",
+      "subtitle": "Heinz Family Foundation",
+      "dates": "2001"
+    },
+    {
+      "title": "Legendary Pioneer Award",
+      "subtitle": "Computer History Museum",
+      "dates": "2010"
+    }
+  ]
+}

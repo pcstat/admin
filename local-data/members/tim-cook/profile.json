@@ -1,0 +1,64 @@
+{
+  "name": "Tim Cook",
+  "tagline": "mastering the art of scale and ecosystem growth.",
+  "role": "Operations Master",
+  "subtitle": "Supply Chain & Ecosystem Management",
+  "photo": "",
+  "bio": "Tim Cook is the Operations Master for the Statistics Programming Club. As the CEO of Apple, he is renowned for his unmatched mastery of global supply chain operations and for scaling Apple's massive ecosystem to historic, multi-trillion-dollar heights.",
+  "location": "Cupertino, CA",
+  "session": "2026-27",
+  "socials": [
+    { "type": "twitter", "label": "Twitter / X", "url": "https://x.com/tim_cook" }
+  ],
+  "stats": [
+    { "value": "Trillion-Dollar", "label": "Market Cap Mastery" },
+    { "value": "Global", "label": "Supply Chain Reach" }
+  ],
+  "focus_areas": ["Supply Chain Management", "Global Operations", "Ecosystem Growth", "Sustainability"],
+  "skills": [
+    {
+      "category": "Operations & Supply Chain",
+      "icon": "tools",
+      "items": ["Global Logistics", "Vendor Management", "Operational Excellence", "Inventory Management"]
+    },
+    {
+      "category": "Leadership",
+      "icon": "users",
+      "items": ["Strategic Execution", "Corporate Governance", "Crisis Management"]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "CEO",
+      "start": "2011",
+      "end": "present",
+      "description": "Leading Apple's global operations and strategic expansion.\nDriving massive growth in services, wearables, and the Apple ecosystem.",
+      "short_desc": "Leading Apple's global operations and strategic expansion.",
+      "tags": ["Operations", "Leadership", "Scaling"],
+      "company": "Apple",
+      "type": "Full-time"
+    },
+    {
+      "role": "Chief Operating Officer",
+      "start": "1998",
+      "end": "2011",
+      "description": "Managing Apple's highly efficient global supply chain.\nOptimized operations that became a model for modern manufacturing and logistics.",
+      "short_desc": "Managing Apple's highly efficient global supply chain.",
+      "tags": ["Supply Chain", "Logistics"],
+      "company": "Apple",
+      "type": "Full-time"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Apple Ecosystem Expansion",
+      "description": "Leading the growth of services like Apple Music, iCloud, and the App Store.\nCreating a highly integrated and profitable ecosystem.",
+      "tags": ["Services", "Ecosystem", "Growth"],
+      "featured": true,
+      "links": { "url": "https://www.apple.com" }
+    }
+  ],
+  "publications": [],
+  "achievements": [],
+  "cv_link": ""
+}

@@ -1,0 +1,178 @@
+{
+  "projects": [
+    {
+      "title": "Club Website",
+      "description": "This very website — an open-source, data-driven Next.js site for the Statistics Programming Club. All content is managed through JSON files with a custom visual editor.",
+      "status": "active",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "CSS",
+        "JSON"
+      ],
+      "members": [
+        "2020001"
+      ],
+      "year": "2026",
+      "link": "https://github.com/",
+      "demo_link": "/",
+      "featured": false
+    },
+    {
+      "title": "StatViz — Interactive Statistics Dashboard",
+      "description": "A web-based dashboard for visualizing statistical distributions, hypothesis tests, and regression outputs. Built to help students understand core stat concepts visually.",
+      "status": "active",
+      "tags": [
+        "Python",
+        "Plotly",
+        "Dash",
+        "Statistics"
+      ],
+      "members": [
+        "2020001",
+        "2020003",
+        "2020005"
+      ],
+      "year": "2024",
+      "link": "https://github.com/stat-club-cu/statviz",
+      "demo_link": "www.google.com",
+      "featured": false
+    },
+    {
+      "title": "ML Notebook Archive",
+      "description": "A curated, well-documented collection of Jupyter notebooks covering core ML algorithms from scratch — linear regression to transformers — maintained for club workshops.",
+      "status": "active",
+      "tags": [
+        "Python",
+        "Jupyter",
+        "Scikit-learn",
+        "PyTorch"
+      ],
+      "members": [
+        "2020004",
+        "2020007",
+        "2020006",
+        "2020001"
+      ],
+      "year": "2024",
+      "link": "https://github.com/stat-club-cu/ml-notebooks",
+      "demo_link": "https://github.com/stat-club-cu/ml-notebooks",
+      "featured": false
+    },
+    {
+      "title": "CU Attendance Tracker — EduTrack",
+      "description": "A smart attendance management system for university departments, featuring QR-based check-in, automated reports, and department-level analytics.",
+      "status": "completed",
+      "tags": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "QR Code"
+      ],
+      "members": [
+        "2020009",
+        "2020010",
+        "2020011"
+      ],
+      "year": "2023",
+      "link": "https://github.com/stat-club-cu/edutrack",
+      "demo_link": ""
+    },
+    {
+      "title": "AgriSense — Crop Monitoring System",
+      "description": "An IoT-integrated smart farming tool that uses sensor data and ML models to predict crop health, water needs, and yield estimates. Winner of DU Tech Fest Hackathon 2024.",
+      "status": "completed",
+      "tags": [
+        "Python",
+        "TensorFlow",
+        "IoT",
+        "FastAPI"
+      ],
+      "members": [
+        "2020016",
+        "2020017",
+        "2020018"
+      ],
+      "year": "2024",
+      "link": "https://github.com/stat-club-cu/agrisense",
+      "demo_link": ""
+    },
+    {
+      "title": "NLP for Low-Resource Bangla",
+      "description": "Research project on natural language processing for Bangla — a low-resource language. Focuses on named entity recognition and sentiment analysis using fine-tuned transformer models.",
+      "status": "research",
+      "tags": [
+        "Python",
+        "HuggingFace",
+        "NLP",
+        "Bangla"
+      ],
+      "members": [
+        "2020027",
+        "2020028",
+        "2020031"
+      ],
+      "year": "2023",
+      "link": "https://github.com/stat-club-cu/bangla-nlp",
+      "demo_link": "www.google.com"
+    },
+    {
+      "title": "Quantum-Classical Hybrid Optimizer",
+      "description": "Developing a hybrid algorithm that utilizes quantum annealing for hard combinatorial problems while leveraging classical gradient descent for fine-tuning.",
+      "status": "research",
+      "tags": [
+        "Qiskit",
+        "Python",
+        "Quantum Computing",
+        "Optimization"
+      ],
+      "members": [
+        "2020026",
+        "2020024",
+        "2020029"
+      ],
+      "year": "2025",
+      "link": "https://github.com/stat-club-cu/quantum-opt",
+      "demo_link": ""
+    },
+    {
+      "title": "Neural Architecture Search for Edge Devices",
+      "description": "Automating the design of efficient deep learning architectures optimized for low-power mobile and IoT hardware without sacrificing accuracy.",
+      "status": "research",
+      "tags": [
+        "PyTorch",
+        "TFLite",
+        "NAS",
+        "Edge AI"
+      ],
+      "members": [
+        "2020002",
+        "2020004",
+        "2020003"
+      ],
+      "year": "2026",
+      "link": "https://github.com/stat-club-cu/edge-nas",
+      "demo_link": ""
+    },
+    {
+      "title": "Ethical AI Framework for Global Governance",
+      "description": "Establishing a mathematical framework for fairness and accountability in AI systems, aimed at creating global standards for algorithmic transparency.",
+      "status": "research",
+      "tags": [
+        "Ethics",
+        "Policy",
+        "Mathematics",
+        "AI Governance"
+      ],
+      "members": [
+        "2020005",
+        "2020006",
+        "2020001"
+      ],
+      "year": "2026",
+      "link": "https://github.com/stat-club-cu/ai-ethics",
+      "demo_link": ""
+    }
+  ]
+}

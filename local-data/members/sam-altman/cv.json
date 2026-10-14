@@ -1,0 +1,133 @@
+{
+  "name": "Sam Altman",
+  "role": "LLM Strategist & CEO",
+  "location": "San Francisco, USA",
+  "email": "sam@openai.com",
+  "github": "github.com/samaltman",
+  "languages": ["English"],
+  "education": [
+    {
+      "degree": "B.S. in Computer Science",
+      "institution": "Stanford University",
+      "year": "2005",
+      "cgpa": "null /4.0"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Venture Capital Leader",
+      "link": null
+    },
+    {
+      "title": "AI Safety Advocate",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "CEO",
+      "dates": "2019 - Present",
+      "subtitle": "OpenAI",
+      "bullets": [
+        {
+          "text": "Driving the AGI Revolution",
+          "children": [
+            "Leading the development of GPT-4 and other state-of-the-art large language models.",
+            "Orchestrating massive-scale compute and data strategies for foundational AI research.",
+            "Managing strategic partnerships with major technology and cloud providers.",
+            "Directing the deployment of conversational AI to hundreds of millions of users globally."
+          ]
+        },
+        {
+          "text": "Strategic Vision & Safety",
+          "children": [
+            "Implementing industry-leading AI safety and alignment protocols.",
+            "Advocating for global governance frameworks for artificial general intelligence.",
+            "Bridging the gap between cutting-edge research and real-world commercial applications."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "President",
+      "dates": "2014 - 2019",
+      "subtitle": "OpenAI",
+      "bullets": [
+        {
+          "text": "Operational Scaling & Growth",
+          "children": [
+            "Oversaw organizational scaling during OpenAI's transition from a research lab to a major AI player.",
+            "Managed strategic initiatives to build the foundation for large-scale AI research.",
+            "Collaborated on mission-critical funding and partnership efforts."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "President",
+      "dates": "2014 - 2019",
+      "subtitle": "Y Combinator",
+      "bullets": [
+        {
+          "text": "Venture Leadership",
+          "children": [
+            "Guided hundreds of early-stage startups through the YC growth engine.",
+            "Developed frameworks for scalable startup growth and product-market fit.",
+            "Built a global network of founders and investors."
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "ChatGPT",
+      "subtitle": "Conversational AI Revolution",
+      "bullets": [
+        "Orchestrated the global launch of the world's first massive-scale conversational AI interface.",
+        "Transformed human-computer interaction through natural language processing.",
+        "Managed the massive-scale inference infrastructure required for real-time global access.",
+        "Led the product iteration cycle that defined the modern LLM user experience."
+      ]
+    },
+    {
+      "title": "OpenAI API",
+      "subtitle": "Developer Ecosystem",
+      "bullets": [
+        "Pioneered the model-as-a-service paradigm, enabling thousands of developers to build on GPT.",
+        "Built the technical and commercial infrastructure for the global AI developer community.",
+        "Established the standard for API-driven generative AI applications."
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "title": "AI Safety Advocacy",
+      "subtitle": "Global Policy",
+      "dates": "Ongoing",
+      "bullets": [
+        "Testifying before government bodies on the importance of AI regulation and safety.",
+        "Collaborating with international research organizations on alignment research.",
+        "Promoting the responsible development and deployment of autonomous agents."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Strategy & Leadership",
+      "commas": ["Venture Capital", "Strategic Planning", "Scaling Operations", "Ecosystem Management", "Crisis Management", "Product Strategy"]
+    },
+    {
+      "subtitle": "AI & Technology",
+      "commas": ["Large Language Models", "Generative AI", "Artificial General Intelligence", "Reinforcement Learning", "AI Safety & Alignment", "Compute Infrastructure"]
+    }
+  ],
+  "publications": [
+    {
+      "title": "The Path to AGI",
+      "subtitle": "Industry Vision Papers",
+      "dates": "2023",
+      "bullets": ["Strategic roadmap for the safe and beneficial development of AGI"]
+    }
+  ]
+}

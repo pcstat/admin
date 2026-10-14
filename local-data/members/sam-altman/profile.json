@@ -1,0 +1,70 @@
+{
+  "name": "Sam Altman",
+  "tagline": "architecting the future of intelligence.",
+  "role": "LLM Strategist",
+  "subtitle": "AGI & AI Strategy",
+  "photo": "",
+  "bio": "Sam Altman is the LLM Strategist for the Statistics Programming Club. As the CEO of OpenAI, he is at the forefront of the global transition toward Artificial General Intelligence (AGI). His work focuses on the intersection of large-scale compute, massive datasets, and the societal implications of highly capable autonomous agents.",
+  "location": "San Francisco, CA",
+  "session": "2026-27",
+  "socials": [
+    { "type": "twitter", "label": "Twitter / X", "url": "https://x.com/samaltman" }
+  ],
+  "stats": [
+    { "value": "10+", "label": "Years in Tech" },
+    { "value": "AGI", "label": "Mission Focus" }
+  ],
+  "focus_areas": ["AGI", "Large Language Models", "AI Safety", "Venture Capital"],
+  "skills": [
+    {
+      "category": "AI & LLMs",
+      "icon": "brain",
+      "items": ["Generative AI", "Transformer Architectures", "Reinforcement Learning from Human Feedback (RLHF)"]
+    },
+    {
+      "category": "Leadership",
+      "icon": "users",
+      "items": ["Strategic Planning", "Scale-up Management", "Ecosystem Building"]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "CEO",
+      "start": "2019",
+      "end": "present",
+      "description": "Leading OpenAI in the pursuit of safe and beneficial AGI.\nDirecting massive-scale research and deployment of models like GPT-4.",
+      "short_desc": "Leading OpenAI in the pursuit of safe and beneficial AGI.",
+      "tags": ["AI", "AGI", "Leadership"],
+      "company": "OpenAI",
+      "type": "Full-time"
+    },
+    {
+      "role": "President",
+      "start": "2014",
+      "end": "2019",
+      "description": "Overseeing operations and strategic initiatives during OpenAI's formative years.\nHelped shape the organization's mission and growth.",
+      "short_desc": "Overseeing operations and strategic initiatives.",
+      "tags": ["Operations", "Strategy"],
+      "company": "OpenAI",
+      "type": "Full-time"
+    }
+  ],
+  "projects": [
+    {
+      "title": "ChatGPT Deployment",
+      "description": "Orchestrated the global launch of ChatGPT, bringing conversational AI to hundreds of millions.\nRevolutionized human-computer interaction through natural language.",
+      "tags": ["LLM", "Product", "Deployment"],
+      "featured": true,
+      "links": { "url": "https://chatgpt.com" }
+    }
+  ],
+  "publications": [],
+  "achievements": [
+    {
+      "title": "Technological Transformation Leader",
+      "event": "Global Tech Community",
+      "year": "2023"
+    }
+  ],
+  "cv_link": ""
+}

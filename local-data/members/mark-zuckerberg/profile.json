@@ -1,0 +1,61 @@
+{
+  "name": "Mark Zuckerberg",
+  "tagline": "pivoting the social web toward the metaverse and open-source AI.",
+  "role": "Social Engineer",
+  "subtitle": "Metaverse & Open Source AI",
+  "photo": "",
+  "bio": "Mark Zuckerberg is the Social Engineer for the Statistics Programming Club. As the founder of Meta, he is leading the evolution of social connection through the Metaverse and championing the development of open-source AI through projects like Llama.",
+  "location": "Menlo Park, CA",
+  "session": "2026-27",
+  "socials": [
+    { "type": "twitter", "label": "Twitter / X", "url": "https://x.com/zuck" }
+  ],
+  "stats": [
+    { "value": "Meta", "label": "Core Engine" },
+    { "value": "Llama", "label": "AI Model" }
+  ],
+  "focus_areas": ["Metaverse", "Open Source AI", "Social Networking", "Augmented Reality"],
+  "skills": [
+    {
+      "category": "AI & Models",
+      "icon": "brain",
+      "items": ["Large Language Models", "Open Source AI", "PyTorch", "Computer Vision"]
+    },
+    {
+      "category": "Platforms",
+      "icon": "users",
+      "items": ["Social Networking", "Metaverse Architecture", "VR/AR Ecosystems"]
+    }
+  ],
+  "timeline": [
+    {
+      "role": "Founder & CEO",
+      "start": "2004",
+      "end": "present",
+      "description": "Leading Meta in building the next generation of social connection.\nDriving innovation in the Metaverse and open-source AI models like Llama.",
+      "short_desc": "Leading Meta in building the next generation of social connection.",
+      "tags": ["AI", "Metaverse", "Social"],
+      "company": "Meta",
+      "type": "Full-time"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Llama (Open Source AI)",
+      "description": "Developing state-of-the-art open-source large language models.\nAdvancing the global AI ecosystem through open research and development.",
+      "tags": ["AI", "LLM", "Open Source"],
+      "featured": true,
+      "links": { "url": "https://ai.meta.com/llama/" }
+    },
+    {
+      "title": "Metaverse Development",
+      "description": "Building the hardware and software foundation for the Metaverse.\nCreating immersive, social virtual environments.",
+      "tags": ["VR", "AR", "Metaverse"],
+      "featured": true,
+      "links": { "url": "https://about.meta.com/reality/" }
+    }
+  ],
+  "publications": [],
+  "achievements": [],
+  "cv_link": ""
+}
