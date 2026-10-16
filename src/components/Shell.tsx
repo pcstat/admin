@@ -6,6 +6,7 @@ import { useEffect, type ReactNode } from "react";
 import { SECTIONS } from "@/lib/schemas";
 import { useContentStore } from "@/store/content-store";
 import { SaveBar } from "./SaveBar";
+import { WEBSITE_URL } from "@/lib/site-config";
 import { SitePreview } from "./SitePreview";
 
 export function Shell({ children }: { children: ReactNode }) {
@@ -14,7 +15,7 @@ export function Shell({ children }: { children: ReactNode }) {
   const provider = useContentStore((s) => s.provider);
   const collapsed = useContentStore((s) => s.navCollapsed);
   const previewMode = useContentStore((s) => s.previewMode);
-  const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
+  const websiteUrl = WEBSITE_URL;
 
   // Remember the folded sidebar between visits (read after mount so the server and first client render agree).
   useEffect(() => {
@@ -68,7 +69,7 @@ export function Shell({ children }: { children: ReactNode }) {
               type="button"
               className={`preview-toggle-btn${previewMode ? " active" : ""}`}
               disabled={!websiteUrl}
-              title={websiteUrl ? "Show the website with your unsaved changes" : "Set NEXT_PUBLIC_WEBSITE_URL to enable the preview"}
+              title={websiteUrl ? "Show the website with your unsaved changes" : "Set \"website\" in database.json to enable the preview"}
               onClick={() => useContentStore.getState().setPreviewMode(!previewMode)}
             >
               {previewMode ? "✕ Exit preview" : "👁 Preview site"}

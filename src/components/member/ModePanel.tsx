@@ -26,7 +26,7 @@ interface Props {
 }
 
 const MODES: { id: Mode; icon: string; label: string; hint: string }[] = [
-  { id: "ui", icon: "✎", label: "UI editing", hint: "Click any text on the page to edit it. Hover an item for ↑ ↓ ✕, use “+ Add” to add more." },
+  { id: "ui", icon: "✎", label: "UI editing", hint: "Click any text on the page to edit it. Hover an item to drag it by ⠿ or move it with ↑ ↓ (✕ removes it); pills have ‹ › — use “+ Add” to add more." },
   { id: "json", icon: "{ }", label: "JSON editing", hint: "Edit the raw file with line numbers, folding, error markers and field suggestions (Ctrl+Space)." },
   { id: "preview", icon: "👁", label: "Preview", hint: "Exactly how the page looks on the website, including your unsaved changes." },
 ];

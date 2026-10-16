@@ -38,10 +38,10 @@ In the default **local mode** the panel edits the `local-data/` folder (a snapsh
 
 Everything is set up from GitHub — the full walk-through (Cloudflare account, API token, GitHub token, secrets) is in the **[Deployment guide](https://github.com/pcstat/website/blob/main/docs/DEPLOYMENT.md)**. In short:
 
-* **`database.json`** (repo root) says which repo is the database: `repo` (`owner/name`), `branch`, and `url` (where the database is published on Cloudflare Pages — used for photo previews). The website repo has an identical file.
+* **`database.json`** (repo root) says which repo is the database: `repo` (`owner/name`), `branch`, and `url` (where the database is published on Cloudflare Pages — used for photo previews) and `website` (the public website's address — switches on the **Preview site** button and the sidebar link; default `https://pcstat.pages.dev`). The website repo has a similar file.
 * **GitHub secrets** of this repo: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `DATABASE_REPO_TOKEN` (fine-grained token, *Contents: Read and write* on the database repo only), `ADMIN_PASSWORD_HASH`, `AUTH_SESSION_SECRET` (the last two come from `pnpm hash-password`).
 * **Deploy**: push to `main` (or run the workflow by hand). `.github/workflows/deploy.yml` builds the panel, **creates the Worker if it does not exist** (its name is `name` in `wrangler.toml`, which becomes the address `https://<name>.<account>.workers.dev`) and uploads the three Worker secrets from the GitHub secrets.
-* Optional repository variable `NEXT_PUBLIC_WEBSITE_URL` — the website's address: enables the **Preview site** button and the sidebar link.
+* Optional repository variable `NEXT_PUBLIC_WEBSITE_URL` — overrides the `website` field of `database.json`.
 
 Environment variables for local runs are listed in `.env.example`.
 
@@ -69,8 +69,9 @@ panel stores the raw links, reads the files through `/api/external` and shows th
 ## Whole-site preview and the sidebar
 
 * **Preview site** (top of the sidebar) shows the real website in an iframe with your **unsaved** changes, so you can browse it
-  like a visitor before saving. It needs `NEXT_PUBLIC_WEBSITE_URL` here and `NEXT_PUBLIC_ADMIN_ORIGIN` on the website
-  (the panel's address) — see "Live preview" in the website repo's `docs/DEPLOYMENT.md`.
+  like a visitor before saving. It needs `website` here (in `database.json`) and `admin` in the website's `database.json`
+  (this panel's address) — see "Live preview" in the website repo's `docs/DEPLOYMENT.md`.
+* **Ordering**: lists the website shows in file order can be arranged by hand — drag the **⠿** handle or use **↑ ↓** (**‹ ›** for tags and member chips), then Save. Lists the website sorts itself (events, certificates, the profile timeline) say so and have no move controls. Full table: [`docs/ORDERING.md`](docs/ORDERING.md).
 * The **‹** button collapses the sidebar (remembered between visits); the mode panel has its own **›** collapse button.
 
 ## Login

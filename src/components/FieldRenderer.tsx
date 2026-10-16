@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import type { FieldDef } from "@/lib/schemas";
-import type { PathSegment } from "@/lib/object-path";
+import { moveInArray, type PathSegment } from "@/lib/object-path";
+import { useSortable } from "@/lib/use-sortable";
 import type { DocFile, ExecutivesDoc } from "@/lib/types";
 import { photoUrl, useContentStore } from "@/store/content-store";
 
@@ -137,22 +138,27 @@ function SessionSelect({ label, help, value, onChange }: { label: React.ReactNod
 function StringsField({ label, field, value, onChange }: { label: React.ReactNode; field: Extract<FieldDef, { kind: "strings" }>; value: unknown; onChange: (v: unknown) => void }) {
   const items = Array.isArray(value) ? (value as string[]) : [];
   const update = (next: string[]) => onChange(next);
+  const move = (from: number, to: number) => update(moveInArray(items, from, to));
+  const sortable = useSortable(useId(), move);
   return (
     <div className="field wide">
       {label}
       <div className="chips">
         {items.map((item, i) => (
-          <span className="chip-input" key={i}>
+          <span className="chip-input sortable" key={i} data-sortable-item {...sortable.item(i)}>
+            {items.length > 1 && <GripHandle label={`Drag ${item || "tag"} to reorder`} {...sortable.handle(i)} />}
             <input
               value={item}
               placeholder={field.placeholder}
               onChange={(e) => update(items.map((v, j) => (j === i ? e.target.value : v)))}
             />
+            {items.length > 1 && <NudgeButtons index={i} count={items.length} onMove={move} horizontal />}
             <button type="button" className="icon-btn" aria-label="Remove" onClick={() => update(items.filter((_, j) => j !== i))}>×</button>
           </span>
         ))}
         <button type="button" className="btn small" onClick={() => update([...items, ""])}>+ {field.addLabel ?? "Add"}</button>
       </div>
+      {items.length > 1 && <span className="hint">Drag ⠿ or use ‹ › to reorder — they are shown in this order.</span>}
     </div>
   );
 }
@@ -162,13 +168,17 @@ function MembersField({ label, value, onChange }: { label: React.ReactNode; valu
   const ids = Array.isArray(value) ? (value as string[]) : [];
   const all = (executives?.committees ?? []).flatMap((c) => c.members.map((m) => ({ ...m, committee: c.label || c.session })));
   const nameOf = (id: string) => all.find((m) => m.student_id === id)?.name;
+  const move = (from: number, to: number) => onChange(moveInArray(ids, from, to));
+  const sortable = useSortable(useId(), move);
   return (
     <div className="field wide">
       {label}
       <div className="chips">
-        {ids.map((id) => (
-          <span className={`chip ${nameOf(id) ? "" : "bad"}`} key={id}>
+        {ids.map((id, i) => (
+          <span className={`chip sortable ${nameOf(id) ? "" : "bad"}`} key={id} {...sortable.grab(i)} {...sortable.item(i)}>
+            {ids.length > 1 && <span className="grip" aria-hidden="true">⠿</span>}
             {nameOf(id) ?? `⚠ unknown ID ${id}`}
+            {ids.length > 1 && <NudgeButtons index={i} count={ids.length} onMove={move} horizontal />}
             <button type="button" className="icon-btn" aria-label={`Remove ${id}`} onClick={() => onChange(ids.filter((x) => x !== id))}>×</button>
           </span>
         ))}
@@ -187,6 +197,7 @@ function MembersField({ label, value, onChange }: { label: React.ReactNode; valu
             ))}
         </select>
       </div>
+      {ids.length > 1 && <span className="hint">Drag a name or use ‹ › to reorder — they are shown in this order.</span>}
     </div>
   );
 }
@@ -227,22 +238,55 @@ function ImageField({ label, folder, value, onChange }: { label: React.ReactNode
   );
 }
 
+/** ⠿ drag handle. The parent passes the drag props from useSortable().handle(). */
+function GripHandle({ label, ...drag }: { label: string } & React.HTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button type="button" className="icon-btn grip" aria-label={label} title="Drag to reorder" {...drag}>
+      ⠿
+    </button>
+  );
+}
+
+/** ↑ ↓ (or ‹ › for horizontal lists) — the keyboard / touch alternative to dragging. */
+function NudgeButtons({ index, count, onMove, horizontal }: { index: number; count: number; onMove: (from: number, to: number) => void; horizontal?: boolean }) {
+  return (
+    <>
+      <button type="button" className="icon-btn" aria-label={horizontal ? "Move earlier" : "Move up"} title={horizontal ? "Move earlier" : "Move up"} disabled={index === 0} onClick={() => onMove(index, index - 1)}>
+        {horizontal ? "‹" : "↑"}
+      </button>
+      <button type="button" className="icon-btn" aria-label={horizontal ? "Move later" : "Move down"} title={horizontal ? "Move later" : "Move down"} disabled={index === count - 1} onClick={() => onMove(index, index + 1)}>
+        {horizontal ? "›" : "↓"}
+      </button>
+    </>
+  );
+}
+
 function ListField({ file, field, parent, value, path }: { file: DocFile; field: Extract<FieldDef, { kind: "list" }>; parent: Obj; value: unknown; path: PathSegment[] }) {
   const { addItem, removeItem, moveItem } = useContentStore.getState();
   const items = Array.isArray(value) ? (value as Obj[]) : [];
   const taken = field.uniqueKey ? items.map((it) => String(it[field.uniqueKey as string] ?? "")) : [];
+  const sortable = useSortable(`${file}:${path.join(".")}`, (from, to) => moveItem(file, path, from, to));
+  const manual = field.order !== "auto";
+  const hasFeatured = field.fields.some((f) => f.key === "featured");
+  const note = field.orderNote ?? (manual && hasFeatured ? "Featured items are listed first on the website; this order applies within each group." : undefined);
+  const movable = manual && items.length > 1;
   return (
     <section className="list wide">
       <div className="list-head">
         <h3>{field.label} <span className="count">{items.length}</span></h3>
+        {note && <p className="hint order-note">{manual ? "⇅ " : "↻ "}{note}{manual && items.length > 1 ? " Drag ⠿ or use ↑ ↓ to reorder." : ""}</p>}
       </div>
       {items.map((item, index) => (
-        <details className="item" key={index} open={!field.collapsedByDefault}>
+        <details className="item" key={index} open={!field.collapsedByDefault} {...(movable ? sortable.item(index) : {})}>
           <summary>
-            <span className="item-title">{field.title(item, index)}</span>
+            {movable && <GripHandle label={`Drag ${field.title(item, index)} to reorder`} {...sortable.handle(index)} />}
+            {manual && <span className="item-num">{index + 1}</span>}
+            <span className="item-title">
+              {hasFeatured && item.featured === true && <span className="star" title="Featured — listed first on the website">★ </span>}
+              {field.title(item, index)}
+            </span>
             <span className="item-actions" onClick={(e) => e.preventDefault()}>
-              <button type="button" className="icon-btn" aria-label="Move up" disabled={index === 0} onClick={() => moveItem(file, path, index, index - 1)}>↑</button>
-              <button type="button" className="icon-btn" aria-label="Move down" disabled={index === items.length - 1} onClick={() => moveItem(file, path, index, index + 1)}>↓</button>
+              {movable && <NudgeButtons index={index} count={items.length} onMove={(from, to) => moveItem(file, path, from, to)} />}
               <button
                 type="button"
                 className="icon-btn danger"

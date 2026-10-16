@@ -47,3 +47,12 @@ export function moveAtPath<T>(obj: T, path: PathSegment[], from: number, to: num
   arr.splice(to, 0, item);
   return setAtPath(obj, path, arr);
 }
+
+/** A copy of `arr` with the item at `from` moved to index `to` (out-of-range moves return an unchanged copy). */
+export function moveInArray<T>(arr: readonly T[], from: number, to: number): T[] {
+  const next = [...arr];
+  if (from < 0 || from >= next.length || to < 0 || to >= next.length || from === to) return next;
+  const [item] = next.splice(from, 1);
+  next.splice(to, 0, item as T);
+  return next;
+}

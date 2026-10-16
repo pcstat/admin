@@ -8,7 +8,7 @@
 import { useRef, useState } from "react";
 import type { Member } from "@/lib/types";
 import type { Json } from "@/lib/member-schema";
-import { asArray, asString, Add, Check, Field, MirrorProvider, T, Tags, Tools, useMirror } from "./edit";
+import { asArray, asString, Add, Check, Field, MirrorProvider, OrderNote, T, Tags, Tools, useMirror } from "./edit";
 import styles from "./DynamicProfile.module.css";
 import "./mirror.css";
 
@@ -105,7 +105,7 @@ function TimelineCard({ item, i, count }: { item: Obj; i: number; count: number 
         <T path={["timeline", i, "start"]} placeholder="Start" /> – <T path={["timeline", i, "end"]} placeholder="End / present" />
       </div>
       <div className={`${styles.timelineCard} m-item`}>
-        <Tools listPath={["timeline"]} index={i} count={count} />
+        <Tools listPath={["timeline"]} index={i} count={count} movable={false} />
         <div className={styles.timelineRole}>
           <T path={["timeline", i, "role"]} placeholder="Role" />
           {current && <span className={styles.currentBadge}>Current</span>}
@@ -306,6 +306,7 @@ function Body({ member, photoSrc, onPickPhoto, onOpenCv }: Omit<Props, "data" | 
             );
           })}
         </div>
+        <OrderNote>The website sorts experience by start year, newest first (“present” on top) — the order here does not matter.</OrderNote>
         <Add path={["timeline"]} make={() => ({ role: "", start: "", end: "", company: "", type: "", description: "", tags: [] })} label="experience" />
       </Section>
 
@@ -336,6 +337,7 @@ function Body({ member, photoSrc, onPickPhoto, onOpenCv }: Omit<Props, "data" | 
         <div className={styles.projectsGrid}>
           {featuredFirst(projects).map(({ item, i }) => <ProjectCard key={i} p={item} i={i} kind="projects" count={projects.length} />)}
         </div>
+        <OrderNote>Featured projects are shown first; drag ⠿ or use ↑ ↓ to set the order within each group.</OrderNote>
         <Add path={["projects"]} make={() => ({ title: "", description: "", tags: [], featured: false, links: {} })} label="project" />
       </Section>
 
@@ -344,6 +346,7 @@ function Body({ member, photoSrc, onPickPhoto, onOpenCv }: Omit<Props, "data" | 
         <div className={styles.projectsGrid}>
           {featuredFirst(publications).map(({ item, i }) => <ProjectCard key={i} p={item} i={i} kind="publications" count={publications.length} />)}
         </div>
+        <OrderNote>Featured publications are shown first; drag ⠿ or use ↑ ↓ to set the order within each group.</OrderNote>
         <Add path={["publications"]} make={() => ({ title: "", venue: "", tags: [], featured: false, links: {} })} label="publication" />
       </Section>
 

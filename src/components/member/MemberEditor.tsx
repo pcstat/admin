@@ -14,8 +14,8 @@ import type { ExecutivesDoc, Member } from "@/lib/types";
 import { photoUrl, useContentStore } from "@/store/content-store";
 import { ModePanel, type Mode } from "./ModePanel";
 import { SourceDialog } from "./SourceDialog";
+import { WEBSITE_URL } from "@/lib/site-config";
 
-const WEBSITE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL;
 
 /** Same wording as the website's formatExecutiveRole. */
 function roleLabel(member: Member, isCurrent: boolean): string {

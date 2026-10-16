@@ -40,6 +40,15 @@ export type FieldDef =
       /** Key whose value must be unique inside the list (used for ids). */
       uniqueKey?: string;
       collapsedByDefault?: boolean;
+      /**
+       * How the website orders this list.
+       *   "manual" (default) — in the order of the file, so the editor lets you drag / move items.
+       *   "auto"             — the website sorts or looks items up itself; the order here has no effect,
+       *                        so the editor shows no move controls and explains why (`orderNote`).
+       */
+      order?: "manual" | "auto";
+      /** Sentence shown under the list heading that explains how the order is used. */
+      orderNote?: string;
     });
 
 export interface SectionDef {
@@ -111,6 +120,7 @@ export const SECTIONS: SectionDef[] = [
         itemLabel: "committee",
         title: (c) => `${str(c.label) || str(c.session) || "New committee"}`,
         uniqueKey: "session",
+        orderNote: "Past committees appear on the Past Executives page in this order (put the newest first).",
         create: () => ({ session: "", label: "", members: [] }),
         fields: [
           { kind: "text", key: "session", label: "Session ID", required: true, mono: true, placeholder: "2027-28", help: "No spaces, e.g. 2027-28." },
@@ -124,6 +134,7 @@ export const SECTIONS: SectionDef[] = [
             title: (m) => [str(m.name) || "New member", str(m.role)].filter(Boolean).join(" — "),
             uniqueKey: "student_id",
             collapsedByDefault: true,
+            orderNote: "Cards appear on the website in this order.",
             create: ({ parent }) => ({
               student_id: "",
               initial: "",
@@ -154,6 +165,7 @@ export const SECTIONS: SectionDef[] = [
         itemLabel: "project",
         title: (p) => str(p.title) || "New project",
         collapsedByDefault: true,
+        orderNote: "Featured projects are listed first, then the rest in this order. The built-in “Club Website” card is always pinned on top.",
         create: () => ({ title: "", description: "", status: "active", tags: [], members: [], year: String(new Date().getFullYear()) }),
         fields: [
           { kind: "text", key: "title", label: "Title", required: true },
@@ -190,6 +202,8 @@ export const SECTIONS: SectionDef[] = [
         title: (e) => [str(e.date), str(e.title) || "New event"].filter(Boolean).join(" · "),
         uniqueKey: "id",
         collapsedByDefault: true,
+        order: "auto",
+        orderNote: "The website sorts events by date (soonest first) and hides the ones that are over, so the order here does not matter.",
         create: ({ taken }) => ({ id: nextId("ev", taken), title: "", date: "", time: "", location: "", audience: "", type: "workshop" }),
         fields: [
           { kind: "text", key: "id", label: "ID", required: true, mono: true },
@@ -225,6 +239,7 @@ export const SECTIONS: SectionDef[] = [
         title: (c) => str(c.title) || "New course",
         uniqueKey: "id",
         collapsedByDefault: true,
+        orderNote: "The website lists featured courses first, then the newest year first. Drag courses to choose the order among those with the same year.",
         create: ({ taken }) => ({ id: nextId("c", taken), title: "", provider: "", description: "", type: "course", year: String(new Date().getFullYear()) }),
         fields: [
           { kind: "text", key: "id", label: "ID", required: true, mono: true },
@@ -251,6 +266,7 @@ export const SECTIONS: SectionDef[] = [
         label: "Tally strip",
         itemLabel: "counter",
         title: (t) => `${str(t.value)} ${str(t.label)}`.trim() || "New counter",
+        orderNote: "Shown left to right in this order.",
         create: () => ({ value: "", label: "" }),
         fields: [
           { kind: "text", key: "value", label: "Value", required: true, placeholder: "12" },
@@ -298,6 +314,8 @@ export const SECTIONS: SectionDef[] = [
         title: (c) => [str(c.id), str(c.recipient)].filter(Boolean).join(" · ") || "New certificate",
         uniqueKey: "id",
         collapsedByDefault: true,
+        order: "auto",
+        orderNote: "Certificates are not listed on the website — each one is looked up by its ID — so the order here does not matter.",
         create: ({ taken }) => ({ id: nextId(`SPC-${new Date().getFullYear()}`, taken, 4), recipient: "", course: "", date: "", status: "verified", template: "Certificate_A.svg" }),
         fields: [
           { kind: "text", key: "id", label: "Certificate ID", required: true, mono: true },

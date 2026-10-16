@@ -1,29 +1,51 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
+import { WEBSITE_URL } from "@/lib/site-config";
 import { buildPreviewPayload, PREVIEW_DATA, PREVIEW_READY, websiteRouteFor } from "@/lib/preview-payload";
 import { useContentStore } from "@/store/content-store";
 
-const WEBSITE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL?.replace(/\/$/, "");
-
 /**
  * Whole-site preview: the real website in an iframe, fed with the drafts (nothing is saved).
- * Needs NEXT_PUBLIC_WEBSITE_URL here and NEXT_PUBLIC_ADMIN_ORIGIN (= this panel's address) on the website.
+ * The website address is the "website" field of this repo's database.json; the website must list this panel's address
+ * as "admin" in its own database.json (or NEXT_PUBLIC_ADMIN_ORIGIN) before it accepts drafts.
  */
 export function SitePreview() {
   const pathname = usePathname();
+  if (!WEBSITE_URL) return <NotSetUp />;
+  // The key remounts the frame (and its connection state) when the admin page changes, so it opens the matching website page.
+  const src = `${WEBSITE_URL}${websiteRouteFor(pathname)}`;
+  return <SiteFrame key={src} src={src} />;
+}
+
+function NotSetUp() {
+  return (
+    <div className="page-narrow">
+      <h1>Site preview is not set up</h1>
+      <p className="lead">
+        Put the website&apos;s address in the <code>website</code> field of <code>database.json</code> (repo root of this panel), for example{" "}
+        <code>https://pcstat.pages.dev</code>. See <code>docs/DEPLOYMENT.md</code> in the website repo, “Live preview”.
+      </p>
+    </div>
+  );
+}
+
+function SiteFrame({ src }: { src: string }) {
   const frame = useRef<HTMLIFrameElement>(null);
   const ready = useRef(false);
   const state = useContentStore(useShallow((s) => ({ docs: s.docs, memberDrafts: s.memberDrafts, uploads: s.uploads })));
   const payload = useMemo(() => (WEBSITE_URL ? buildPreviewPayload(state) : null), [state]);
   const latest = useRef(payload);
-  const src = WEBSITE_URL ? `${WEBSITE_URL}${websiteRouteFor(pathname)}` : "";
+  const [connected, setConnected] = useState(false);
+  const [waited, setWaited] = useState(false);
 
+  // Tell the user when the website never announces itself (it has not been set up to accept drafts).
   useEffect(() => {
-    ready.current = false; // a new page is loading; it announces itself when it is listening
-  }, [src]);
+    const timer = window.setTimeout(() => setWaited(true), 15000);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     latest.current = payload;
@@ -39,31 +61,27 @@ export function SitePreview() {
       if (event.origin !== origin || event.source !== frame.current?.contentWindow) return;
       if ((event.data as { type?: string } | null)?.type !== PREVIEW_READY) return;
       ready.current = true; // the website (re)loaded and is listening
+      setConnected(true);
       if (latest.current) frame.current?.contentWindow?.postMessage({ type: PREVIEW_DATA, payload: latest.current }, origin);
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
   }, []);
 
-  if (!WEBSITE_URL) {
-    return (
-      <div className="page-narrow">
-        <h1>Site preview is not set up</h1>
-        <p className="lead">
-          Set <code>NEXT_PUBLIC_WEBSITE_URL</code> to the website&apos;s address (a GitHub repository variable of the admin repo; <code>.env.local</code> for local runs), and
-          <code> NEXT_PUBLIC_ADMIN_ORIGIN</code> to this panel&apos;s address on the website repo. See <code>docs/DEPLOYMENT.md</code> in the website repo, “Live preview”.
-        </p>
-      </div>
-    );
-  }
   return (
     <div className="site-preview">
       <div className="site-preview-bar">
         <strong>Live preview</strong> — the website with your unsaved changes. Browse it like a visitor; nothing here is saved.
         <a href={src} target="_blank" rel="noreferrer">Saved version ↗</a>
       </div>
-      {/* The key reloads the page when the admin page changes, so it opens the matching website page. */}
-      <iframe key={src} ref={frame} src={src} title="Live site preview" />
+      {waited && !connected && (
+        <div className="site-preview-bar" role="alert">
+          The website is not answering with live drafts yet. Make sure the website is deployed with this panel&apos;s address —{" "}
+          <code>{typeof window === "undefined" ? "" : window.location.origin}</code> — as <code>admin</code> in its <code>database.json</code>, then re-run its
+          deploy workflow. Until then the frame shows the saved version.
+        </div>
+      )}
+      <iframe ref={frame} src={src} title="Live site preview" />
     </div>
   );
 }

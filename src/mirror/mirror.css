@@ -40,6 +40,17 @@
 .site-mirror .m-tools button:hover, .site-mirror .m-x:hover, .site-mirror .m-mini:hover { border-color: var(--ac); color: var(--ac); }
 .site-mirror .m-tools button.danger:hover, .site-mirror .m-x:hover { border-color: #ff6b6b; color: #ff6b6b; }
 .site-mirror .m-tools button:disabled { opacity: .35; cursor: default; }
+.site-mirror .m-tools .m-grip { cursor: grab; }
+.site-mirror .m-tools .m-grip:active { cursor: grabbing; }
+.site-mirror .m-pill { cursor: grab; }
+.site-mirror .m-nudge { margin-left: 4px; margin-right: 0; padding: 0 4px; }
+.site-mirror .m-nudge:disabled { opacity: .3; cursor: default; }
+/* drag-and-drop feedback */
+.site-mirror [data-dragging] { opacity: .4; }
+.site-mirror [data-drop="before"] { box-shadow: 0 -3px 0 0 var(--ac); }
+.site-mirror [data-drop="after"] { box-shadow: 0 3px 0 0 var(--ac); }
+.site-mirror .m-pill[data-drop="before"] { box-shadow: -3px 0 0 0 var(--ac); }
+.site-mirror .m-pill[data-drop="after"] { box-shadow: 3px 0 0 0 var(--ac); }
 .site-mirror .m-x { margin-left: 6px; padding: 0 5px; line-height: 1.3; }
 .site-mirror .m-add { display: inline-block; margin-top: .75rem; border-style: dashed; background: transparent; color: var(--mut); }
 .site-mirror .m-add:hover { border-color: var(--ac); color: var(--ac); }
@@ -53,3 +64,5 @@
 .site-mirror .m-check { display: inline-flex; align-items: center; gap: 4px; font-size: .75em; opacity: .85; cursor: pointer; }
 .site-mirror select.m-mini { padding: 2px 4px; }
 .site-mirror .m-section-tools { display: flex; gap: .5rem; align-items: center; margin: .25rem 0 .75rem; }
+
+.site-mirror .m-note { margin: .5rem 0 0; font: 12px/1.4 var(--fm); color: var(--mut); }

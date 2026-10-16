@@ -94,6 +94,20 @@ textarea { resize: vertical; }
 .item[open] > summary::before { content: "▾"; }
 .item-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .item-actions { display: flex; gap: 4px; }
+.hint { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.order-note { margin: 0 0 4px; }
+.item-num { min-width: 22px; text-align: center; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.star { color: #f5b942; }
+.icon-btn.grip { cursor: grab; letter-spacing: -1px; }
+.icon-btn.grip:active { cursor: grabbing; }
+.grip { color: var(--muted); cursor: grab; user-select: none; }
+.chip.sortable { cursor: grab; }
+/* drag-and-drop feedback (see lib/use-sortable.ts) */
+[data-dragging] { opacity: 0.45; }
+.item[data-drop="before"] { box-shadow: 0 -3px 0 0 var(--accent, #00d97e); }
+.item[data-drop="after"] { box-shadow: 0 3px 0 0 var(--accent, #00d97e); }
+.chip[data-drop="before"], .chip-input[data-drop="before"] { box-shadow: -3px 0 0 0 var(--accent, #00d97e); }
+.chip[data-drop="after"], .chip-input[data-drop="after"] { box-shadow: 3px 0 0 0 var(--accent, #00d97e); }
 .item .item { background: var(--surface-2); }
 
 /* chips, images */

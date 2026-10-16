@@ -8,8 +8,10 @@
  * Every edit goes through `update(fn)`, which rewrites the JSON text — so UI mode and JSON mode always
  * show the same data.
  */
-import { createContext, useContext, useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
-import { getAtPath, moveAtPath, removeAtPath, setAtPath, appendAtPath, type PathSegment } from "@/lib/object-path";
+import { createContext, useContext, useEffect, useId, useRef, useState, type ElementType, type ReactNode } from "react";
+import { getAtPath, moveAtPath, moveInArray, removeAtPath, setAtPath, appendAtPath, type PathSegment } from "@/lib/object-path";
+import { dropSide, endDrag, getDragSource, startDrag, targetIndex } from "@/lib/sortable";
+import { useSortable } from "@/lib/use-sortable";
 import type { Json } from "@/lib/member-schema";
 
 interface MirrorContextValue {
@@ -115,17 +117,105 @@ export function T({ path, as: Tag = "span", className, placeholder = "Click to a
   );
 }
 
-/** ↑ ↓ ✕ buttons for one item of the list at `listPath` (shown on hover, UI mode only). */
-export function Tools({ listPath, index, count }: { listPath: PathSegment[]; index: number; count: number }) {
+interface ToolsProps {
+  listPath: PathSegment[];
+  index: number;
+  count: number;
+  /** false when the website orders this list itself (e.g. the timeline is sorted by year): no ↑ ↓ or drag handle. */
+  movable?: boolean;
+}
+
+/**
+ * ⠿ ↑ ↓ ✕ for one item of the list at `listPath` (shown on hover, UI mode only). The item is the element that
+ * contains this component (`.m-item`): grab ⠿ to drag it, drop it on a sibling to reorder.
+ */
+export function Tools({ listPath, index, count, movable = true }: ToolsProps) {
   const { editable, update } = useMirror();
+  const tools = useRef<HTMLSpanElement>(null);
+  const listId = `mirror:${listPath.join(".")}`;
+  const latest = useRef({ update, listPath, index });
+  useEffect(() => {
+    latest.current = { update, listPath, index };
+  });
+
+  // Make the surrounding item a drop target for its siblings.
+  useEffect(() => {
+    const item = tools.current?.parentElement;
+    if (!item || !editable || !movable) return;
+    const clear = () => item.removeAttribute("data-drop");
+    const onOver = (e: DragEvent) => {
+      const source = getDragSource();
+      if (!source || source.list !== listId) return;
+      e.preventDefault();
+      item.setAttribute("data-drop", dropSide(e, item));
+    };
+    const onDrop = (e: DragEvent) => {
+      const source = getDragSource();
+      if (!source || source.list !== listId) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const to = targetIndex(source.from, latest.current.index, dropSide(e, item));
+      const from = source.from;
+      clear();
+      endDrag();
+      if (to !== from) latest.current.update((d) => moveAtPath(d, latest.current.listPath, from, to));
+    };
+    item.addEventListener("dragover", onOver);
+    item.addEventListener("dragleave", clear);
+    item.addEventListener("drop", onDrop);
+    return () => {
+      item.removeEventListener("dragover", onOver);
+      item.removeEventListener("dragleave", clear);
+      item.removeEventListener("drop", onDrop);
+    };
+  }, [editable, movable, listId]);
+
   if (!editable) return null;
   return (
-    <span className="m-tools">
-      <button type="button" title="Move up" disabled={index === 0} onClick={() => update((d) => moveAtPath(d, listPath, index, index - 1))}>↑</button>
-      <button type="button" title="Move down" disabled={index >= count - 1} onClick={() => update((d) => moveAtPath(d, listPath, index, index + 1))}>↓</button>
+    <span className="m-tools" ref={tools}>
+      {movable && count > 1 && (
+        <button
+          type="button"
+          className="m-grip"
+          title="Drag to reorder"
+          draggable
+          onDragStart={(e) => {
+            e.stopPropagation();
+            startDrag(listId, index);
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/plain", "");
+            const item = tools.current?.parentElement;
+            if (item) {
+              e.dataTransfer.setDragImage(item, 16, 16);
+              item.setAttribute("data-dragging", "");
+            }
+          }}
+          onDragEnd={() => {
+            endDrag();
+            const item = tools.current?.parentElement;
+            item?.removeAttribute("data-dragging");
+            item?.removeAttribute("data-drop");
+          }}
+        >
+          ⠿
+        </button>
+      )}
+      {movable && (
+        <>
+          <button type="button" title="Move up" disabled={index === 0} onClick={() => update((d) => moveAtPath(d, listPath, index, index - 1))}>↑</button>
+          <button type="button" title="Move down" disabled={index >= count - 1} onClick={() => update((d) => moveAtPath(d, listPath, index, index + 1))}>↓</button>
+        </>
+      )}
       <button type="button" className="danger" title="Remove" onClick={() => update((d) => removeAtPath(d, listPath, index))}>✕</button>
     </span>
   );
+}
+
+/** A one-line explanation of how the website orders a list (UI mode only). */
+export function OrderNote({ children }: { children: ReactNode }) {
+  const { editable } = useMirror();
+  if (!editable) return null;
+  return <p className="m-note">⇅ {children}</p>;
 }
 
 /** "+ Add …" button appending `make()` to the list at `path` (UI mode only). */
@@ -155,6 +245,8 @@ export function Tags({ path, className, itemClassName, label, objectText }: Tags
   const [adding, setAdding] = useState(false);
   const [draft, setDraft] = useState("");
   const textOf = (v: unknown) => (objectText && v && typeof v === "object" ? asString((v as { text?: unknown }).text) : asString(v));
+  const move = (from: number, to: number) => update((d) => moveAtPath(d, path, from, to));
+  const sortable = useSortable(useId(), move);
 
   if (!editable) {
     return (
@@ -174,8 +266,10 @@ export function Tags({ path, className, itemClassName, label, objectText }: Tags
   return (
     <div className={className}>
       {items.map((it, i) => (
-        <span key={i} className={itemClassName}>
+        <span key={i} className={`${itemClassName ?? ""} m-pill`} {...sortable.grab(i)} {...sortable.item(i)}>
+          {items.length > 1 && <button type="button" className="m-x m-nudge" title="Move earlier" disabled={i === 0} onClick={() => move(i, i - 1)}>‹</button>}
           {textOf(it)}
+          {items.length > 1 && <button type="button" className="m-x m-nudge" title="Move later" disabled={i >= items.length - 1} onClick={() => move(i, i + 1)}>›</button>}
           <button type="button" className="m-x" title="Remove" onClick={() => update((d) => removeAtPath(d, path, i))}>×</button>
         </span>
       ))}
