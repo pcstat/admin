@@ -4,9 +4,9 @@ A private editor for the club website's content. It is the third repo of the pro
 
 | Repo | Role |
 |---|---|
-| `programming-club-demo` | The website (Next.js static export). |
-| `programming-club-demo-data` | The database: JSON + photos. |
-| **`programming-club-demo-admin`** (this one) | Edits the database repo through the GitHub API. |
+| [`pcstat/website`](https://github.com/pcstat/website) | The website (Next.js static export). |
+| [`pcstat/database`](https://github.com/pcstat/database) | The database: JSON + photos. |
+| **`pcstat/admin`** (this one) | Edits the database repo through the GitHub API. |
 
 ```
 you ─▶ admin panel ──one atomic commit──▶ database repo ─▶ GitHub Action ─▶ website rebuilds (1–3 min)
@@ -32,22 +32,46 @@ cp .env.example .env.local    # paste the two values into it
 pnpm dev                      # http://localhost:3000
 ```
 
-In the default **local mode** the panel edits the `local-data/` folder (a snapshot of the database repo). A "Local test mode" badge is shown in the sidebar. To edit a real clone instead, set `DATA_LOCAL_DIR=../programming-club-demo-data`.
+In the default **local mode** the panel edits the `local-data/` folder (a snapshot of the database repo). A "Local test mode" badge is shown in the sidebar. To edit a real clone instead, set `DATA_LOCAL_DIR=../database`.
 
 ## Go live (Cloudflare Workers + the real database repo)
 
-1. **GitHub token** — GitHub → Settings → Developer settings → Fine-grained tokens → *Generate*: repository access **only the database repo**, permission **Contents: Read and write**. Keep it secret.
-2. **Edit `wrangler.toml`** `[vars]`: `DATABASE_REPO` (`owner/name`), `DATABASE_BRANCH`, `NEXT_PUBLIC_WEBSITE_URL`.
-3. **Secrets** (stored encrypted in Cloudflare, never in git):
-   ```bash
-   pnpm wrangler secret put GITHUB_TOKEN
-   pnpm wrangler secret put ADMIN_PASSWORD_HASH      # from `pnpm hash-password`
-   pnpm wrangler secret put AUTH_SESSION_SECRET      # from `pnpm hash-password`
-   ```
-4. **Deploy** — either `pnpm cf:deploy` from your machine, or push to `main`: `.github/workflows/deploy.yml` builds and deploys. It needs two repo secrets, `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
-5. In the **database repo** add the secret `WEBSITE_DEPLOY_HOOK` (the website's Cloudflare Pages deploy hook) so saved changes rebuild the website. See that repo's README.
+Everything is set up from GitHub — the full walk-through (Cloudflare account, API token, GitHub token, secrets) is in the **[Deployment guide](https://github.com/pcstat/website/blob/main/docs/DEPLOYMENT.md)**. In short:
 
-Environment variables are listed in `.env.example`.
+* **`database.json`** (repo root) says which repo is the database: `repo` (`owner/name`), `branch`, and `url` (where the database is published on Cloudflare Pages — used for photo previews). The website repo has an identical file.
+* **GitHub secrets** of this repo: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `DATABASE_REPO_TOKEN` (fine-grained token, *Contents: Read and write* on the database repo only), `ADMIN_PASSWORD_HASH`, `AUTH_SESSION_SECRET` (the last two come from `pnpm hash-password`).
+* **Deploy**: push to `main` (or run the workflow by hand). `.github/workflows/deploy.yml` builds the panel, **creates the Worker if it does not exist** (its name is `name` in `wrangler.toml`, which becomes the address `https://<name>.<account>.workers.dev`) and uploads the three Worker secrets from the GitHub secrets.
+* Optional repository variable `NEXT_PUBLIC_WEBSITE_URL` — the website's address: enables the **Preview site** button and the sidebar link.
+
+Environment variables for local runs are listed in `.env.example`.
+
+## Editing a member's profile and CV
+
+**Member files** lists every member. Opening a profile or a CV gives a page with a mode panel on the right:
+
+| Mode | What it is |
+|---|---|
+| **UI editing** | A page that mirrors the website's profile / CV page. Click any text to edit it; hover an item for ↑ ↓ ✕; use **+ Add** to add items. Has its own undo / redo. |
+| **JSON editing** | The raw file in a code editor: line numbers, syntax colours, folding, bracket matching, find (Ctrl+F), error markers with a problem list, field-name suggestions (Ctrl+Space) and a **Format** button. |
+| **Preview** | The same page exactly as visitors see it, including your unsaved changes (no edit controls). |
+
+All three work on the same draft, so you can switch at any time. Nothing is written until you press **Save**.
+
+The mirror uses the website's own CSS modules (`src/mirror/*.module.css`, verbatim copies) and mirrors its markup in
+`src/mirror/ProfileMirror.tsx` and `CvMirror.tsx` — when the website's profile or CV page changes, update these two files.
+
+### Members' own repositories
+
+A member can keep their profile and CV in their **own GitHub repository** and edit them without this panel — see
+[docs/MEMBER-REPOS.md](docs/MEMBER-REPOS.md). In **Member files → Source…** enter the username and repository (or paste links); the
+panel stores the raw links, reads the files through `/api/external` and shows them read-only.
+
+## Whole-site preview and the sidebar
+
+* **Preview site** (top of the sidebar) shows the real website in an iframe with your **unsaved** changes, so you can browse it
+  like a visitor before saving. It needs `NEXT_PUBLIC_WEBSITE_URL` here and `NEXT_PUBLIC_ADMIN_ORIGIN` on the website
+  (the panel's address) — see "Live preview" in the website repo's `docs/DEPLOYMENT.md`.
+* The **‹** button collapses the sidebar (remembered between visits); the mode panel has its own **›** collapse button.
 
 ## Login
 
@@ -63,12 +87,14 @@ One shared password (like the reference project): the panel stores only its SHA-
 ## Structure
 
 ```
+database.json            which repo is the database (repo, branch, published url)
 middleware.ts            redirects anonymous visitors to /login
 src/app/                 pages: [section] (generic editor), members, login · api/: auth, data, file, save, photo
 src/components/          Shell, SaveBar, FieldRenderer (generic form), MemberFiles
 src/lib/schemas.ts       what is editable and how (the only file to touch for new fields)
 src/lib/validate.ts      pre-save checks
 src/lib/provider/        local-fs.ts · github.ts — the only code that knows where files live
+src/lib/database-config.ts  reads database.json
 src/store/               Zustand store: drafts, history, staged photos, save
 local-data/              snapshot of the database for local test mode
 ```

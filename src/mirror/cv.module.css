@@ -1,0 +1,476 @@
+.pageContainer {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 5rem;
+  padding-bottom: 8rem;
+}
+
+@media (max-width: 1024px) {
+  .pageContainer {
+    padding-bottom: 0;
+  }
+  .profileCallToAction {
+    padding: 3rem 0 3rem;
+    margin-top: 2rem;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: var(--ac);
+  font-size: 1rem;
+  font-family: var(--fm);
+  transition: color 0.2s, transform 0.2s;
+  z-index: 10;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  color: var(--ac);
+  transform: scale(1.1);
+}
+
+.cvLayout {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cvHeader {
+  border-bottom: 2px solid var(--txt);
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cvTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cvMainTitle {
+  font-family: var(--fh);
+  font-size: 2.5rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.cvAccent {
+  color: var(--ac);
+  font-style: italic;
+}
+
+.cvDocument {
+  border: 1px solid var(--b);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.cvDocHeader {
+  background: var(--s2);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--b);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cvDocAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarInitial {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ac);
+}
+
+.cvDocInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cvDocName {
+  font-family: var(--fh);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--txt);
+}
+
+.cvDocRole {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ac);
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+  overflow-wrap: break-word;
+}
+
+.cvDocMeta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--mut);
+  font-family: var(--fm);
+  font-style: italic;
+  flex-wrap: wrap;
+}
+
+.cvDocMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cvDocBody {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.cvDocSide {
+  padding: 1.1rem;
+  border-right: 1px solid var(--b);
+  background: var(--bg);
+}
+
+.cvSectionLabel {
+  font-family: var(--fh);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ac);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--b);
+}
+
+.cvEdu {
+  margin-bottom: 1rem;
+}
+
+.cvEduDeg {
+  font-family: var(--fh);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--txt);
+}
+
+.cvEduUni {
+  font-size: 0.75rem;
+  color: var(--mut);
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.cvEduMeta {
+  font-size: 0.7rem;
+  color: var(--mut);
+  font-family: var(--fm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.1rem;
+}
+
+.cvCert {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--mut);
+  margin-bottom: 0.5rem;
+}
+
+.cvCertText {
+  flex: 1;
+}
+
+.cvCertLink {
+  color: inherit;
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cvCertLink:hover {
+  color: var(--ac);
+}
+
+.cvCert i {
+  color: var(--ac);
+  font-size: 0.8rem;
+}
+
+.cvLangGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cvLangPill {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--b);
+  color: var(--mut);
+  font-family: var(--fm);
+  box-shadow: var(--shadow);
+}
+
+.cvDocMain {
+  padding: 1.5rem;
+}
+
+.cvExpBlock {
+  margin-bottom: 1.5rem;
+}
+
+.cvExpHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.25rem;
+}
+
+.cvExpRole {
+  font-family: var(--fh);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--txt);
+}
+
+.cvExpDates {
+  font-size: 0.7rem;
+  color: var(--mut);
+  font-style: italic;
+}
+
+.cvExpCompany {
+  font-family: var(--fm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ac);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.cvBullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cvBulletGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cvBulletMain {
+  font-size: 0.85rem;
+  color: var(--txt);
+  font-weight: 600;
+  line-height: 1.5;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.cvBulletMain::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--mut);
+}
+
+.cvBulletChildren {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: 1.5rem;
+}
+
+.cvBulletChild {
+  font-size: 0.75rem;
+  color: var(--mut);
+  line-height: 1.5;
+  position: relative;
+}
+
+.cvBulletChild::before {
+  content: '◦';
+  position: absolute;
+  left: -1rem;
+  color: var(--mut);
+}
+
+.cvBullet {
+  font-size: 0.8rem;
+  color: var(--mut);
+  line-height: 1.6;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.cvBullet::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--mut);
+}
+
+.cvCommaList {
+  font-size: 0.8rem;
+  color: var(--mut);
+  line-height: 1.6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+}
+
+.cvCommaItem {
+  display: inline;
+}
+
+
+.cvPub {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+
+.cvPub i {
+  color: var(--ac);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.cvPubTitle {
+  font-family: var(--fh);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--txt);
+}
+
+.cvPubVenue {
+  font-size: 0.75rem;
+  color: var(--mut);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .cvDocBody {
+    grid-template-columns: 1fr;
+  }
+  .cvDocSide {
+    border-right: none;
+    border-bottom: 1px solid var(--b);
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Minimal Fixed Top Bar */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem min(5vw, 4rem);
+  border-bottom: 1px solid var(--b);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(6, 9, 16, 0.85); /* Fallback */
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  transition: background-color 0.3s;
+}
+
+:global([data-theme="light"]) .topBar {
+  background-color: rgba(248, 250, 252, 0.85);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ac);
+  text-decoration: none;
+  font-family: var(--fm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.backButton:hover {
+  transform: translateX(-4px);
+  color: var(--ac);
+}
+
+/* Profile CTA Button */
+.profileCallToAction {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--b);
+  margin-top: 4rem;
+}
+
+.profileButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--fm);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1.25rem 2.5rem;
+  background-color: var(--ac);
+  color: #000;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(0, 217, 126, 0.25);
+}
+
+.profileButton:hover {
+  background-color: #00ff94;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 217, 126, 0.4);
+}

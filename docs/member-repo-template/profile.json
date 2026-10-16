@@ -1,0 +1,45 @@
+{
+  "name": "Your Name",
+  "tagline": "One line that sums you up",
+  "role": "Your headline, e.g. Data Science Enthusiast",
+  "subtitle": "Where you study or work",
+  "photo": "photo.jpg",
+  "bio": "A short paragraph about you.",
+  "location": "City, Country",
+  "socials": [
+    { "type": "github", "label": "GitHub", "url": "https://github.com/your-username" },
+    { "type": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-name" }
+  ],
+  "stats": [
+    { "value": "5", "label": "Projects" },
+    { "value": "2", "label": "Publications" }
+  ],
+  "focus_areas": ["Machine Learning", "Statistics"],
+  "skills": [
+    { "category": "Languages", "icon": "code", "items": ["Python", "R", "SQL"] }
+  ],
+  "timeline": [
+    {
+      "role": "Your role",
+      "start": "2024",
+      "end": "present",
+      "company": "Organisation",
+      "type": "Part-time",
+      "description": "What you did there.",
+      "tags": ["Python"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Project name",
+      "description": "What it does.",
+      "tags": ["Python"],
+      "featured": true,
+      "links": { "github": "https://github.com/your-username/project", "demo": "", "paper": "" }
+    }
+  ],
+  "publications": [],
+  "achievements": [
+    { "title": "Award or result", "event": "Competition or event", "year": "2025" }
+  ]
+}

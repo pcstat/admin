@@ -1,9 +1,9 @@
 {
-  "imageBase": "https://programming-club-demo-data.pages.dev/photos/",
-  "executives": "https://programming-club-demo-data.pages.dev/executives.json",
-  "projects": "https://programming-club-demo-data.pages.dev/projects.json",
-  "events": "https://programming-club-demo-data.pages.dev/events.json",
-  "courses": "https://programming-club-demo-data.pages.dev/courses.json",
-  "achievements": "https://programming-club-demo-data.pages.dev/achievements.json",
-  "certificates": "https://programming-club-demo-data.pages.dev/certificates.json"
+  "imageBase": "photos/",
+  "executives": "executives.json",
+  "projects": "projects.json",
+  "events": "events.json",
+  "courses": "courses.json",
+  "achievements": "achievements.json",
+  "certificates": "certificates.json"
 }

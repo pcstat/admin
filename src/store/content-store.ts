@@ -55,6 +55,12 @@ interface Store {
   problems: Problem[];
   lastCommitUrl: string | null;
 
+  /** Admin chrome: is the left navigation folded away? Is the whole-site preview showing? */
+  navCollapsed: boolean;
+  previewMode: boolean;
+  setNavCollapsed: (collapsed: boolean) => void;
+  setPreviewMode: (on: boolean) => void;
+
   init: (data: DataResponse) => void;
   fail: (message: string) => void;
   setField: (file: DocFile, path: FieldPath, value: unknown) => void;
@@ -162,6 +168,17 @@ export const useContentStore = create<Store>((set, get) => {
     saveError: null,
     problems: [],
     lastCommitUrl: null,
+    navCollapsed: false,
+    previewMode: false,
+    setNavCollapsed: (collapsed) => {
+      set({ navCollapsed: collapsed });
+      try {
+        window.localStorage.setItem("admin-nav-collapsed", collapsed ? "1" : "0");
+      } catch {
+        /* private mode — the choice just is not remembered */
+      }
+    },
+    setPreviewMode: (on) => set({ previewMode: on }),
 
     init: (data) => {
       const docs: Store["docs"] = {};

@@ -1,3 +1,4 @@
+import { getDatabaseLocation } from "../database-config";
 import { ConflictError, type CommitRequest, type CommitResult, type DataProvider } from "./types";
 
 /** Overridable (GitHub Enterprise, or a mock server in tests). */
@@ -11,16 +12,9 @@ interface Config {
 }
 
 function readConfig(): Config {
-  const databaseRepo = process.env.DATABASE_REPO?.trim();
-  if (!databaseRepo) throw new Error("DATABASE_REPO is required when DATA_PROVIDER=github (see .env.example).");
-  const [owner, repo] = databaseRepo.split("/");
-  if (!owner || !repo) throw new Error(`DATABASE_REPO must look like "owner/name", got "${databaseRepo}".`);
-  return {
-    token: process.env.GITHUB_TOKEN?.trim() || undefined,
-    owner,
-    repo,
-    branch: process.env.DATABASE_BRANCH?.trim() || "main",
-  };
+  // The database repo comes from database.json (repo root); only the token is an environment secret.
+  const { owner, name, branch } = getDatabaseLocation();
+  return { token: process.env.GITHUB_TOKEN?.trim() || undefined, owner, repo: name, branch };
 }
 
 export class GithubProvider implements DataProvider {

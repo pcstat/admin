@@ -1,0 +1,32 @@
+{
+  "name": "Your Name",
+  "role": "Your headline",
+  "location": "City, Country",
+  "email": "you@example.com",
+  "github": "github.com/your-username",
+  "languages": ["English", "Bangla"],
+  "education": [
+    { "degree": "BSc in Statistics", "institution": "University of Chittagong", "year": "2020 – 2024", "cgpa": "3.80 / 4.00", "rank": "" }
+  ],
+  "certifications": [
+    "A certification without a link",
+    { "title": "A certification with a link", "link": "https://example.com/certificate" }
+  ],
+  "experience": [
+    {
+      "title": "Role",
+      "subtitle": "Organisation",
+      "dates": "2024 – present",
+      "bullets": [
+        "Something you achieved",
+        { "text": "A bullet with details", "children": ["First detail", "Second detail"] }
+      ]
+    }
+  ],
+  "technical_skills": [
+    { "title": "Programming", "commas": ["Python", "R", "SQL"] }
+  ],
+  "projects": [],
+  "publications": [],
+  "activities": []
+}

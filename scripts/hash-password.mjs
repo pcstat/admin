@@ -5,7 +5,7 @@
  *   pnpm hash-password            → asks for the password (input is hidden)
  *   pnpm hash-password "my pass"  → uses the given password
  *
- * Copy the output into .env.local (local) or into Cloudflare secrets (production).
+ * Copy the output into .env.local (local) or add the two values as GitHub secrets of the admin repo (production).
  */
 import { createHash, randomBytes } from "node:crypto";
 import readline from "node:readline";

@@ -1,4 +1,6 @@
-name = "programming-club-admin"
+# The Worker's name is its address: https://<name>.<your-account-subdomain>.workers.dev
+# "wrangler deploy" creates the Worker on the first run, so nothing has to be created by hand.
+name = "pcstat-admin"
 main = ".open-next/worker.js"
 compatibility_date = "2026-10-01"
 compatibility_flags = ["nodejs_compat"]
@@ -7,14 +9,9 @@ compatibility_flags = ["nodejs_compat"]
 directory = ".open-next/assets"
 binding = "ASSETS"
 
-# Plain (non-secret) configuration. Secrets are NOT set here — set them once with
-#   pnpm wrangler secret put GITHUB_TOKEN
-#   pnpm wrangler secret put ADMIN_PASSWORD_HASH
-#   pnpm wrangler secret put AUTH_SESSION_SECRET
-# (or from the Cloudflare dashboard) so they never sit in a committed file.
+# Plain (non-secret) configuration.
+# The database repo is NOT set here: it lives in database.json at the root of this repo.
+# Secrets (GITHUB_TOKEN, ADMIN_PASSWORD_HASH, AUTH_SESSION_SECRET) are NOT set here either: the deploy
+# workflow uploads them from GitHub secrets on every deploy (see docs/DEPLOYMENT.md in the website repo).
 [vars]
 DATA_PROVIDER = "github"
-DATABASE_REPO = "Test-12345test/programming-club-demo-data"   # "owner/name" of the database repo
-DATABASE_BRANCH = "main"
-# Links shown in the admin panel's sidebar (optional).
-NEXT_PUBLIC_WEBSITE_URL = "https://programming-club-demo.pages.dev"

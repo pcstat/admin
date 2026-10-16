@@ -1,5 +1,8 @@
 name: Deploy admin panel to Cloudflare
 
+# Builds the panel on GitHub and deploys it as a Cloudflare Worker. The Worker is created automatically
+# on the first run, and its secrets are uploaded from GitHub secrets on every run, so everything is set
+# up in GitHub only. Setup (tokens, secrets): docs/DEPLOYMENT.md in the website repo.
 on:
   push:
     branches: [main]
@@ -7,6 +10,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: deploy-admin
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -26,13 +33,39 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm cf:build
+        env:
+          NEXT_PUBLIC_WEBSITE_URL: ${{ vars.NEXT_PUBLIC_WEBSITE_URL }}
 
-      # The Worker's runtime secrets (GITHUB_TOKEN, ADMIN_PASSWORD_HASH, AUTH_SESSION_SECRET) live in
-      # Cloudflare and its plain settings in wrangler.toml — NOT here. This job only needs the
-      # Cloudflare API credentials to upload the build.
+      # Fail early, with a readable message, when a secret has not been added yet.
+      - name: Prepare the Worker's secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DATABASE_REPO_TOKEN: ${{ secrets.DATABASE_REPO_TOKEN }}
+          ADMIN_PASSWORD_HASH: ${{ secrets.ADMIN_PASSWORD_HASH }}
+          AUTH_SESSION_SECRET: ${{ secrets.AUTH_SESSION_SECRET }}
+        run: |
+          missing=""
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID DATABASE_REPO_TOKEN ADMIN_PASSWORD_HASH AUTH_SESSION_SECRET; do
+            [ -n "${!name}" ] || missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Missing GitHub Actions secrets:$missing — see docs/DEPLOYMENT.md in the website repo."
+            exit 1
+          fi
+          umask 077
+          jq -n \
+            --arg GITHUB_TOKEN "$DATABASE_REPO_TOKEN" \
+            --arg ADMIN_PASSWORD_HASH "$ADMIN_PASSWORD_HASH" \
+            --arg AUTH_SESSION_SECRET "$AUTH_SESSION_SECRET" \
+            '{GITHUB_TOKEN: $GITHUB_TOKEN, ADMIN_PASSWORD_HASH: $ADMIN_PASSWORD_HASH, AUTH_SESSION_SECRET: $AUTH_SESSION_SECRET}' \
+            > "$RUNNER_TEMP/worker-secrets.json"
+
+      # Creates the Worker (name in wrangler.toml) when it does not exist yet, uploads the build and
+      # sets the three Worker secrets from the file above.
       - name: Deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: deploy --secrets-file ${{ runner.temp }}/worker-secrets.json

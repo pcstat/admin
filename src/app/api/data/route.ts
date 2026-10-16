@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requestHasValidSession } from "@/lib/auth";
+import { resolveImageBase } from "@/lib/database-config";
 import { getDataProvider } from "@/lib/provider";
 import { DOC_FILES, type DataResponse, type DatabaseIndex } from "@/lib/types";
 
@@ -27,7 +28,8 @@ export async function GET(request: Request) {
 
     const body: DataResponse = {
       provider: provider.kind,
-      imageBase: index.imageBase,
+      // Local mode serves photos itself (/api/photo); GitHub mode previews them from the published database site.
+      imageBase: provider.kind === "github" ? resolveImageBase(index.imageBase) : index.imageBase,
       baseSha,
       docs: Object.fromEntries(entries) as DataResponse["docs"],
       memberFiles: await provider.listFiles("members"),

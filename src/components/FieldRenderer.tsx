@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useShallow } from "zustand/react/shallow";
 import type { FieldDef } from "@/lib/schemas";
 import type { PathSegment } from "@/lib/object-path";
 import type { DocFile, ExecutivesDoc } from "@/lib/types";
@@ -192,7 +193,8 @@ function MembersField({ label, value, onChange }: { label: React.ReactNode; valu
 
 function ImageField({ label, folder, value, onChange }: { label: React.ReactNode; folder: string; value: unknown; onChange: (v: unknown) => void }) {
   const stageImage = useContentStore((s) => s.stageImage);
-  const view = useContentStore((s) => ({ uploads: s.uploads, provider: s.provider, imageBase: s.imageBase }));
+  // useShallow: a selector that builds a new object on every call makes zustand v5 re-render forever.
+  const view = useContentStore(useShallow((s) => ({ uploads: s.uploads, provider: s.provider, imageBase: s.imageBase })));
   const input = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
   const rel = typeof value === "string" ? value : "";
