@@ -59,6 +59,7 @@ All three work on the same draft, so you can switch at any time. Nothing is writ
 
 The mirror uses the website's own CSS modules (`src/mirror/*.module.css`, verbatim copies) and mirrors its markup in
 `src/mirror/ProfileMirror.tsx` and `CvMirror.tsx` — when the website's profile or CV page changes, update these two files.
+It also uses verbatim copies of the website's `FitName.tsx` (sizes a name to its text, so very long names never overflow) and `StatGrid.tsx` (equal-sized stat boxes with one shared font size) — copy them again whenever the website's versions change.
 
 ### Members' own repositories
 

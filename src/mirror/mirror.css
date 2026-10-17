@@ -12,7 +12,7 @@
   --icon-bg: #e0e0e0; --icon-txt: var(--bg); --btn-txt: #000; --repo-bg: #00d97e; --demo-bg: #9f80fe;
   --fh: 'Syne', monospace; --fm: 'SpaceMono', monospace; --shadow: none;
   position: relative; background: var(--bg); color: var(--txt); font-family: var(--fm); font-size: 16px; line-height: 1.6;
-  border: 1px solid var(--line-2); border-radius: 12px; overflow-x: auto; text-align: left;
+  border: 1px solid var(--line-2); border-radius: 12px; overflow-x: clip; text-align: left;
 }
 .site-mirror[data-theme="light"] {
   --bg: #edf0f5; --surface: #ffffff; --s2: #f4f7fb; --b: #d1d9e6; --b2: #b8c4d6; --txt: #0f172a; --mut: rgba(15, 23, 42, .85);
@@ -20,11 +20,13 @@
   --or: #c2410c; --pu: #7c3aed; --pud: rgba(124, 58, 237, .1); --py: #b45309; --rp: #1e40af;
   --icon-bg: #3e4147; --btn-txt: #fff; --repo-bg: #00b366; --demo-bg: #7c3aed; --shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
-.site-mirror :where(*, *::before, *::after) { box-sizing: border-box; }
-.site-mirror :where(*) { margin: 0; padding: 0; }
-.site-mirror :where(h1, h2, h3, h4, h5, h6) { font-family: var(--fh); font-weight: inherit; font-size: inherit; }
-.site-mirror :where(a) { color: inherit; text-decoration: none; }
-.site-mirror :where(small) { color: inherit; }
+/* Base resets: zero specificity (`:where` on both sides) so the website's CSS modules always win — with a `.site-mirror`
+   prefix these tied with the modules' single-class rules and, depending on stylesheet order, flattened the CV page. */
+:where(.site-mirror) :where(*, *::before, *::after) { box-sizing: border-box; }
+:where(.site-mirror) :where(*) { margin: 0; padding: 0; }
+:where(.site-mirror) :where(h1, h2, h3, h4, h5, h6) { font-family: var(--fh); font-weight: inherit; font-size: inherit; }
+:where(.site-mirror) :where(a) { color: inherit; text-decoration: none; }
+:where(.site-mirror) :where(small) { color: inherit; }
 .site-mirror .pg { display: block; padding: 1.5rem min(5%, 3rem) 3rem; max-width: 1280px; margin: 0 auto; }
 
 /* ── editing affordances (only rendered in UI mode) ── */
@@ -58,6 +60,7 @@
 .site-mirror .m-sub { display: block; font-size: .8em; opacity: .8; }
 .site-mirror .m-field { display: flex; gap: .5rem; align-items: baseline; font-size: .8em; opacity: .9; }
 .site-mirror .m-field > b { font-weight: 400; opacity: .6; min-width: 6.5ch; }
+.site-mirror [data-stat] .m-edit { white-space: inherit; } /* so <StatGrid>'s fitting measures the real text */
 .site-mirror .m-photo { cursor: pointer; position: relative; display: block; }
 .site-mirror .m-photo::after { content: "Change photo"; position: absolute; inset: auto 0 0 0; text-align: center; padding: 6px; background: rgba(0,0,0,.65); color: #fff; font-size: 12px; opacity: 0; transition: opacity .15s; }
 .site-mirror .m-photo:hover::after { opacity: 1; }

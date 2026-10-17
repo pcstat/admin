@@ -11,6 +11,7 @@ import type { Json } from "@/lib/member-schema";
 import { CV_FIXED_KEYS } from "@/lib/member-schema";
 import { getAtPath, setAtPath, type PathSegment } from "@/lib/object-path";
 import { asArray, asString, Add, MirrorProvider, T, Tags, Tools, useMirror } from "./edit";
+import { FitName } from "./FitName";
 import styles from "./cv.module.css";
 import "./mirror.css";
 
@@ -26,6 +27,13 @@ interface Props {
   theme: "dark" | "light";
   photoSrc: (value: string) => string;
   onOpenProfile?: () => void;
+}
+
+/** Database values such as "null /4.0" come from empty fields — the website never shows them (nor does preview). */
+function usable(value: unknown): value is string {
+  if (typeof value !== "string") return false;
+  const v = value.trim();
+  return v !== "" && !/^(null|undefined|n\/a|-)\b/i.test(v);
 }
 
 const sectionTitle = (key: string) => "// " + key.split("_").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
@@ -198,6 +206,7 @@ function Body({ member, roleLabel, photoSrc, onOpenProfile }: Omit<Props, "data"
     <div className={styles.cvLayout}>
       <header className={styles.cvHeader}>
         <div className={styles.cvTitleBlock}>
+          <span className={styles.cvEyebrow}>{"// Curriculum vitae"}</span>
           <h1 className={styles.cvMainTitle}>
             The Official <span className={styles.cvAccent}>Record.</span>
           </h1>
@@ -209,21 +218,33 @@ function Body({ member, roleLabel, photoSrc, onOpenProfile }: Omit<Props, "data"
           <div className={styles.cvDocAvatar}>
             {icon ? (
               // eslint-disable-next-line @next/next/no-img-element -- previews can be blob: URLs, which next/image cannot show
-              <img src={icon} alt={member.name} width={50} height={50} className={styles.avatarImg} />
+              <img src={icon} alt={member.name} width={76} height={76} className={styles.avatarImg} />
             ) : (
               <span className={styles.avatarInitial}>{member.initial}</span>
             )}
           </div>
           <div className={styles.cvDocInfo}>
-            <div className={styles.cvDocName} title={editable ? "The name comes from the member's entry in Executives" : undefined}>{member.name}</div>
+            <FitName
+              id="cv-name"
+              as="h2"
+              text={member.name}
+              className={styles.cvDocName}
+              maxLines={3}
+              minSize={20}
+              maxSize={38}
+              maxWidthRatio={0.1}
+              lineHeight={1.1}
+              title={editable ? "The name comes from the member's entry in Executives" : undefined}
+            />
             <div className={styles.cvDocRole}>
-              <span>{roleLabel.toUpperCase()} ·</span>
-              <span><T path={["role"]} placeholder="Role / headline" /></span>
+              <span>{roleLabel.toUpperCase()}</span>
+              {(editable || !!data.role) && <span className={styles.cvDocRoleSep}>·</span>}
+              {(editable || !!data.role) && <span><T path={["role"]} placeholder="Role / headline" /></span>}
             </div>
             <div className={styles.cvDocMeta}>
-              {(editable || !!data.location) && <span className={styles.cvDocMetaItem}><span style={{ marginRight: "0.25rem" }}>📍</span> <T path={["location"]} placeholder="Location" /></span>}
-              {(editable || !!data.email) && <span className={styles.cvDocMetaItem}><span style={{ marginRight: "0.25rem" }}>✉</span> <T path={["email"]} placeholder="Email" /></span>}
-              {(editable || !!data.github) && <span className={styles.cvDocMetaItem}><span style={{ marginRight: "0.25rem" }}>⌥</span> <T path={["github"]} placeholder="GitHub" /></span>}
+              {(editable || usable(data.location)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">📍</span> <T path={["location"]} placeholder="Location" /></span>}
+              {(editable || usable(data.email)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">✉</span> <T path={["email"]} placeholder="Email" /></span>}
+              {(editable || usable(data.github)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">⌥</span> <T path={["github"]} placeholder="GitHub" /></span>}
             </div>
           </div>
         </div>
@@ -237,12 +258,12 @@ function Body({ member, roleLabel, photoSrc, onOpenProfile }: Omit<Props, "data"
                 <div className={styles.cvEduDeg}><T path={["education", i, "degree"]} placeholder="Degree" /></div>
                 <div className={styles.cvEduUni}>
                   <span><T path={["education", i, "institution"]} placeholder="Institution" /></span>
-                  <span><T path={["education", i, "year"]} placeholder="Year" /></span>
+                  {(editable || usable(edu.year)) && <span><T path={["education", i, "year"]} placeholder="Year" /></span>}
                 </div>
-                {(editable || !!edu.cgpa || !!edu.rank) && (
+                {(editable || usable(edu.cgpa) || usable(edu.rank)) && (
                   <div className={styles.cvEduMeta}>
-                    {(editable || !!edu.cgpa) && <span>CGPA: <T path={["education", i, "cgpa"]} placeholder="—" /></span>}
-                    {(editable || !!edu.rank) && <span>Rank: <T path={["education", i, "rank"]} placeholder="—" /></span>}
+                    {(editable || usable(edu.cgpa)) && <span>CGPA: <T path={["education", i, "cgpa"]} placeholder="—" /></span>}
+                    {(editable || usable(edu.rank)) && <span>Rank: <T path={["education", i, "rank"]} placeholder="—" /></span>}
                   </div>
                 )}
               </div>

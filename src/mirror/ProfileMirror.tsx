@@ -5,10 +5,12 @@
  * Same markup and the website's own CSS module, so it looks the same; in UI mode the values are editable.
  * When the website's DynamicProfile changes, update this file to match (see docs/TODO.md).
  */
-import { useRef, useState } from "react";
+import { createContext, useContext, useRef, useState, type ReactNode } from "react";
 import type { Member } from "@/lib/types";
 import type { Json } from "@/lib/member-schema";
 import { asArray, asString, Add, Check, Field, MirrorProvider, OrderNote, T, Tags, Tools, useMirror } from "./edit";
+import { FitName, isLongName } from "./FitName";
+import { statGridVars, useStatGridFit } from "./StatGrid";
 import styles from "./DynamicProfile.module.css";
 import "./mirror.css";
 
@@ -78,6 +80,53 @@ function Photo({ member, photoSrc, onPickPhoto }: Pick<Props, "member" | "photoS
       />
       {error && <small style={{ color: "#ff6b6b" }}>{error}</small>}
     </>
+  );
+}
+
+/** The member's own name, used when the profile file has none. */
+const NameFallback = createContext("");
+
+/**
+ * The big name heading. Rendered by <T> (so it stays click-to-edit) but sized by the website's <FitName>:
+ * short names stay large, long names scale down instead of overflowing.
+ */
+function NameHeading({ className, children, ...rest }: { className?: string; children?: ReactNode } & Record<string, unknown>) {
+  const { data } = useMirror();
+  const fallbackName = useContext(NameFallback);
+  const name = asString(data.name) || fallbackName;
+  const long = isLongName(name);
+  return (
+    <FitName
+      as="h1"
+      id="profile-name"
+      text={name}
+      className={`${className ?? ""} ${long ? styles.heroNameLong : ""}`}
+      maxLines={long ? 5 : 3}
+      minSize={long ? 30 : 36}
+      lineHeight={long ? 1.02 : 0.95}
+      {...(rest as object)}
+    >
+      {children}
+    </FitName>
+  );
+}
+
+/** The hero stat boxes: equal-sized, one shared font size, fewer columns when values are long (as on the website). */
+function Stats({ stats }: { stats: Obj[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const signature = stats.map((s) => `${asString(s.value)}\u0000${asString(s.label)}`).join("\u0001");
+  const mobileColumns = Math.min(stats.length, 2);
+  useStatGridFit(ref, signature, { count: stats.length, mobileColumns, valueSize: [14, 48], labelSize: [8, 11], valueLineHeight: 1.1, labelLineHeight: 1.45 });
+  return (
+    <div ref={ref} className={styles.statsGrid} style={statGridVars(stats.length, undefined, mobileColumns)}>
+      {stats.map((_, i) => (
+        <div key={i} className={`${styles.statCard} m-item`}>
+          <Tools listPath={["stats"]} index={i} count={stats.length} />
+          <span data-stat="value" className={styles.statValue}><T path={["stats", i, "value"]} placeholder="42" /></span>
+          <span data-stat="label" className={styles.statLabel}><T path={["stats", i, "label"]} placeholder="Label" /></span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -223,7 +272,7 @@ function Body({ member, photoSrc, onPickPhoto, onOpenCv }: Omit<Props, "data" | 
               {"// "}<T path={["tagline"]} placeholder="tagline" />
             </span>
           )}
-          <h1 className={styles.heroName}><T path={["name"]} placeholder="Name" fallback={member.name} /></h1>
+          <T as={NameHeading} path={["name"]} className={styles.heroName} placeholder="Name" fallback={member.name} />
           <div className={styles.heroRole}><T path={["role"]} placeholder="Role" fallback={member.role || "Executive Member"} /></div>
           {(editable || !!data.subtitle) && (
             <div className={styles.heroSubtitle}><T path={["subtitle"]} placeholder="Subtitle" /></div>
@@ -237,15 +286,7 @@ function Body({ member, photoSrc, onPickPhoto, onOpenCv }: Omit<Props, "data" | 
         </div>
         {(editable || stats.length > 0) && (
           <div className={styles.heroRight}>
-            <div className={styles.statsGrid}>
-              {stats.map((_, i) => (
-                <div key={i} className={`${styles.statCard} m-item`}>
-                  <Tools listPath={["stats"]} index={i} count={stats.length} />
-                  <span className={styles.statValue}><T path={["stats", i, "value"]} placeholder="42" /></span>
-                  <span className={styles.statLabel}><T path={["stats", i, "label"]} placeholder="Label" /></span>
-                </div>
-              ))}
-            </div>
+            <Stats stats={stats} />
             <Add path={["stats"]} make={() => ({ value: "", label: "" })} label="stat" />
           </div>
         )}
@@ -395,7 +436,9 @@ export function ProfileMirror({ data, editable, update, member, theme, photoSrc,
     <MirrorProvider value={{ data, editable, update }}>
       <div className="site-mirror" data-theme={theme}>
         <div className={styles.fullscreenContainer} style={{ minHeight: 0, paddingTop: "1rem", paddingBottom: "2rem" }}>
-          <Body member={member} photoSrc={photoSrc} onPickPhoto={onPickPhoto} onOpenCv={onOpenCv} />
+          <NameFallback.Provider value={member.name}>
+            <Body member={member} photoSrc={photoSrc} onPickPhoto={onPickPhoto} onOpenCv={onOpenCv} />
+          </NameFallback.Provider>
         </div>
       </div>
     </MirrorProvider>

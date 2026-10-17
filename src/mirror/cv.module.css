@@ -474,3 +474,405 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 217, 126, 0.4);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   POLISH — CV as a refined document
+   ═══════════════════════════════════════════════════════════════ */
+
+.pageContainer {
+  max-width: 1080px;
+  padding-top: calc(56px + 1.5rem);
+  padding-bottom: 5rem;
+}
+
+.cvLayout {
+  gap: 1.75rem;
+  padding: 1.5rem 0 0;
+}
+
+.cvHeader {
+  position: relative;
+  border-bottom: none;
+  padding-bottom: 1.25rem;
+  align-items: flex-end;
+}
+
+.cvHeader::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ac), color-mix(in srgb, var(--pu) 55%, transparent) 35%, var(--b) 75%, transparent);
+}
+
+.cvEyebrow {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--fm);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ac);
+}
+
+.cvEyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--ac);
+}
+
+.cvMainTitle {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -.03em;
+  line-height: 1.02;
+}
+
+.cvDocument {
+  border-radius: 18px;
+  border-color: var(--b2);
+  box-shadow: 0 30px 60px -34px rgba(0, 0, 0, .55), var(--shadow);
+}
+
+.cvDocHeader {
+  position: relative;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  background:
+    radial-gradient(60% 140% at 0% 0%, color-mix(in srgb, var(--ac) 10%, transparent), transparent 70%),
+    radial-gradient(40% 120% at 100% 0%, color-mix(in srgb, var(--pu) 9%, transparent), transparent 70%),
+    var(--s2);
+}
+
+.cvDocAvatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+  border-color: var(--b2);
+  box-shadow: 0 0 0 4px var(--s2), 0 0 0 5px var(--b2);
+}
+
+.avatarInitial {
+  font-size: 2rem;
+}
+
+.cvDocInfo {
+  min-width: 0;
+  flex: 1;
+  gap: .4rem;
+}
+
+/* Size is set by <FitName>, so a long name scales down instead of overflowing. */
+.cvDocName {
+  margin: 0;
+  max-width: 100%;
+  font-size: 2rem;
+  letter-spacing: -.025em;
+  overflow-wrap: normal;
+  text-wrap: balance;
+}
+
+.cvDocRole {
+  font-size: .72rem;
+  letter-spacing: .06em;
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
+.cvDocRoleSep {
+  color: var(--mut);
+}
+
+.cvDocMeta {
+  gap: .5rem 1.25rem;
+  font-style: normal;
+  margin-top: .35rem;
+}
+
+.cvDocMetaItem {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cvDocMetaLink {
+  transition: color .18s;
+}
+
+.cvDocMetaLink:hover {
+  color: var(--ac);
+}
+
+.cvDocBody {
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+
+.cvDocSide {
+  padding: 1.6rem 1.4rem;
+  background: color-mix(in srgb, var(--bg) 70%, var(--surface));
+}
+
+.cvDocMain {
+  padding: 1.6rem 2rem 1.2rem;
+  min-width: 0;
+}
+
+.cvSectionLabel {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  margin-bottom: 1.1rem;
+  padding-bottom: .5rem;
+}
+
+.cvSectionGap {
+  margin-top: 2.25rem;
+}
+
+.cvSectionGap:first-child,
+.cvDocSide > .cvSectionLabel:first-child {
+  margin-top: 0;
+}
+
+.cvEdu {
+  margin-bottom: 1.1rem;
+  padding-left: .85rem;
+  border-left: 2px solid var(--b2);
+}
+
+.cvEduDeg {
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.cvEduUni {
+  font-style: normal;
+  margin-top: .15rem;
+  overflow-wrap: anywhere;
+}
+
+.cvCert {
+  align-items: flex-start;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.cvLangPill {
+  border-radius: 999px;
+  padding: .25rem .75rem;
+  font-size: .65rem;
+}
+
+/* Experience reads like a timeline. */
+.cvExpBlock {
+  position: relative;
+  margin-bottom: 1.75rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--b);
+}
+
+.cvExpBlock::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: .45rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--ac);
+}
+
+.cvExpBlock:first-of-type::before {
+  background: var(--ac);
+  box-shadow: 0 0 0 4px var(--acd);
+}
+
+.cvExpHeader {
+  flex-wrap: wrap;
+  gap: .25rem .75rem;
+}
+
+.cvExpRole {
+  font-size: 1.05rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.cvExpDates {
+  font-family: var(--fm);
+  font-style: normal;
+  font-size: .66rem;
+  letter-spacing: .04em;
+  padding: .15rem .6rem;
+  border: 1px solid var(--b2);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.cvExpCompany {
+  letter-spacing: .06em;
+  margin-bottom: .6rem;
+  overflow-wrap: anywhere;
+}
+
+.cvBulletMain,
+.cvBulletChild,
+.cvBullet,
+.cvCommaList,
+.cvPubTitle {
+  overflow-wrap: anywhere;
+}
+
+.cvBulletMain::before { color: var(--ac); }
+
+.cvBulletChild {
+  line-height: 1.6;
+}
+
+.cvBulletChildren {
+  padding-left: 1.6rem;
+}
+
+/* Top-bar controls */
+.barButton,
+.barLink {
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  font-family: var(--fm);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: .5rem .85rem;
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s, transform .18s;
+}
+
+.barButton {
+  color: var(--txt);
+  background: var(--s2);
+  border: 1px solid var(--b2);
+}
+
+.barButton:hover {
+  color: var(--ac);
+  border-color: var(--ac);
+  transform: translateY(-1px);
+}
+
+.barLink {
+  color: var(--ac);
+  background: var(--acd);
+  border: 1px solid color-mix(in srgb, var(--ac) 38%, var(--b));
+}
+
+.barLink:hover {
+  background: color-mix(in srgb, var(--ac) 18%, transparent);
+  transform: translateY(-1px);
+}
+
+.profileButton {
+  border-radius: 12px;
+  font-size: 1rem;
+  padding: 1.1rem 2.25rem;
+}
+
+@media (max-width: 1024px) {
+  .pageContainer {
+    padding-top: calc(56px + 1rem);
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cvDocBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cvDocHeader {
+    padding: 1.25rem;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .cvDocAvatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+  }
+
+  .cvDocSide {
+    margin-bottom: 0;
+    padding: 1.25rem;
+  }
+
+  .cvDocMain {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .barButton { display: none; }
+}
+
+/* ── Print: a clean, one-colour paper CV ── */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  .pageContainer {
+    --bg: #fff;
+    --surface: #fff;
+    --s2: #f4f6f9;
+    --txt: #111;
+    --mut: #4b5563;
+    --b: #d7dce4;
+    --b2: #c3cad6;
+    --ac: #0a7d4b;
+    --acd: #e8f6ef;
+    --pu: #6d3fd1;
+    --shadow: none;
+    max-width: none;
+    padding: 0;
+    color: #111;
+  }
+
+  .cvHeader,
+  .profileCallToAction {
+    display: none;
+  }
+
+  .cvDocument {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .cvDocHeader {
+    background: none;
+    padding: 0 0 .75rem;
+    border-bottom: 2px solid #111;
+  }
+
+  .cvDocSide {
+    background: none;
+  }
+
+  .cvExpBlock,
+  .cvEdu,
+  .cvCert {
+    break-inside: avoid;
+  }
+
+  .cvDocMetaLink {
+    color: inherit;
+  }
+}

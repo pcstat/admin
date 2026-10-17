@@ -9,7 +9,7 @@
 - [ ] Remove the `typescript` → `@typescript/typescript6` alias once typescript-eslint supports TypeScript 7; move to ESLint 10 when `eslint-config-next` does.
 - [ ] Optional: after a save, also start the website's deploy workflow directly (today the database repo's GitHub Action does it).
 
-- [ ] `src/mirror/ProfileMirror.tsx` and `CvMirror.tsx` copy the markup of the website's `DynamicProfile.tsx` / `cv/page.tsx`, and `*.module.css` are verbatim copies — re-sync them when those website files change.
+- [ ] `src/mirror/ProfileMirror.tsx` and `CvMirror.tsx` copy the markup of the website's `DynamicProfile.tsx` / `cv/page.tsx`; `*.module.css`, `FitName.tsx` and `StatGrid.tsx` are verbatim copies — re-sync them when those website files change (last synced: October 2026, second design pass). The website's top bar (`PageBar`) is intentionally not mirrored: the panel has its own chrome.
 - [ ] Whole-site preview covers every page except the admin-only ones; the website must be deployed with this panel's address as `admin` in its `database.json` for it to work.
 - [ ] JSON mode: key suggestions cover the profile / CV shapes only; the six database files have no JSON mode yet.
 - [ ] Externally hosted profiles are read-only here (the panel has no token for the member's repo).
