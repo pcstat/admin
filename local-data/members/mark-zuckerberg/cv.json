@@ -1,16 +1,23 @@
 {
   "name": "Mark Zuckerberg",
   "role": "Founder & CEO",
+  "summary": "Software engineer and founder focused on large-scale social platforms, distributed systems and product growth. Builds quickly, ships often, and cares about connecting communities through technology.",
   "location": "Menlo Park, USA",
+  "phone": "+1 (555) 010-1003",
   "email": "zuck@meta.com",
   "github": "github.com/zuck",
+  "linkedin": "linkedin.com/in/demo-mark-zuckerberg",
+  "website": "mark-zuckerberg.example.dev",
   "languages": ["English"],
   "education": [
     {
       "degree": "Psychology",
       "institution": "Harvard University",
       "year": "2004",
-      "cgpa": "null /4.0"
+      "cgpa": "3.70 / 4.00",
+      "honors": "Cum Laude",
+      "thesis": "Social Graph Models of Online Communities",
+      "coursework": ["Cognitive Psychology", "Statistics for Social Science", "Computer Science I & II", "Data Structures"]
     }
   ],
   "certifications": [
@@ -43,7 +50,8 @@
             "Driving innovation in spatial computing and social connection technologies."
           ]
         }
-      ]
+      ],
+      "location": "Menlo Park, USA"
     }
   ],
   "projects": [
@@ -55,7 +63,8 @@
         "Empowered the global AI research community through open access to foundational models.",
         "Established Meta as a key leader in the open-source AI ecosystem.",
         "Managed the massive-scale training and deployment of advanced transformer architectures."
-      ]
+      ],
+      "link": "github.com/demo-mark-zuckerberg/llama-open-source-ai"
     },
     {
       "title": "Metaverse Hardware & Software",
@@ -64,7 +73,8 @@
         "Directing the development of VR/AR hardware (Quest series) and social software.",
         "Building the foundational technologies for digital presence and spatial computing.",
         "Creating immersive social environments that redefine human interaction."
-      ]
+      ],
+      "link": "github.com/demo-mark-zuckerberg/metaverse-hardware-software"
     }
   ],
   "activities": [

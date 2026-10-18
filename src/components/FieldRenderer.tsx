@@ -5,7 +5,8 @@ import { useShallow } from "zustand/react/shallow";
 import type { FieldDef } from "@/lib/schemas";
 import { moveInArray, type PathSegment } from "@/lib/object-path";
 import { useSortable } from "@/lib/use-sortable";
-import type { DocFile, ExecutivesDoc } from "@/lib/types";
+import { isExternalLink, normalizeJsonLink } from "@/lib/member-source";
+import type { DocFile, ExecutivesDoc, Project } from "@/lib/types";
 import { photoUrl, useContentStore } from "@/store/content-store";
 
 type Obj = Record<string, unknown>;
@@ -108,7 +109,9 @@ function Field({ file, field, parent, path }: { file: DocFile; field: FieldDef; 
     case "strings":
       return <StringsField label={label} field={field} value={value} onChange={set} />;
     case "members":
-      return <MembersField label={label} value={value} onChange={set} />;
+      return <MembersField label={label} help={help} currentOnly={field.currentOnly} value={value} onChange={set} />;
+    case "projects":
+      return <ProjectsField label={label} help={help} value={value} onChange={set} />;
     case "image":
       return <ImageField label={label} folder={field.folder} value={value} onChange={set} />;
     case "list":
@@ -163,10 +166,12 @@ function StringsField({ label, field, value, onChange }: { label: React.ReactNod
   );
 }
 
-function MembersField({ label, value, onChange }: { label: React.ReactNode; value: unknown; onChange: (v: unknown) => void }) {
+function MembersField({ label, help, currentOnly, value, onChange }: { label: React.ReactNode; help?: React.ReactNode; currentOnly?: boolean; value: unknown; onChange: (v: unknown) => void }) {
   const executives = useContentStore((s) => s.docs["executives.json"]?.draft as ExecutivesDoc | undefined);
   const ids = Array.isArray(value) ? (value as string[]) : [];
-  const all = (executives?.committees ?? []).flatMap((c) => c.members.map((m) => ({ ...m, committee: c.label || c.session })));
+  const all = (executives?.committees ?? [])
+    .filter((c) => !currentOnly || c.session === executives?.current_committee)
+    .flatMap((c) => c.members.map((m) => ({ ...m, committee: c.label || c.session })));
   const nameOf = (id: string) => all.find((m) => m.student_id === id)?.name;
   const move = (from: number, to: number) => onChange(moveInArray(ids, from, to));
   const sortable = useSortable(useId(), move);
@@ -198,6 +203,43 @@ function MembersField({ label, value, onChange }: { label: React.ReactNode; valu
         </select>
       </div>
       {ids.length > 1 && <span className="hint">Drag a name or use ‹ › to reorder — they are shown in this order.</span>}
+      {help}
+    </div>
+  );
+}
+
+/** string[] of project ids — the projects pinned on the home page. */
+function ProjectsField({ label, help, value, onChange }: { label: React.ReactNode; help?: React.ReactNode; value: unknown; onChange: (v: unknown) => void }) {
+  const projects = useContentStore((s) => (s.docs["projects.json"]?.draft as { projects?: Project[] } | undefined)?.projects ?? []);
+  const ids = Array.isArray(value) ? (value as string[]) : [];
+  const titleOf = (id: string) => projects.find((p) => p.id === id)?.title;
+  const move = (from: number, to: number) => onChange(moveInArray(ids, from, to));
+  const sortable = useSortable(useId(), move);
+  return (
+    <div className="field wide">
+      {label}
+      <div className="chips">
+        {ids.map((id, i) => (
+          <span className={`chip sortable ${titleOf(id) ? "" : "bad"}`} key={id} {...sortable.grab(i)} {...sortable.item(i)}>
+            {ids.length > 1 && <span className="grip" aria-hidden="true">⠿</span>}
+            {titleOf(id) ?? `⚠ unknown project ${id}`}
+            {ids.length > 1 && <NudgeButtons index={i} count={ids.length} onMove={move} horizontal />}
+            <button type="button" className="icon-btn" aria-label={`Remove ${id}`} onClick={() => onChange(ids.filter((x) => x !== id))}>×</button>
+          </span>
+        ))}
+        <select value="" aria-label="Add project" onChange={(e) => e.target.value && onChange([...ids, e.target.value])}>
+          <option value="">+ Add project…</option>
+          {projects
+            .filter((p) => p.id && !ids.includes(p.id))
+            .map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.title} ({p.year})
+              </option>
+            ))}
+        </select>
+      </div>
+      {ids.length > 1 && <span className="hint">Drag a title or use ‹ › to reorder — they are shown in this order.</span>}
+      {help}
     </div>
   );
 }
@@ -208,7 +250,23 @@ function ImageField({ label, folder, value, onChange }: { label: React.ReactNode
   const view = useContentStore(useShallow((s) => ({ uploads: s.uploads, provider: s.provider, imageBase: s.imageBase })));
   const input = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
+  const [linking, setLinking] = useState(false);
+  const [link, setLink] = useState("");
   const rel = typeof value === "string" ? value : "";
+  const external = isExternalLink(rel);
+
+  /** A photo the member keeps in their own repository / site: only the link is stored here. */
+  function applyLink() {
+    const url = normalizeJsonLink(link);
+    if (!url) {
+      setError("Paste a full link that starts with https://");
+      return;
+    }
+    setError("");
+    onChange(url);
+    setLinking(false);
+    setLink("");
+  }
 
   async function pick(file: File | undefined) {
     if (!file) return;
@@ -228,11 +286,33 @@ function ImageField({ label, folder, value, onChange }: { label: React.ReactNode
         {rel ? <img src={photoUrl(rel, view)} alt="" className="thumb" /> : <div className="thumb empty">No photo</div>}
         <div className="image-actions">
           <button type="button" className="btn small" onClick={() => input.current?.click()}>{rel ? "Replace…" : "Upload…"}</button>
+          <button type="button" className="btn small ghost" onClick={() => setLinking((v) => !v)}>{external ? "Change link…" : "Use a link…"}</button>
           {rel && <button type="button" className="btn small ghost" onClick={() => onChange(undefined)}>Remove</button>}
           {rel && <code className="path">{rel}</code>}
           <input ref={input} type="file" accept="image/*" hidden onChange={(e) => { void pick(e.target.files?.[0]); e.target.value = ""; }} />
         </div>
       </div>
+      {linking && (
+        <div className="image-link">
+          <input
+            type="url"
+            className="mono"
+            placeholder="https://raw.githubusercontent.com/<user>/<repo>/HEAD/photo.jpg"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                applyLink();
+              }
+            }}
+            aria-label="Link to the photo"
+          />
+          <button type="button" className="btn small" onClick={applyLink}>Use this link</button>
+        </div>
+      )}
+      {external && <span className="hint">The photo is kept outside the club repository — the member changes it by replacing that file, no admin needed.</span>}
+      {linking && <span className="hint">A GitHub file link (…/blob/main/photo.jpg) is converted to its raw link automatically. Keep the same file name when replacing the photo.</span>}
       {error && <span className="error-text">{error}</span>}
     </div>
   );

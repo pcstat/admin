@@ -11,6 +11,7 @@ export interface DatabaseIndex {
   courses: string;
   achievements: string;
   certificates: string;
+  home: string;
 }
 
 export interface SocialLink {
@@ -37,6 +38,7 @@ export interface Member {
 export interface Committee {
   session: string;
   label: string;
+  /** Number of club members. Set → the home page says "MEMBERS"; left out → it counts the executives ("EXECUTIVES"). */
   total_members?: number;
   members: Member[];
 }
@@ -47,6 +49,7 @@ export interface ExecutivesDoc {
 }
 
 export interface Project {
+  id: string;
   title: string;
   description: string;
   status: string;
@@ -113,6 +116,12 @@ export interface IssuedCertificate {
   grade?: string;
 }
 
+/** `home.json` — what the home page pins. */
+export interface HomeConfig {
+  pinned_executives: string[];
+  pinned_projects: string[];
+}
+
 export interface DocMap {
   "executives.json": ExecutivesDoc;
   "projects.json": { projects: Project[] };
@@ -120,6 +129,7 @@ export interface DocMap {
   "courses.json": { courses: Course[] };
   "achievements.json": { tally: { value: string; label: string }[]; achievements: Achievement[] };
   "certificates.json": { issued_certificates: IssuedCertificate[] };
+  "home.json": HomeConfig;
 }
 
 export type DocFile = keyof DocMap;
@@ -130,6 +140,7 @@ export const DOC_FILES: DocFile[] = [
   "courses.json",
   "achievements.json",
   "certificates.json",
+  "home.json",
 ];
 
 /** What `/api/data` sends to the browser. */

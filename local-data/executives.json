@@ -4,7 +4,6 @@
     {
       "session": "2026-27",
       "label": "2026 – 2027",
-      "total_members": 8,
       "members": [
         {
           "initial": "E",
@@ -12,7 +11,7 @@
           "name": "Elon Musk",
           "session": "2026-27",
           "highlight": false,
-          "bio": "New bio from test",
+          "bio": "Founder of SpaceX and Tesla. Engineering first principles advocate. Focused on making humanity multi-planetary.",
           "socials": [
             {
               "type": "twitter",
@@ -26,7 +25,7 @@
             }
           ],
           "student_id": "2020001",
-          "icon_link": "executives/1792004731687-xvwl5w.png",
+          "icon_link": "executives/elon-musk.webp",
           "cv_link": "members/elon-musk/cv.json",
           "profile_link": "members/elon-musk/profile.json"
         },

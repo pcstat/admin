@@ -1,6 +1,7 @@
 {
   "projects": [
     {
+      "id": "proj-001",
       "title": "Club Website",
       "description": "This very website — an open-source, data-driven Next.js site for the Statistics Programming Club. All content is managed through JSON files with a custom visual editor.",
       "status": "active",
@@ -20,6 +21,7 @@
       "featured": false
     },
     {
+      "id": "proj-002",
       "title": "StatViz — Interactive Statistics Dashboard",
       "description": "A web-based dashboard for visualizing statistical distributions, hypothesis tests, and regression outputs. Built to help students understand core stat concepts visually.",
       "status": "active",
@@ -40,6 +42,7 @@
       "featured": false
     },
     {
+      "id": "proj-003",
       "title": "ML Notebook Archive",
       "description": "A curated, well-documented collection of Jupyter notebooks covering core ML algorithms from scratch — linear regression to transformers — maintained for club workshops.",
       "status": "active",
@@ -61,6 +64,7 @@
       "featured": false
     },
     {
+      "id": "proj-004",
       "title": "CU Attendance Tracker — EduTrack",
       "description": "A smart attendance management system for university departments, featuring QR-based check-in, automated reports, and department-level analytics.",
       "status": "completed",
@@ -80,6 +84,7 @@
       "demo_link": ""
     },
     {
+      "id": "proj-005",
       "title": "AgriSense — Crop Monitoring System",
       "description": "An IoT-integrated smart farming tool that uses sensor data and ML models to predict crop health, water needs, and yield estimates. Winner of DU Tech Fest Hackathon 2024.",
       "status": "completed",
@@ -99,6 +104,7 @@
       "demo_link": ""
     },
     {
+      "id": "proj-006",
       "title": "NLP for Low-Resource Bangla",
       "description": "Research project on natural language processing for Bangla — a low-resource language. Focuses on named entity recognition and sentiment analysis using fine-tuned transformer models.",
       "status": "research",
@@ -118,6 +124,7 @@
       "demo_link": "www.google.com"
     },
     {
+      "id": "proj-007",
       "title": "Quantum-Classical Hybrid Optimizer",
       "description": "Developing a hybrid algorithm that utilizes quantum annealing for hard combinatorial problems while leveraging classical gradient descent for fine-tuning.",
       "status": "research",
@@ -137,6 +144,7 @@
       "demo_link": ""
     },
     {
+      "id": "proj-008",
       "title": "Neural Architecture Search for Edge Devices",
       "description": "Automating the design of efficient deep learning architectures optimized for low-power mobile and IoT hardware without sacrificing accuracy.",
       "status": "research",
@@ -156,6 +164,7 @@
       "demo_link": ""
     },
     {
+      "id": "proj-009",
       "title": "Ethical AI Framework for Global Governance",
       "description": "Establishing a mathematical framework for fairness and accountability in AI systems, aimed at creating global standards for algorithmic transparency.",
       "status": "research",

@@ -1,22 +1,33 @@
 {
   "name": "Satya Nadella",
   "role": "CEO & Cloud Visionary",
+  "summary": "Technology executive with 30+ years across enterprise software and cloud computing. Known for turning around large organisations through culture change, platform thinking and a growth mindset. Advises the club on cloud and career growth.",
   "location": "Redmond, USA",
+  "phone": "+1 (555) 010-1005",
   "email": "satya@microsoft.com",
   "github": "github.com/satyanadella",
+  "linkedin": "linkedin.com/in/demo-satya-nadella",
+  "website": "satya-nadella.example.dev",
   "languages": ["English"],
   "education": [
     {
       "degree": "M.S. in Computer Science",
       "institution": "University of Wisconsin–Milwaukee",
       "year": "1990",
-      "cgpa": "null /4.0"
+      "cgpa": "3.92 / 4.00",
+      "rank": "3 / 60",
+      "honors": "First Class with Distinction",
+      "thesis": "Performance Modelling of Distributed Database Queries",
+      "coursework": ["Distributed Systems", "Database Systems", "Compilers", "Computer Networks"]
     },
     {
       "degree": "B.E. in Electrical Engineering",
       "institution": "Manipal Institute of Technology",
       "year": "1988",
-      "cgpa": "null /4.0"
+      "cgpa": "3.74 / 4.00",
+      "rank": "18 / 240",
+      "honors": "First Class",
+      "coursework": ["Control Systems", "Microprocessors", "Electrical Machines", "Digital Electronics"]
     }
   ],
   "certifications": [
@@ -49,7 +60,8 @@
             "Fostered a culture of 'growth mindset' to drive innovation and continuous learning."
           ]
         }
-      ]
+      ],
+      "location": "Redmond, USA"
     },
     {
       "title": "Executive Vice President, Cloud & Enterprise",
@@ -64,7 +76,8 @@
             "Managed large-scale engineering and sales teams to achieve global market dominance."
           ]
         }
-      ]
+      ],
+      "location": "Redmond, USA"
     }
   ],
   "projects": [
@@ -75,7 +88,8 @@
         "Directed the build-out of one of the world's largest and most resilient cloud computing platforms.",
         "Enabled global-scale enterprise computing through distributed systems and high-availability architecture.",
         "Scaled Azure to serve millions of concurrent users and massive-scale workloads."
-      ]
+      ],
+      "link": "github.com/demo-satya-nadella/azure-cloud-infrastructure"
     },
     {
       "title": "AI Integration Ecosystem",
@@ -84,7 +98,8 @@
         "Led the integration of large language models into Microsoft 365 and GitHub Copilot.",
         "Created a seamless experience for developers and business users through AI-driven productivity tools.",
         "Established Microsoft as the premier partner for enterprise-ready generative AI."
-      ]
+      ],
+      "link": "github.com/demo-satya-nadella/ai-integration-ecosystem"
     }
   ],
   "activities": [
@@ -114,7 +129,9 @@
       "title": "Hit Refresh",
       "subtitle": "Leadership Memoir",
       "dates": "2017",
-      "bullets": ["A reflection on Microsoft's transformation and the importance of culture and purpose."]
+      "bullets": [
+        "A reflection on Microsoft's transformation and the importance of culture and purpose."
+      ]
     }
   ]
 }

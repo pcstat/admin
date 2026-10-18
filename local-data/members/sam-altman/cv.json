@@ -1,16 +1,24 @@
 {
   "name": "Sam Altman",
   "role": "LLM Strategist & CEO",
+  "summary": "Founder and investor with experience scaling startups and leading frontier AI research organisations. Strong in fundraising, hiring and turning research breakthroughs into products used by millions.",
   "location": "San Francisco, USA",
+  "phone": "+1 (555) 010-1004",
   "email": "sam@openai.com",
   "github": "github.com/samaltman",
+  "linkedin": "linkedin.com/in/demo-sam-altman",
+  "website": "sam-altman.example.dev",
   "languages": ["English"],
   "education": [
     {
       "degree": "B.S. in Computer Science",
       "institution": "Stanford University",
       "year": "2005",
-      "cgpa": "null /4.0"
+      "cgpa": "3.88 / 4.00",
+      "rank": "12 / 150",
+      "honors": "With Distinction",
+      "thesis": "Location-Aware Mobile Social Networks",
+      "coursework": ["Machine Learning", "Algorithms", "Operating Systems", "Probability and Statistics"]
     }
   ],
   "certifications": [
@@ -46,7 +54,8 @@
             "Bridging the gap between cutting-edge research and real-world commercial applications."
           ]
         }
-      ]
+      ],
+      "location": "San Francisco, USA"
     },
     {
       "title": "President",
@@ -61,7 +70,8 @@
             "Collaborated on mission-critical funding and partnership efforts."
           ]
         }
-      ]
+      ],
+      "location": "San Francisco, USA"
     },
     {
       "title": "President",
@@ -76,7 +86,8 @@
             "Built a global network of founders and investors."
           ]
         }
-      ]
+      ],
+      "location": "San Francisco, USA"
     }
   ],
   "projects": [
@@ -88,7 +99,8 @@
         "Transformed human-computer interaction through natural language processing.",
         "Managed the massive-scale inference infrastructure required for real-time global access.",
         "Led the product iteration cycle that defined the modern LLM user experience."
-      ]
+      ],
+      "link": "github.com/demo-sam-altman/chatgpt"
     },
     {
       "title": "OpenAI API",
@@ -97,7 +109,8 @@
         "Pioneered the model-as-a-service paradigm, enabling thousands of developers to build on GPT.",
         "Built the technical and commercial infrastructure for the global AI developer community.",
         "Established the standard for API-driven generative AI applications."
-      ]
+      ],
+      "link": "github.com/demo-sam-altman/openai-api"
     }
   ],
   "activities": [
@@ -127,7 +140,9 @@
       "title": "The Path to AGI",
       "subtitle": "Industry Vision Papers",
       "dates": "2023",
-      "bullets": ["Strategic roadmap for the safe and beneficial development of AGI"]
+      "bullets": [
+        "Strategic roadmap for the safe and beneficial development of AGI"
+      ]
     }
   ]
 }

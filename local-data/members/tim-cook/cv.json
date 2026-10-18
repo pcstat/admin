@@ -1,22 +1,31 @@
 {
   "name": "Tim Cook",
   "role": "CEO & Operations Master",
+  "summary": "Operations and supply-chain executive with deep experience in global manufacturing, logistics and services growth. Delivers reliably at scale while keeping teams focused on customers and privacy.",
   "location": "Cupertino, USA",
+  "phone": "+1 (555) 010-1007",
   "email": "tim@apple.com",
   "github": "github.com/timcook",
+  "linkedin": "linkedin.com/in/demo-tim-cook",
+  "website": "tim-cook.example.dev",
   "languages": ["English"],
   "education": [
     {
       "degree": "MBA",
       "institution": "Duke University",
       "year": "1998",
-      "cgpa": "null /4.0"
+      "cgpa": "3.81 / 4.00",
+      "honors": "Fuqua Scholar",
+      "coursework": ["Operations Management", "Supply Chain Analytics", "Managerial Accounting", "Business Statistics"]
     },
     {
       "degree": "B.S. in Industrial Engineering",
       "institution": "Auburn University",
       "year": "1982",
-      "cgpa": "null /4.0"
+      "cgpa": "3.66 / 4.00",
+      "rank": "21 / 300",
+      "honors": "Cum Laude",
+      "coursework": ["Operations Research", "Quality Control", "Production Systems"]
     }
   ],
   "certifications": [
@@ -48,7 +57,8 @@
             "Championing privacy and security as a fundamental human right within the Apple ecosystem."
           ]
         }
-      ]
+      ],
+      "location": "Cupertino, USA"
     },
     {
       "title": "Chief Operating Officer",
@@ -63,7 +73,8 @@
             "Developed the logistics and manufacturing framework that enabled the massive scale of the iPod and iPhone era."
           ]
         }
-      ]
+      ],
+      "location": "Cupertino, USA"
     }
   ],
   "projects": [
@@ -74,7 +85,8 @@
         "Orchestrated the massive growth of Apple Services (iCloud, Apple Music, App Store, etc.).",
         "Created a highly integrated and profitable ecosystem that drives recurring revenue.",
         "Established Apple as a leader in the services-driven business model."
-      ]
+      ],
+      "link": "github.com/demo-tim-cook/apple-services-revolution"
     },
     {
       "title": "Apple Silicon Transition",
@@ -83,7 +95,8 @@
         "Overseeing the transition from Intel-based Mac computers to custom Apple Silicon (M-series chips).",
         "Leading the development of high-performance, energy-efficient architecture for consumer electronics.",
         "Driving vertical integration in hardware and software design."
-      ]
+      ],
+      "link": "github.com/demo-tim-cook/apple-silicon-transition"
     }
   ],
   "activities": [

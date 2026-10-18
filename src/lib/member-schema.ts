@@ -55,17 +55,23 @@ const PROFILE: Shape = obj(
 );
 
 const bullet: Shape = union(str, obj({ text: str, children: strings }, ["text"]));
-const entry: Shape = obj({ title: str, subtitle: str, dates: str, bullets: arr(bullet), commas: arr(union(str, obj({ text: str }, ["text"]))) }, ["title"]);
+const entry: Shape = obj({ title: str, subtitle: str, location: str, link: str, dates: str, bullets: arr(bullet), commas: arr(union(str, obj({ text: str }, ["text"]))) }, ["title"]);
 
 const CV: Shape = obj(
   {
     name: str,
     role: str,
+    summary: str,
     location: str,
+    phone: str,
     email: str,
     github: str,
+    linkedin: str,
+    website: str,
     languages: strings,
-    education: arr(obj({ degree: str, institution: str, year: str, cgpa: str, rank: str }, ["degree", "institution"])),
+    education: arr(
+      obj({ degree: str, institution: str, location: str, year: str, cgpa: str, rank: str, honors: str, thesis: str, coursework: strings }, ["degree", "institution"]),
+    ),
     certifications: arr(union(str, obj({ title: str, link: str }, ["title"]))),
     experience: arr(entry),
   },
@@ -76,9 +82,9 @@ const CV: Shape = obj(
 export const SHAPES: Record<MemberKind, Shape> = { profile: PROFILE, cv: CV };
 
 /** Section keys the CV page understands besides the fixed ones — offered by auto-completion. */
-export const COMMON_CV_SECTIONS = ["projects", "activities", "technical_skills", "publications", "workshops_conducted"];
+export const COMMON_CV_SECTIONS = ["projects", "technical_skills", "publications", "honors_and_awards", "activities", "leadership", "volunteering", "workshops_conducted"];
 
-export const CV_FIXED_KEYS = ["name", "role", "location", "email", "github", "education", "certifications", "languages", "experience"];
+export const CV_FIXED_KEYS = ["name", "role", "summary", "location", "phone", "email", "github", "linkedin", "website", "education", "certifications", "languages", "experience"];
 
 /** Minimal starting points for a new file. */
 export const TEMPLATES: Record<MemberKind, (name: string) => Record<string, unknown>> = {

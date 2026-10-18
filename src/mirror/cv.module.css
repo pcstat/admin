@@ -822,57 +822,54 @@
   .barButton { display: none; }
 }
 
+/* ── Summary, education notes and project links (modern CV fields) ── */
+.cvSummary {
+  padding: 1.1rem 2rem 1.25rem;
+  border-bottom: 1px solid var(--b);
+  background: var(--surface);
+}
+
+.cvSummaryText {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--txt);
+  max-width: 80ch;
+}
+
+.cvEduNote {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--mut);
+}
+
+.cvEduNote strong {
+  color: var(--txt);
+  font-weight: 600;
+}
+
+.cvExpLink {
+  color: var(--ac);
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
 /* ── Print: a clean, one-colour paper CV ── */
 @media print {
+  /* No page margin: browsers print their own header and footer (date, page title, address) in the margin,
+     so a zero margin removes them. The spacing is made by PrintCV.tsx instead. */
   @page {
-    margin: 14mm;
+    margin: 0;
   }
 
   .pageContainer {
-    --bg: #fff;
-    --surface: #fff;
-    --s2: #f4f6f9;
-    --txt: #111;
-    --mut: #4b5563;
-    --b: #d7dce4;
-    --b2: #c3cad6;
-    --ac: #0a7d4b;
-    --acd: #e8f6ef;
-    --pu: #6d3fd1;
-    --shadow: none;
     max-width: none;
     padding: 0;
-    color: #111;
   }
 
-  .cvHeader,
-  .profileCallToAction {
+  /* The styled two-column page is for screens; printing uses the one-column layout of PrintCV.tsx. */
+  .cvLayout {
     display: none;
-  }
-
-  .cvDocument {
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-  }
-
-  .cvDocHeader {
-    background: none;
-    padding: 0 0 .75rem;
-    border-bottom: 2px solid #111;
-  }
-
-  .cvDocSide {
-    background: none;
-  }
-
-  .cvExpBlock,
-  .cvEdu,
-  .cvCert {
-    break-inside: avoid;
-  }
-
-  .cvDocMetaLink {
-    color: inherit;
   }
 }

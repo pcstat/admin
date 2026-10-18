@@ -106,7 +106,22 @@ function Entry({ sectionKey, index, count }: { sectionKey: string; index: number
         <span className={styles.cvExpRole}><T path={[...base, "title"]} placeholder="Title" /></span>
         {(editable || !!item.dates) && <span className={styles.cvExpDates}><T path={[...base, "dates"]} placeholder="Dates" /></span>}
       </div>
-      {(editable || !!item.subtitle) && <div className={styles.cvExpCompany}><T path={[...base, "subtitle"]} placeholder="Subtitle (company, venue…)" /></div>}
+      {(editable || !!item.subtitle || usable(item.location)) && (
+        <div className={styles.cvExpCompany}>
+          <T path={[...base, "subtitle"]} placeholder="Subtitle (company, venue…)" />
+          {(editable || usable(item.location)) && (
+            <>
+              {"  ·  "}
+              <T path={[...base, "location"]} placeholder="Location" />
+            </>
+          )}
+        </div>
+      )}
+      {editable && (
+        <div className={styles.cvExpCompany}>
+          <T path={[...base, "link"]} placeholder="Link (https://…, optional)" className="m-sub" />
+        </div>
+      )}
       <Bullets base={base} />
       <Commas base={base} />
     </div>
@@ -244,10 +259,20 @@ function Body({ member, roleLabel, photoSrc, onOpenProfile }: Omit<Props, "data"
             <div className={styles.cvDocMeta}>
               {(editable || usable(data.location)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">📍</span> <T path={["location"]} placeholder="Location" /></span>}
               {(editable || usable(data.email)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">✉</span> <T path={["email"]} placeholder="Email" /></span>}
+              {(editable || usable(data.phone)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">☎</span> <T path={["phone"]} placeholder="Phone" /></span>}
               {(editable || usable(data.github)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">⌥</span> <T path={["github"]} placeholder="GitHub" /></span>}
+              {(editable || usable(data.linkedin)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">in</span> <T path={["linkedin"]} placeholder="LinkedIn" /></span>}
+              {(editable || usable(data.website)) && <span className={styles.cvDocMetaItem}><span aria-hidden="true">🔗</span> <T path={["website"]} placeholder="Website" /></span>}
             </div>
           </div>
         </div>
+
+        {(editable || usable(data.summary)) && (
+          <div className={styles.cvSummary}>
+            <div className={styles.cvSectionLabel}>{"// Summary"}</div>
+            <p className={styles.cvSummaryText}><T path={["summary"]} multiline placeholder="Two or three lines: who you are, what you do best, what you are looking for" /></p>
+          </div>
+        )}
 
         <div className={styles.cvDocBody}>
           <aside className={styles.cvDocSide}>
@@ -264,6 +289,14 @@ function Body({ member, roleLabel, photoSrc, onOpenProfile }: Omit<Props, "data"
                   <div className={styles.cvEduMeta}>
                     {(editable || usable(edu.cgpa)) && <span>CGPA: <T path={["education", i, "cgpa"]} placeholder="—" /></span>}
                     {(editable || usable(edu.rank)) && <span>Rank: <T path={["education", i, "rank"]} placeholder="—" /></span>}
+                  </div>
+                )}
+                {(editable || usable(edu.honors)) && <div className={styles.cvEduNote}><T path={["education", i, "honors"]} placeholder="Honours, e.g. First Class" /></div>}
+                {(editable || usable(edu.thesis)) && <div className={styles.cvEduNote}><strong>Thesis:</strong> <T path={["education", i, "thesis"]} placeholder="Thesis title" /></div>}
+                {(editable || asArray(edu.coursework).length > 0) && (
+                  <div className={styles.cvEduNote}>
+                    <strong>Coursework:</strong>
+                    <Tags path={["education", i, "coursework"]} className={styles.cvCommaList} itemClassName={styles.cvCommaItem} label="course" />
                   </div>
                 )}
               </div>

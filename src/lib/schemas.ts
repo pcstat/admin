@@ -25,8 +25,10 @@ export type FieldDef =
   | (Base & { kind: "session-select" })
   /** string[] — one text input per entry. */
   | (Base & { kind: "strings"; placeholder?: string; addLabel?: string })
-  /** string[] of student IDs, chosen from the members of executives.json. */
-  | (Base & { kind: "members" })
+  /** string[] of student IDs, chosen from the members of executives.json (`currentOnly`: the current committee only). */
+  | (Base & { kind: "members"; currentOnly?: boolean })
+  /** string[] of project ids, chosen from projects.json. */
+  | (Base & { kind: "projects" })
   /** Path relative to photos/ (e.g. "executives/ada.webp"); uploads go to photos/<folder>/. */
   | (Base & { kind: "image"; folder: string })
   | (Base & {
@@ -107,6 +109,27 @@ const memberFields: FieldDef[] = [
 
 export const SECTIONS: SectionDef[] = [
   {
+    slug: "home",
+    file: "home.json",
+    title: "Homepage",
+    description: "Choose which executives and which projects the home page shows.",
+    fields: [
+      {
+        kind: "members",
+        key: "pinned_executives",
+        label: "Pinned executives (Meet the team)",
+        currentOnly: true,
+        help: "Pick members of the current committee. Only these appear on the home page, in this order. Leave empty to hide the block.",
+      },
+      {
+        kind: "projects",
+        key: "pinned_projects",
+        label: "Top projects",
+        help: "Pick the projects to show on the home page, in this order. Leave empty to hide the block.",
+      },
+    ],
+  },
+  {
     slug: "executives",
     file: "executives.json",
     title: "Executives",
@@ -125,7 +148,12 @@ export const SECTIONS: SectionDef[] = [
         fields: [
           { kind: "text", key: "session", label: "Session ID", required: true, mono: true, placeholder: "2027-28", help: "No spaces, e.g. 2027-28." },
           { kind: "text", key: "label", label: "Label", required: true, placeholder: "2027 – 2028" },
-          { kind: "number", key: "total_members", label: "Total members", help: "Optional — used for the home page stat; otherwise the number of listed members." },
+          {
+            kind: "number",
+            key: "total_members",
+            label: "Total members",
+            help: "Optional. Fill it in and the home page stat reads MEMBERS with this number; leave it empty and the home page counts the executives listed below and reads EXECUTIVES.",
+          },
           {
             kind: "list",
             key: "members",
@@ -165,9 +193,11 @@ export const SECTIONS: SectionDef[] = [
         itemLabel: "project",
         title: (p) => str(p.title) || "New project",
         collapsedByDefault: true,
-        orderNote: "Featured projects are listed first, then the rest in this order. The built-in “Club Website” card is always pinned on top.",
-        create: () => ({ title: "", description: "", status: "active", tags: [], members: [], year: String(new Date().getFullYear()) }),
+        uniqueKey: "id",
+        orderNote: "Featured projects are listed first, then the rest in this order. The built-in “Club Website” card is always pinned on top. Which projects appear on the home page is chosen under Homepage.",
+        create: ({ taken }) => ({ id: nextId("proj", taken), title: "", description: "", status: "active", tags: [], members: [], year: String(new Date().getFullYear()) }),
         fields: [
+          { kind: "text", key: "id", label: "ID", required: true, mono: true, help: "Used to pin the project on the home page. Do not change it once the project is pinned." },
           { kind: "text", key: "title", label: "Title", required: true },
           { kind: "textarea", key: "description", label: "Description", required: true, rows: 3 },
           {

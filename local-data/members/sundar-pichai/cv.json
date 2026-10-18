@@ -1,22 +1,32 @@
 {
   "name": "Sundar Pichai",
   "role": "CEO & Search Architect",
+  "summary": "Product leader who has built and scaled browsers, operating systems and productivity tools used by billions. Focuses on simple, accessible products and on long-term bets in AI.",
   "location": "Mountain View, USA",
+  "phone": "+1 (555) 010-1006",
   "email": "sundar@google.com",
   "github": "github.com/sundarpichai",
+  "linkedin": "linkedin.com/in/demo-sundar-pichai",
+  "website": "sundar-pichai.example.dev",
   "languages": ["English"],
   "education": [
     {
       "degree": "M.S. in Materials Science and Engineering",
       "institution": "Stanford University",
       "year": "1995",
-      "cgpa": "null /4.0"
+      "cgpa": "3.89 / 4.00",
+      "honors": "Distinction",
+      "thesis": "Thin-Film Semiconductor Materials",
+      "coursework": ["Materials Characterization", "Semiconductor Physics", "Numerical Methods", "Statistics"]
     },
     {
       "degree": "B.Tech in Metallurgical Engineering",
       "institution": "IIT Kharagpur",
       "year": "1989",
-      "cgpa": "null /4.0"
+      "cgpa": "9.1 / 10",
+      "rank": "2 / 90",
+      "honors": "Silver Medal",
+      "coursework": ["Physical Metallurgy", "Thermodynamics of Materials", "Engineering Mathematics"]
     }
   ],
   "certifications": [
@@ -48,7 +58,8 @@
             "Driving innovation in cloud computing and enterprise AI services."
           ]
         }
-      ]
+      ],
+      "location": "Mountain View, USA"
     },
     {
       "title": "Senior Vice President, Product",
@@ -64,7 +75,8 @@
             "Drove strategic product roadmaps that achieved billions of active users."
           ]
         }
-      ]
+      ],
+      "location": "Mountain View, USA"
     }
   ],
   "projects": [
@@ -75,7 +87,8 @@
         "Leading the evolution of Search through generative AI and semantic understanding.",
         "Redefining how the world accesses and interacts with information online.",
         "Managing the massive-scale deployment of AI-enhanced search results."
-      ]
+      ],
+      "link": "github.com/demo-sundar-pichai/ai-driven-search-transformation"
     },
     {
       "title": "Android Ecosystem Growth",
@@ -84,7 +97,8 @@
         "Directed the strategic expansion of the Android operating system globally.",
         "Built one of the world's largest mobile ecosystems, empowering billions of users.",
         "Managed the integration of core Google services into the Android platform."
-      ]
+      ],
+      "link": "github.com/demo-sundar-pichai/android-ecosystem-growth"
     }
   ],
   "activities": [

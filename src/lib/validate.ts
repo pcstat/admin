@@ -71,13 +71,32 @@ export function validateDocs(docs: Partial<DocMap>, existingFiles: Set<string>):
     for (const d of dupes(ids)) add(F, `The student ID "${d}" is used more than once.`);
   }
 
+  const currentIds = new Set(exec?.committees.find((c) => c.session === exec.current_committee)?.members.map((m) => m.student_id) ?? []);
+
   const checkRefs = (file: string, what: string, ids: string[] | undefined) => {
     if (!exec) return;
     for (const id of ids ?? []) if (!memberIds.has(id)) add(file, `${what}: unknown member ID "${id}".`);
   };
 
-  for (const p of docs["projects.json"]?.projects ?? []) {
+  const projectList = docs["projects.json"]?.projects ?? [];
+  for (const d of dupes(projectList.map((p) => p.id))) add("projects.json", `The project ID "${d}" is used more than once.`);
+  for (const p of projectList) {
+    if (p.id && /\s/.test(p.id)) add("projects.json", `Project "${p.title}": the ID must not contain spaces.`);
     checkRefs("projects.json", `Project "${p.title}"`, p.members);
+  }
+
+  const home = docs["home.json"];
+  if (home) {
+    const projectIds = new Set(projectList.map((p) => p.id));
+    for (const d of dupes(home.pinned_executives ?? [])) add("home.json", `The executive "${d}" is pinned twice.`);
+    for (const d of dupes(home.pinned_projects ?? [])) add("home.json", `The project "${d}" is pinned twice.`);
+    for (const id of home.pinned_executives ?? []) {
+      if (!memberIds.has(id)) add("home.json", `Pinned executive "${id}" is not a known student ID.`);
+      else if (!currentIds.has(id)) add("home.json", `Pinned executive "${id}" is not in the current committee — unpin them or change the current committee.`);
+    }
+    for (const id of home.pinned_projects ?? []) {
+      if (!projectIds.has(id)) add("home.json", `Pinned project "${id}" does not exist (was it deleted or its ID changed?).`);
+    }
   }
   for (const a of docs["achievements.json"]?.achievements ?? []) {
     checkRefs("achievements.json", `Achievement "${a.title}"`, a.members);

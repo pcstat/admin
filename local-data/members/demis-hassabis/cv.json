@@ -1,22 +1,30 @@
 {
   "name": "Demis Hassabis",
   "role": "Research Lead & CEO",
+  "summary": "AI researcher and founder combining neuroscience, machine learning and game design. Leads teams that apply deep reinforcement learning to scientific problems such as protein structure prediction.",
   "location": "London, UK",
+  "phone": "+44 7700 900101",
   "email": "demis@deepmind.com",
   "github": "github.com/demishassabis",
+  "linkedin": "linkedin.com/in/demo-demis-hassabis",
+  "website": "demis-hassabis.example.dev",
   "languages": ["English"],
   "education": [
     {
       "degree": "PhD in Cognitive Neuroscience",
       "institution": "University College London",
       "year": "2009",
-      "cgpa": "null /4.0"
+      "honors": "Doctoral degree",
+      "thesis": "Neural Mechanisms of Episodic Memory and Imagination",
+      "coursework": ["Computational Neuroscience", "Reinforcement Learning", "Statistical Modelling"]
     },
     {
       "degree": "BSc in Computer Science",
       "institution": "University of Cambridge",
       "year": "1997",
-      "cgpa": "null /4.0"
+      "cgpa": "First Class",
+      "honors": "First Class Honours",
+      "coursework": ["Artificial Intelligence", "Algorithms", "Computer Graphics", "Game Design"]
     }
   ],
   "certifications": [
@@ -49,7 +57,8 @@
             "Establishing DeepMind as the global leader in transformative AI research."
           ]
         }
-      ]
+      ],
+      "location": "London, UK"
     },
     {
       "title": "Co-founder & Director",
@@ -64,7 +73,8 @@
             "Built highly successful game-based AI architectures."
           ]
         }
-      ]
+      ],
+      "location": "London, UK"
     }
   ],
   "projects": [
@@ -76,7 +86,8 @@
         "Solved a 50-year-old grand challenge in biology with unprecedented accuracy.",
         "Accelerated drug discovery and biological research globally through open access to protein structures.",
         "Integrated deep learning with geometric and physical constraints to ensure biological plausibility."
-      ]
+      ],
+      "link": "github.com/demo-demis-hassabis/alphafold"
     },
     {
       "title": "AlphaGo",
@@ -85,7 +96,8 @@
         "Created the first AI system to master the game of Go, demonstrating superhuman strategic capability.",
         "Combined deep neural networks with Monte Carlo tree search to solve complex decision-making tasks.",
         "Proved the effectiveness of deep reinforcement learning in highly complex environments."
-      ]
+      ],
+      "link": "github.com/demo-demis-hassabis/alphago"
     }
   ],
   "activities": [
@@ -115,13 +127,17 @@
       "title": "Mastering the game of Go with deep neural networks and tree search",
       "subtitle": "Nature Journal",
       "dates": "2016",
-      "bullets": ["Groundbreaking research paper on deep reinforcement learning and tree search."]
+      "bullets": [
+        "Groundbreaking research paper on deep reinforcement learning and tree search."
+      ]
     },
     {
       "title": "Predicting protein structures with AlphaFold",
       "subtitle": "Nature Journal",
       "dates": "2021",
-      "bullets": ["Seminal work on applying deep learning to the fundamental challenges of biology."]
+      "bullets": [
+        "Seminal work on applying deep learning to the fundamental challenges of biology."
+      ]
     }
   ]
 }

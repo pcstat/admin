@@ -1,4 +1,228 @@
 {
   "name": "Elon Musk",
-  "role": "Edited"
+  "role": "Chief Engineer & CEO",
+  "summary": "Engineer and founder with 25+ years building hardware and software companies across space, energy and AI. Takes ideas from first-principles design to mass production, leading teams of thousands. Interested in applying large-scale engineering thinking to club projects.",
+  "location": "Texas, USA",
+  "phone": "+1 (555) 010-1001",
+  "email": "elon@tesla.com",
+  "github": "github.com/elonmusk",
+  "linkedin": "linkedin.com/in/demo-elon-musk",
+  "website": "elon-musk.example.dev",
+  "languages": ["English"],
+  "education": [
+    {
+      "degree": "B.A. in Physics",
+      "institution": "University of Pennsylvania",
+      "year": "1995",
+      "cgpa": "3.78 / 4.00",
+      "honors": "Cum Laude",
+      "thesis": "Ultracapacitors for Electric Vehicle Energy Storage",
+      "coursework": ["Quantum Mechanics", "Thermodynamics", "Solid-State Physics", "Mathematical Methods"]
+    },
+    {
+      "degree": "B.S. in Economics",
+      "institution": "University of Pennsylvania",
+      "year": "1995",
+      "cgpa": "3.84 / 4.00",
+      "rank": "14 / 120",
+      "honors": "Magna Cum Laude",
+      "coursework": ["Microeconomics", "Econometrics", "Corporate Finance", "Game Theory"]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Self-Taught Engineer",
+      "link": null
+    },
+    {
+      "title": "Certified Multi-Planetary Strategist",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "CEO & Chief Engineer",
+      "dates": "2008 - Present",
+      "subtitle": "Tesla, Inc.",
+      "bullets": [
+        {
+          "text": "Accelerating the World's Transition to Sustainable Energy",
+          "children": [
+            "Led the development of the Model S, Model 3, Model X, and Model Y, scaling electric vehicle production to millions of units annually.",
+            "Oversaw the integration of vertical integration in battery production and the development of the 4680 battery cell.",
+            "Developed and deployed Full Self-Driving (FSD) Beta, utilizing a vision-only neural network approach to achieve general autonomy.",
+            "Managed the global expansion of Supercharger networks to enable long-distance electric travel."
+          ]
+        },
+        {
+          "text": "Energy Generation and Storage",
+          "children": [
+            "Spearheaded the development of SolarRoof and Powerwall, creating a distributed energy ecosystem for residential and commercial use.",
+            "Scaled Megapack for utility-scale energy storage, replacing fossil-fuel peaking plants with sustainable alternatives.",
+            "Optimized the Tesla Energy ecosystem to maximize efficiency in power distribution."
+          ]
+        },
+        {
+          "text": "Robotics & AI",
+          "children": [
+            "Directed the development of Optimus, a humanoid robot designed to replace repetitive and dangerous labor.",
+            "Integrated advanced vision-based AI into humanoid form factors for real-world application."
+          ]
+        }
+      ],
+      "location": "Texas, USA"
+    },
+    {
+      "title": "Founder & Chief Engineer",
+      "dates": "2002 - Present",
+      "subtitle": "SpaceX",
+      "bullets": [
+        {
+          "text": "Making Humanity Multi-Planetary",
+          "children": [
+            "Designed and developed the Falcon 1, Falcon 9, and Falcon Heavy, the first reusable orbital-class rockets.",
+            "Led the development of Starship, the most powerful launch vehicle ever built, designed for Mars colonization.",
+            "Developed the Dragon spacecraft for crewed missions to the ISS, restoring US crew launch capability.",
+            "Deployed the Starlink constellation of thousands of satellites to provide high-speed internet globally.",
+            "Pioneered the use of stainless steel for orbital-class spacecraft to reduce cost and increase durability."
+          ]
+        },
+        {
+          "text": "Interplanetary Logistics",
+          "children": [
+            "Developed orbital refueling technology to enable deep-space missions to the Moon and Mars.",
+            "Established a cadence of rapid prototyping and iterative testing for spacecraft development."
+          ]
+        }
+      ],
+      "location": "Texas, USA"
+    },
+    {
+      "title": "Founder & Owner",
+      "dates": "2022 - Present",
+      "subtitle": "X (formerly Twitter)",
+      "bullets": [
+        {
+          "text": "Transforming X into the Everything App",
+          "children": [
+            "Restructured the platform's engineering organization to optimize performance and reduce technical debt.",
+            "Implemented a new monetization model based on verified subscriptions to reduce reliance on advertising.",
+            "Introduced features for long-form content, video-first communication, and integrated financial services.",
+            "Integrated Grok AI into the X platform to provide real-time, unfiltered information to users."
+          ]
+        }
+      ],
+      "location": "Texas, USA"
+    },
+    {
+      "title": "Co-founder",
+      "dates": "1999 - 2002",
+      "subtitle": "PayPal (formerly X.com)",
+      "bullets": [
+        {
+          "text": "Digital Payments Revolution",
+          "children": [
+            "Pioneered the first scalable online payment system, revolutionizing the global financial system.",
+            "Merged X.com with Confinity to create PayPal, facilitating the world's first mass-market digital wallet.",
+            "Developed the early infrastructure for digital currency transfer and fraud detection."
+          ]
+        }
+      ],
+      "location": "Texas, USA"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Neuralink",
+      "subtitle": "Brain-Computer Interface (BCI)",
+      "bullets": [
+        "Developed a high-bandwidth brain-computer interface to treat neurological conditions and achieve symbiosis with AI.",
+        "Created a precision robotic system for surgical implantation of ultra-thin electrodes into the motor cortex.",
+        "Implemented advanced signal processing to translate neural activity into digital commands.",
+        "Obtained FDA approval for first human clinical trials of the Link implant."
+      ],
+      "link": "github.com/demo-elon-musk/neuralink"
+    },
+    {
+      "title": "The Boring Company",
+      "subtitle": "Infrastructure & Tunneling",
+      "bullets": [
+        "Designed the 'Loop' high-speed transportation system to solve urban congestion via underground tunnels.",
+        "Developed high-speed tunneling machines (Prufrock) to reduce the cost and speed of tunneling by 10x.",
+        "Implemented autonomous electric vehicles for transit within the tunnel networks.",
+        "Created a scalable model for underground utility corridors to reduce urban surface disruption."
+      ],
+      "link": "github.com/demo-elon-musk/the-boring-company"
+    },
+    {
+      "title": "OpenAI",
+      "subtitle": "Non-profit AI Research",
+      "bullets": [
+        "Co-founded OpenAI to ensure that artificial general intelligence (AGI) is developed safely and for the benefit of all humanity.",
+        "Provided initial seed funding and guidance on AI safety and alignment.",
+        "Advocated for the development of open-source AI to prevent the concentration of power in a few large corporations."
+      ],
+      "link": "github.com/demo-elon-musk/openai"
+    }
+  ],
+  "activities": [
+    {
+      "title": "Chief Engineer",
+      "subtitle": "Tesla Bot / Optimus",
+      "dates": "2021 - Present",
+      "bullets": [
+        "Designing a general-purpose humanoid robot capable of performing dangerous, repetitive, or boring tasks.",
+        "Integrating Tesla's FSD computer and vision-based AI into a humanoid form factor.",
+        "Leading the development of actuators and sensors for high-precision humanoid movement."
+      ]
+    },
+    {
+      "title": "Founder",
+      "subtitle": "xAI",
+      "dates": "2023 - Present",
+      "bullets": [
+        "Developing Grok, a real-time AI that has access to the X platform for the most laest information.",
+        "Developing a massive GPU cluster for training next-generation LLMs.",
+        "Implementing a search-augmented generation (RAG) architecture to ensure the AI has real-time access to the world's events."
+      ]
+    }
+  ],
+  "technical_skills": [
+    {
+      "subtitle": "Engineering Disciplines",
+      "commas": ["Aerospace Engineering", "Systems Architecture", "Energy Storage", "Materials Science", "Neural Interfaces", "Software Engineering", "Rocketry", "Battery Chemistry"]
+    },
+    {
+      "subtitle": "Strategic Tools",
+      "commas": ["First Principles Thinking", "Systems Design", "Vertical Integration", "Rapid Prototyping", "Scaling Laws", "Risk Management", "Crisis Engineering"]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Tesla Master Plan, Part I, II, and III",
+      "subtitle": "Industry Whitepapers",
+      "dates": "2006, 2016, 2020",
+      "bullets": [
+        "Strategic roadmaps for sustainable energy transition"
+      ]
+    },
+    {
+      "title": "The Mars Colonization Blueprint",
+      "subtitle": "Internal SpaceX Strategy",
+      "dates": "2017",
+      "bullets": [
+        "Detailed framework for establishing a self-sustaining city on Mars"
+      ]
+    }
+  ],
+  "workshops_conducted": [
+    {
+      "title": "First Principles Engineering Workshop",
+      "subtitle": "Internal Tesla/SpaceX Engineering",
+      "dates": "Ongoing",
+      "bullets": [
+        "Teaching the application of first-principles thinking to solve extreme engineering challenges"
+      ]
+    }
+  ]
 }

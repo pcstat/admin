@@ -1,28 +1,38 @@
 {
   "name": "Jensen Huang",
   "role": "AI Architect",
+  "summary": "Semiconductor engineer and CEO who has led the shift from graphics to accelerated computing and deep learning. Combines chip-level architecture knowledge with long-term product strategy. Mentors the club on AI systems and GPU programming.",
   "location": "Santa Clara, CA (Dhaka Branch)",
+  "phone": "+1 (555) 010-1002",
   "email": "jensen@nvidia.com",
   "github": "github.com/jensen-huang-nvidia",
-  "languages": [
-    "English (Native)",
-    "Mandarin (Fluent)"
-  ],
+  "linkedin": "linkedin.com/in/demo-jensen-huang",
+  "website": "jensen-huang.example.dev",
+  "languages": ["English (Native)", "Mandarin (Fluent)"],
   "education": [
     {
       "degree": "Ph.D. (Honorary) in Computer Science",
       "institution": "Stanford University",
-      "year": "2000"
+      "year": "2000",
+      "cgpa": "3.95 / 4.00",
+      "honors": "Distinction"
     },
     {
       "degree": "M.S. in Electrical Engineering",
       "institution": "Stanford University",
-      "year": "1992"
+      "year": "1992",
+      "cgpa": "3.91 / 4.00",
+      "honors": "High Honours",
+      "thesis": "Design Automation for Parallel Graphics Pipelines",
+      "coursework": ["VLSI Design", "Computer Architecture", "Parallel Computing"]
     },
     {
       "degree": "B.S. in Electrical Engineering",
       "institution": "Oregon State University",
-      "year": "1984"
+      "year": "1984",
+      "cgpa": "3.82 / 4.00",
+      "honors": "Honours",
+      "coursework": ["Circuit Theory", "Digital Logic", "Signals and Systems"]
     }
   ],
   "certifications": [
@@ -47,7 +57,8 @@
         "Mentored 120+ students in parallel programming using CUDA and PyTorch, focusing on hardware-aware AI optimization.",
         "Implemented a custom distributed training framework for high-dimensional data analysis across multiple GPU nodes.",
         "Led the integration of NVIDIA H100s into the club's infrastructure, reducing training times by 10x for graduate research."
-      ]
+      ],
+      "location": "Santa Clara, CA (Dhaka Branch)"
     },
     {
       "title": "CEO & Founder",
@@ -59,7 +70,8 @@
         "Strategically pivoted NVIDIA from a graphics company to an AI computing company, enabling the modern LLM revolution.",
         "Oversaw the development of CUDA, creating the world's most widely used parallel computing platform.",
         "Established the NVIDIA Omniverse, a platform for industrial digitalization and real-time 3D simulation."
-      ]
+      ],
+      "location": "Santa Clara, CA (Dhaka Branch)"
     },
     {
       "title": "Director of Engineering",
@@ -68,44 +80,22 @@
       "bullets": [
         "Led the design of high-performance ASIC systems for early semiconductor applications.",
         "Developed foundational architectures for high-speed data processing that influenced early GPU design."
-      ]
+      ],
+      "location": "Santa Clara, CA (Dhaka Branch)"
     }
   ],
   "technical_skills": [
     {
       "subtitle": "Hardware & Systems",
-      "commas": [
-        "CUDA",
-        "GPU Architecture",
-        "Parallel Programming",
-        "Tensor Core optimization",
-        "InfiniBand Networking",
-        "NVLink",
-        "FPGA Design"
-      ]
+      "commas": ["CUDA", "GPU Architecture", "Parallel Programming", "Tensor Core optimization", "InfiniBand Networking", "NVLink", "FPGA Design"]
     },
     {
       "subtitle": "AI & Deep Learning",
-      "commas": [
-        "PyTorch",
-        "TensorRT",
-        "LLM Pretraining",
-        "Neural Graphics",
-        "Omniverse",
-        "Reinforcement Learning",
-        "Diffusion Models"
-      ]
+      "commas": ["PyTorch", "TensorRT", "LLM Pretraining", "Neural Graphics", "Omniverse", "Reinforcement Learning", "Diffusion Models"]
     },
     {
       "subtitle": "Tools",
-      "commas": [
-        "C++",
-        "Python",
-        "Git",
-        "LaTeX",
-        "Verilog",
-        "SystemVerilog"
-      ]
+      "commas": ["C++", "Python", "Git", "LaTeX", "Verilog", "SystemVerilog"]
     }
   ],
   "projects": [
@@ -117,7 +107,8 @@
         "Developed the compiler toolchain and runtime library that allows C++ developers to write GPU kernels.",
         "Established the CUDA ecosystem, including libraries like cuBLAS, cuDNN, and cuFFT.",
         "GitHub: https://github.com/nvidia/cuda-samples | Demo: https://developer.nvidia.com/cuda-zone"
-      ]
+      ],
+      "link": "github.com/demo-jensen-huang/cuda-platform-development"
     },
     {
       "title": "Toyon Supercomputer Design",
@@ -127,7 +118,8 @@
         "Implemented a low-latency communication layer using InfiniBand to optimize multi-node gradient synchronization.",
         "Optimized the software stack for maximum TFLOPS utilization during large-scale model training.",
         "GitHub: https://github.com/nvidia/toyon"
-      ]
+      ],
+      "link": "github.com/demo-jensen-huang/toyon-supercomputer-design"
     },
     {
       "title": "Omniverse Industrial Digital Twin",
@@ -136,7 +128,8 @@
         "Designed a real-time 3D simulation platform for industrial digital twins, allowing companies to simulate entire factories in physically accurate environments.",
         "Integrated NVIDIA RTX technology for photorealistic rendering and physically based simulation.",
         "Developed a collaborative framework based on Universal Scene Description (USD) for seamless 3D asset integration."
-      ]
+      ],
+      "link": "github.com/demo-jensen-huang/omniverse-industrial-digital-twin"
     }
   ],
   "publications": [
