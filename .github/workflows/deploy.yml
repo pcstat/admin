@@ -6,6 +6,10 @@ name: Deploy admin panel to Cloudflare
 on:
   push:
     branches: [main]
+    # Documentation-only pushes do not redeploy the panel.
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
   workflow_dispatch: {}
 
 permissions:
@@ -17,6 +21,10 @@ concurrency:
 
 jobs:
   deploy:
+    # "[skip ci]" in the newest commit message of a push skips this run. GitHub already does that by itself; the explicit
+    # check keeps the rule visible and identical in the database, admin and website repos. Manual runs ("Run workflow")
+    # and runs started by another repo (database -> website) are never skipped.
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

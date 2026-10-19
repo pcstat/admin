@@ -12,6 +12,7 @@ export interface DatabaseIndex {
   achievements: string;
   certificates: string;
   home: string;
+  site: string;
 }
 
 export interface SocialLink {
@@ -122,6 +123,16 @@ export interface HomeConfig {
   pinned_projects: string[];
 }
 
+/** `site.json` — club details, sidebar, page texts, terminal (see the database README). */
+export interface SiteDoc {
+  club: Record<string, unknown>;
+  nav: { path: string; label: string; icon: string }[];
+  home: Record<string, unknown>;
+  terminal: { commands?: string[] } & Record<string, unknown>;
+  pages: Record<string, Record<string, unknown>>;
+  about: Record<string, unknown>;
+}
+
 export interface DocMap {
   "executives.json": ExecutivesDoc;
   "projects.json": { projects: Project[] };
@@ -130,6 +141,7 @@ export interface DocMap {
   "achievements.json": { tally: { value: string; label: string }[]; achievements: Achievement[] };
   "certificates.json": { issued_certificates: IssuedCertificate[] };
   "home.json": HomeConfig;
+  "site.json": SiteDoc;
 }
 
 export type DocFile = keyof DocMap;
@@ -141,6 +153,7 @@ export const DOC_FILES: DocFile[] = [
   "achievements.json",
   "certificates.json",
   "home.json",
+  "site.json",
 ];
 
 /** What `/api/data` sends to the browser. */

@@ -3,7 +3,8 @@ import { AUTH_COOKIE, isValidSession } from "@/lib/auth";
 
 export async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
-  if (pathname === "/login" || pathname.startsWith("/api/auth/")) return NextResponse.next();
+  // The login page needs the fonts too (they are the same public font files as the website's).
+  if (pathname === "/login" || pathname.startsWith("/api/auth/") || pathname.startsWith("/fonts/")) return NextResponse.next();
 
   const authenticated = await isValidSession(request.cookies.get(AUTH_COOKIE)?.value);
   if (authenticated) return NextResponse.next();

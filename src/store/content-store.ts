@@ -1,10 +1,10 @@
 "use client";
 
 import { create } from "zustand";
-import { collectImages, SECTIONS } from "@/lib/schemas";
+import { allParts, collectImages, ensureAutoIds } from "@/lib/schemas";
 import { validateDocs, type Problem } from "@/lib/validate";
 import { fileToBase64, generateImageFilename, utf8ToBase64 } from "@/lib/base64";
-import { appendAtPath, moveAtPath, removeAtPath, setAtPath, type PathSegment } from "@/lib/object-path";
+import { appendAtPath, insertAtPath, moveAtPath, removeAtPath, setAtPath, type PathSegment } from "@/lib/object-path";
 import { isDeletablePath, PHOTO_FILE_RE } from "@/lib/paths";
 import { DOC_FILES, type DataResponse, type DocFile, type DocMap } from "@/lib/types";
 
@@ -55,6 +55,15 @@ interface Store {
   problems: Problem[];
   lastCommitUrl: string | null;
 
+  /** Commit without starting the deploy ("[skip ci]" in the commit message); remembered between visits. */
+  publishOnSave: boolean;
+  /** Something was saved without publishing and has not been published since. */
+  pendingPublish: boolean;
+  publishStatus: "idle" | "busy" | "done" | "error";
+  publishMessage: string | null;
+  setPublishOnSave: (on: boolean) => void;
+  publish: () => Promise<boolean>;
+
   /** Admin chrome: is the left navigation folded away? Is the whole-site preview showing? */
   navCollapsed: boolean;
   previewMode: boolean;
@@ -65,6 +74,7 @@ interface Store {
   fail: (message: string) => void;
   setField: (file: DocFile, path: FieldPath, value: unknown) => void;
   addItem: (file: DocFile, path: FieldPath, item: unknown) => void;
+  insertItem: (file: DocFile, path: FieldPath, index: number, item: unknown) => void;
   removeItem: (file: DocFile, path: FieldPath, index: number) => void;
   moveItem: (file: DocFile, path: FieldPath, from: number, to: number) => void;
   /** Keeps a chosen image in memory until the next save; returns its path relative to photos/. */
@@ -119,10 +129,10 @@ function applySnapshot(docs: Store["docs"], snap: DocsSnapshot): Store["docs"] {
 
 function imageRefs(docs: Store["docs"], which: "draft" | "original"): Set<string> {
   const refs = new Set<string>();
-  for (const section of SECTIONS) {
-    const doc = docs[section.file];
+  for (const part of allParts()) {
+    const doc = docs[part.file];
     if (!doc) continue;
-    collectImages(section.fields, which === "draft" ? doc.draft : JSON.parse(doc.original), refs);
+    collectImages(part.fields, which === "draft" ? doc.draft : JSON.parse(doc.original), refs);
   }
   return refs;
 }
@@ -168,6 +178,35 @@ export const useContentStore = create<Store>((set, get) => {
     saveError: null,
     problems: [],
     lastCommitUrl: null,
+    publishOnSave: true,
+    pendingPublish: false,
+    publishStatus: "idle",
+    publishMessage: null,
+    setPublishOnSave: (on) => {
+      set({ publishOnSave: on });
+      try {
+        window.localStorage.setItem("admin-publish-on-save", on ? "1" : "0");
+      } catch {
+        /* the choice just is not remembered */
+      }
+    },
+    publish: async () => {
+      set({ publishStatus: "busy", publishMessage: null });
+      try {
+        const res = await fetch("/api/publish", { method: "POST" });
+        if (res.status === 401) {
+          window.location.replace(`/login?next=${encodeURIComponent(window.location.pathname)}`);
+          return false;
+        }
+        const result = (await res.json()) as { runsUrl?: string; error?: string };
+        if (!res.ok) throw new Error(result.error || `Publishing failed (${res.status}).`);
+        set({ publishStatus: "done", publishMessage: result.runsUrl ?? null, pendingPublish: false });
+        return true;
+      } catch (err) {
+        set({ publishStatus: "error", publishMessage: err instanceof Error ? err.message : String(err) });
+        return false;
+      }
+    },
     navCollapsed: false,
     previewMode: false,
     setNavCollapsed: (collapsed) => {
@@ -182,7 +221,10 @@ export const useContentStore = create<Store>((set, get) => {
 
     init: (data) => {
       const docs: Store["docs"] = {};
-      for (const file of DOC_FILES) docs[file] = { original: serialize(data.docs[file]), draft: data.docs[file] };
+      for (const file of DOC_FILES) {
+        // Items that have no id (or share one) get an automatic id; that is an unsaved change the person can review.
+        docs[file] = { original: serialize(data.docs[file]), draft: ensureAutoIds(file, data.docs[file]) };
+      }
       for (const upload of Object.values(get().uploads)) URL.revokeObjectURL(upload.previewUrl);
       set({
         status: "ready",
@@ -197,7 +239,7 @@ export const useContentStore = create<Store>((set, get) => {
         past: [],
         future: [],
         lastEdit: null,
-        dirty: false,
+        dirty: isDirty({ docs, memberDrafts: {} }),
         saveStatus: "saved",
         saveError: null,
         problems: [],
@@ -208,6 +250,7 @@ export const useContentStore = create<Store>((set, get) => {
 
     setField: (file, path, value) => edit(file, `${file}:${path.join(".")}`, (draft) => setAtPath(draft, path, value)),
     addItem: (file, path, item) => edit(file, `add:${Date.now()}`, (draft) => appendAtPath(draft, path, item)),
+    insertItem: (file, path, index, item) => edit(file, `ins:${Date.now()}`, (draft) => insertAtPath(draft, path, index, item)),
     removeItem: (file, path, index) => edit(file, `rm:${Date.now()}`, (draft) => removeAtPath(draft, path, index)),
     moveItem: (file, path, from, to) => edit(file, `mv:${Date.now()}`, (draft) => moveAtPath(draft, path, from, to)),
 
@@ -353,7 +396,7 @@ export const useContentStore = create<Store>((set, get) => {
         const res = await fetch("/api/save", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: `Admin panel update — ${new Date().toISOString()}`, files, deletions, baseSha: state.baseSha }),
+          body: JSON.stringify({ message: `Admin panel update — ${new Date().toISOString()}`, skipCi: !state.publishOnSave, files, deletions, baseSha: state.baseSha }),
         });
         if (res.status === 401) {
           window.location.replace(`/login?next=${encodeURIComponent(window.location.pathname)}`);
@@ -378,6 +421,8 @@ export const useContentStore = create<Store>((set, get) => {
           memberFiles: [...new Set([...cur.memberFiles, ...memberFilesToWrite.map((m) => m.path)])].sort(),
           baseSha: result.commitSha ?? cur.baseSha,
           lastCommitUrl: result.commitUrl ?? null,
+          pendingPublish: !state.publishOnSave ? true : false,
+          publishStatus: "idle",
           saveStatus: "saved",
           saveError: null,
         });

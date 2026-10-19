@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "@/lib/theme";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -181,7 +182,7 @@ function EditorFrame({ found, kind, link, text, isNew, readOnly = false, loadErr
   const params = useSearchParams();
   const requested = params.get("mode");
   const mode: Mode = requested === "json" || requested === "preview" ? requested : "ui";
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme] = useTheme(); // the one site-wide theme (sidebar switch) — the mirrored website pages follow it
   const [dialog, setDialog] = useState(false);
   const view = useContentStore(useShallow((s) => ({ uploads: s.uploads, provider: s.provider, imageBase: s.imageBase })));
 
@@ -297,8 +298,6 @@ function EditorFrame({ found, kind, link, text, isNew, readOnly = false, loadErr
         canRedo={history.future.length > 0}
         onUndo={undo}
         onRedo={redo}
-        theme={theme}
-        onTheme={setTheme}
         sourceLabel={external ? describeLink(link) : "Club database"}
         onChangeSource={() => setDialog(true)}
         onReload={onReload}

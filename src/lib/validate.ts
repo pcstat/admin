@@ -2,7 +2,7 @@
  * Checks the drafts before a save — the same rules as the database repo's scripts/validate.mjs,
  * so a commit made by this panel never fails that repo's CI.
  */
-import { SECTIONS, type FieldDef } from "./schemas";
+import { SECTIONS, TERMINAL_COMMANDS, type FieldDef } from "./schemas";
 import type { DocFile, DocMap } from "./types";
 
 export interface Problem {
@@ -34,6 +34,7 @@ function checkRequired(file: string, fields: FieldDef[], value: unknown, where: 
         checkRequired(file, field.fields, item, `${where} › ${title}`, add);
       });
     }
+    if (field.kind === "group") checkRequired(file, field.fields, v, `${where} › ${field.label}`, add);
   }
 }
 
@@ -42,7 +43,7 @@ export function validateDocs(docs: Partial<DocMap>, existingFiles: Set<string>):
   const add = (file: string, message: string) => problems.push({ file, message });
 
   for (const section of SECTIONS) {
-    checkRequired(section.file, section.fields, docs[section.file], section.title, add);
+    for (const part of section.parts) checkRequired(part.file, part.fields, docs[part.file], section.title, add);
   }
 
   const exec = docs["executives.json"];
@@ -112,6 +113,19 @@ export function validateDocs(docs: Partial<DocMap>, existingFiles: Set<string>):
   for (const d of dupes(certs.map((c) => c.id))) add("certificates.json", `The certificate ID "${d}" is used more than once.`);
   for (const c of certs) {
     if (!c.course && !c.course1) add("certificates.json", `Certificate ${c.id}: fill in either "Course" or "Course (line 1)".`);
+  }
+
+  const site = docs["site.json"];
+  if (site) {
+    const F = "site.json";
+    for (const d of dupes((site.nav ?? []).map((n) => n.path))) add(F, `The menu lists the page “${d}” twice.`);
+    if (!(site.nav ?? []).length) add(F, "The menu needs at least one entry.");
+    const founded = site.club?.founded;
+    if (!(Number.isInteger(founded) && (founded as number) > 1900 && (founded as number) <= new Date().getFullYear())) add(F, "Site settings › Founded must be a year such as 2022.");
+    const lines = (site.home?.title_lines ?? []) as unknown[];
+    if (!Array.isArray(lines) || lines.length === 0 || lines.some((l) => typeof l !== "string" || !l.trim())) add(F, "Home › Heading lines: every line needs text.");
+    const known = TERMINAL_COMMANDS.map((c) => c.value);
+    for (const c of site.terminal?.commands ?? []) if (!known.includes(c)) add(F, `Terminal: “${c}” is not a known command.`);
   }
 
   // Links to member files must point to something that exists or will exist.

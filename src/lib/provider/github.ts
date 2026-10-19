@@ -117,12 +117,30 @@ export class GithubProvider implements DataProvider {
     });
     const commit = await this.json<{ sha: string; html_url: string }>(`${this.repoPath}/git/commits`, {
       method: "POST",
-      body: JSON.stringify({ message: request.message, tree: tree.sha, parents: [head] }),
+      body: JSON.stringify({ message: request.skipCi ? `${request.message} [skip ci]` : request.message, tree: tree.sha, parents: [head] }),
     });
     await this.json(`${this.repoPath}/git/refs/heads/${encodeURIComponent(this.config.branch)}`, {
       method: "PATCH",
       body: JSON.stringify({ sha: commit.sha, force: false }),
     });
-    return { provider: "github", commitSha: commit.sha, commitUrl: commit.html_url };
+    return { provider: "github", commitSha: commit.sha, commitUrl: commit.html_url, skipped: request.skipCi === true };
+  }
+
+  /**
+   * Starts the database repo's deploy workflow by hand (workflow_dispatch) — the way to publish commits that were
+   * saved with "[skip ci]". Needs the token's "Actions: Read and write" permission on the database repo.
+   */
+  async publish(): Promise<{ runsUrl: string }> {
+    if (!this.config.token) throw new Error("GITHUB_TOKEN is required to publish.");
+    const res = await fetch(`${API}${this.repoPath}/actions/workflows/deploy.yml/dispatches`, {
+      method: "POST",
+      headers: this.headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify({ ref: this.config.branch }),
+    });
+    if (res.status === 403 || res.status === 404) {
+      throw new Error("GitHub refused to start the deploy. Give the database token the “Actions: Read and write” permission (see the admin README), or run “Deploy database and rebuild website” from the repo’s Actions tab.");
+    }
+    if (!res.ok) throw new Error(`GitHub API ${res.status} ${res.statusText} while starting the deploy.`);
+    return { runsUrl: `https://github.com/${this.config.owner}/${this.config.repo}/actions/workflows/deploy.yml` };
   }
 }

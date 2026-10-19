@@ -11,9 +11,13 @@ export interface CommitRequest {
   deletions?: string[];
   /** The commit the editor was loaded from. If the repo moved on since, the save is refused. */
   baseSha?: string | null;
+  /** Commit without starting the deploy workflow: " [skip ci]" is added to the message. */
+  skipCi?: boolean;
 }
 
 export interface CommitResult {
+  /** True when the commit carries the skip marker, so nothing was deployed. */
+  skipped?: boolean;
   provider: "local-fs" | "github";
   commitUrl?: string;
   commitSha?: string;
@@ -37,4 +41,6 @@ export interface DataProvider {
   commit(request: CommitRequest): Promise<CommitResult>;
   /** Binary content of a file (photos), or null. Only needed in local mode, where nothing else serves them. */
   readBinary?(path: string): Promise<Uint8Array | null>;
+  /** Starts the deploy workflow of the database repo (what a normal save does by itself). Absent in local mode. */
+  publish?(): Promise<{ runsUrl: string }>;
 }

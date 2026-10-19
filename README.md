@@ -16,7 +16,18 @@ Next.js 16 · React 19 · TypeScript · pnpm · Zustand · deployed to **Cloudfl
 
 ## What you can edit
 
-Executives (committees, members, photos, social links) · Projects · Events · Courses · Achievements (+ tally) · Certificates · plus each member's `profile.json` / `cv.json` as JSON (**Member files**).
+**Pages mirror the website.** The menu lists the website's pages in the same order, with the same names and icons — Home · Executives · Projects & Publications · Achievements · Events · About / Contact. Each page edits what that page shows, from its heading down to its content. Settings that belong to the whole site live on one separate page, **Site settings** (club name and contact e-mail, search / share texts, the sidebar menu). **Member files** edits each member's profile and CV.
+**Executives** is one page for every committee: the current committee (tagged *current*) appears on the website's Executives page, the others on Past Executives, and both page headings are edited at the bottom. To start a new session, press *Add committee* (it goes to the top), fill in its members, then choose it as *Current committee*.
+**Member files search:** type words (all must match; small typos are forgiven), use quotes for a phrase, or operators such as `committee:2025`, `role:president`, `id:2020`, `has:cv`, `no:profile`, `is:current`, `is:edited`. Results come in two groups — matches in the name / role / committee, and matches in the details (bio, links, and, when *Search inside profiles & CVs* is on, the text of the files). Press `/` to jump to the search box.
+**Search boxes** (the filter above a long list, the pin pickers on Home, Member files) search what you can read in the editor: names instead of ids (a project is found by its members' names), tags, dates ("june", "monday"), ticked options such as *Featured*, and — in Member files — the member's projects and achievements. Technical values (ids, field names, image paths) are never matched. Several words all have to match; small typos and accents are forgiven; the line under a result says where the match was found. The engine is `src/lib/smart-search.ts`.
+**Dates and times** can be typed or picked: type `2026-12-31`, `31 Dec 2026`, `31/12/2026` or `tomorrow` (times: `2:30 PM`, `14:30`, `2pm`, `noon`) and it is tidied up when you leave the box, or press the calendar / clock button. On a phone the picker opens from the bottom of the screen. Parsing lives in `src/lib/datetime.ts`.
+**Prototypes** — Courses and Certificates still exist at `/courses` and `/certificates` but are **not in the sidebar** (and not in the website's menu) until those features are finished. To bring them back, remove `hidden: true` from their entries in `src/lib/schemas.ts` and add “Courses” to the website menu under *Site settings → Sidebar menu*.
+
+Ids of projects, events and courses are **assigned automatically** (`proj-9f3a1c7e`) and never typed by hand. Pinning projects on the home page uses a search box (title, tag, year, status).
+
+**Save and publish:** *Save and publish* commits to GitHub and the website rebuilds. Switch **Publish on save** off to commit with `[skip ci]` (nothing is rebuilt) and press **Publish now** later — that button starts the database repo's deploy workflow, so the database token also needs the **Actions: Read and write** permission. Ctrl/⌘ + S saves.
+
+**Design:** the panel uses the public website's design system — Space Mono + Syne, the same colour tokens, dot-grid backdrop, sidebar, nav hover slide, card lift, theme switch, and on phones the same top bar with a full-screen menu and a save bar at the bottom. **Light / dark mode** is the same switch as on the website (`<html data-theme>` + `localStorage.theme`, dark by default); it also themes the mirrored member profile / CV pages, which no longer have a switch of their own. Colours live in the variables at the top of `src/app/globals.css`; the sidebar icons (`src/components/Icon.tsx`) are the same drawings the website's sidebar uses.
 
 Forms are generated from `src/lib/schemas.ts`, so a new field in the database means one new line there.
 
@@ -73,7 +84,7 @@ panel stores the raw links, reads the files through `/api/external` and shows th
   like a visitor before saving. It needs `website` here (in `database.json`) and `admin` in the website's `database.json`
   (this panel's address) — see "Live preview" in the website repo's `docs/DEPLOYMENT.md`.
 * **Ordering**: lists the website shows in file order can be arranged by hand — drag the **⠿** handle or use **↑ ↓** (**‹ ›** for tags and member chips), then Save. Lists the website sorts itself (events, certificates, the profile timeline) say so and have no move controls. Full table: [`docs/ORDERING.md`](docs/ORDERING.md).
-* The **‹** button collapses the sidebar (remembered between visits); the mode panel has its own **›** collapse button.
+* The sidebar button collapses the sidebar (remembered between visits); on a phone it becomes a menu drawer. A dot next to a page means it has unsaved edits.
 
 ## Login
 
@@ -107,3 +118,18 @@ local-data/              snapshot of the database for local test mode
 * `typescript` is an alias of `@typescript/typescript6` (the JS API Next.js and ESLint need) and the TypeScript 7 compiler is installed next to it as `@typescript/native`, which provides the `tsc` binary.
 * Node ≥ 24 (`.nvmrc` pins 26).
 * Open items: see [docs/TODO.md](docs/TODO.md).
+
+## Pushing without deploying (`[skip ci]`)
+
+Put `[skip ci]` in the commit message and GitHub starts **no** workflow for that push — this works the same way in the
+database, admin and website repositories:
+
+```bash
+git commit -m "Fix typo in the notes [skip ci]"
+git push
+```
+
+* It is the **newest commit** of the push that counts. `[ci skip]`, `[no ci]`, `[skip actions]` and `[actions skip]` work too.
+* Nothing is deployed, so the live site keeps the old version. Deploy later from **Actions → (this workflow) → Run workflow** — manual runs are never skipped.
+* A skipped push is not validated either: run the checks yourself first (`pnpm typecheck && pnpm lint` here, `node scripts/validate.mjs` in the database repo).
+* Documentation-only pushes (`*.md`, `docs/`) are already ignored by this repo's workflow, no marker needed.

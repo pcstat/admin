@@ -14,8 +14,6 @@ interface Props {
   canRedo: boolean;
   onUndo: () => void;
   onRedo: () => void;
-  theme: "dark" | "light";
-  onTheme: (theme: "dark" | "light") => void;
   sourceLabel: string;
   onChangeSource: () => void;
   onReload?: () => void;
@@ -31,7 +29,7 @@ const MODES: { id: Mode; icon: string; label: string; hint: string }[] = [
   { id: "preview", icon: "👁", label: "Preview", hint: "Exactly how the page looks on the website, including your unsaved changes." },
 ];
 
-/** The right-hand panel of the member editor: the three modes, undo/redo, theme and source. */
+/** The right-hand panel of the member editor: the three modes, undo/redo and source. */
 export function ModePanel(p: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const active = MODES.find((m) => m.id === p.mode);
@@ -58,13 +56,6 @@ export function ModePanel(p: Props) {
               <button type="button" className="btn small ghost" disabled={!p.canRedo} onClick={p.onRedo}>↷ Redo</button>
             </div>
           )}
-          {p.mode !== "json" && (
-            <div className="panel-row">
-              <span className="panel-label">Site theme</span>
-              <button type="button" className="btn small ghost" onClick={() => p.onTheme(p.theme === "dark" ? "light" : "dark")}>{p.theme === "dark" ? "☾ Dark" : "☀ Light"}</button>
-            </div>
-          )}
-
           <p className="panel-title">Source</p>
           <p className="panel-source">{p.sourceLabel}</p>
           <div className="panel-col">

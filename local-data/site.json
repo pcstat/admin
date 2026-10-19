@@ -1,0 +1,194 @@
+{
+  "club": {
+    "name": "Statistics",
+    "subtitle": "Programming Club",
+    "full_name": "Statistics Programming Club",
+    "founded": 2022,
+    "department": "Department of Statistics",
+    "university": "University of Chittagong",
+    "email": "programmingclub.stat.cu@gmail.com",
+    "browser_title": "Statistics Programming Club - CU",
+    "description": "A community of data-driven programmers. Competitive programming, machine learning projects, and weekly meetups at the Department of Statistics, University of Chittagong.",
+    "share_description": "We write code. We build things. We compete."
+  },
+  "nav": [
+    {
+      "path": "/",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "path": "/exec",
+      "label": "Executives",
+      "icon": "people"
+    },
+    {
+      "path": "/alumni",
+      "label": "Past Executives",
+      "icon": "history"
+    },
+    {
+      "path": "/projects",
+      "label": "Projects & Publications",
+      "icon": "box"
+    },
+    {
+      "path": "/achievements",
+      "label": "Achievements",
+      "icon": "trophy"
+    },
+    {
+      "path": "/events",
+      "label": "Events",
+      "icon": "calendar"
+    },
+    {
+      "path": "/about",
+      "label": "About / Contact",
+      "icon": "info"
+    }
+  ],
+  "home": {
+    "tag": "Statistics Programming Club",
+    "title_lines": [
+      "We write code.",
+      "We build things.",
+      "We compete."
+    ],
+    "description": "A community of programmers, problem-solvers, and builders. From competitive programming to ML research and open-source — this is where ideas become code.",
+    "pills": [
+      {
+        "label": "🐍 Python",
+        "style": "py"
+      },
+      {
+        "label": "🆁 R Programming",
+        "style": "rp"
+      },
+      {
+        "label": "🤖 AI / ML",
+        "style": "ml"
+      },
+      {
+        "label": "🧠 Deep Learning",
+        "style": "ml"
+      },
+      {
+        "label": "📊 Statistics",
+        "style": "st"
+      }
+    ],
+    "projects_block": {
+      "eyebrow": "Portfolio",
+      "title": "Top",
+      "accent": "projects",
+      "link_label": "All projects →"
+    },
+    "team_block": {
+      "eyebrow": "Committee",
+      "title": "Club",
+      "accent": "leadership",
+      "link_label": "All executives →"
+    },
+    "join": {
+      "eyebrow": "Join us",
+      "title": "Bring curiosity.",
+      "accent": "We bring the club.",
+      "text": "Open to every Stat major and minor — you don’t need to arrive as an expert.",
+      "button_label": "How to join"
+    }
+  },
+  "terminal": {
+    "title": "pcstat — ~/statistics-programming-club",
+    "tagline": "Dept. of Statistics · University of Chittagong",
+    "motto": "programmers, problem-solvers & builders",
+    "focus": "python · r · ai/ml · deep learning · statistics",
+    "join_text": "open to every Stat major & minor — no experience needed.",
+    "commands": [
+      "about",
+      "stats",
+      "team",
+      "projects",
+      "achievements",
+      "events",
+      "alumni",
+      "join"
+    ]
+  },
+  "pages": {
+    "exec": {
+      "eyebrow": "Committee",
+      "title": "Current",
+      "accent": "Executives",
+      "description": "The team leading Statistics Programming Club this year. Click any card to view their profile & social links."
+    },
+    "alumni": {
+      "eyebrow": "Alumni",
+      "title": "Past",
+      "accent": "Executives",
+      "description": "The people who built what this club is today. Click any card to see their profile and social links."
+    },
+    "projects": {
+      "eyebrow": "Portfolio",
+      "title": "Club",
+      "accent": "Projects & Publications",
+      "description": "Open-source tools, research projects, and applications built by club members."
+    },
+    "achievements": {
+      "eyebrow": "Honors",
+      "title": "Our",
+      "accent": "Achievements",
+      "description": "Competition results, recognitions, and milestones since 2022."
+    },
+    "events": {
+      "eyebrow": "Schedule",
+      "title": "Upcoming",
+      "accent": "Events",
+      "description": "Workshops, contests, and meetups. Open to all members — some open to the public."
+    }
+  },
+  "about": {
+    "eyebrow": "Overview",
+    "title": "Who",
+    "accent": "We Are",
+    "description": "Founded in 2022 at the Dept. of Statistics, University of Chittagong.",
+    "cards": [
+      {
+        "title": "Mission",
+        "text": "To cultivate a culture of data-driven programming excellence — from competitive data science to building data products that matter. We believe the best statisticians practice deliberately and ship insights relentlessly."
+      },
+      {
+        "title": "What We Do",
+        "text": "Weekly coding labs, monthly data challenges, annual datathons, Kaggle team preparation, open-data projects, and guest talks from industry data scientists. Something for every level of data practitioner."
+      },
+      {
+        "title": "Our Community",
+        "text": "Active members across all years of the Statistics program. We bring together Stat majors and minors who share a passion for programming with data. You don’t need to arrive as an expert — just bring curiosity and consistency. Our alumni network spans data science teams at top tech firms, impactful startups, research institutes, and leading graduate programs worldwide.",
+        "wide": true
+      }
+    ],
+    "meetups": [
+      {
+        "label": "WEEKLY MEETUP",
+        "title": "Every Thursday",
+        "detail": "3:00 PM · Room 406, Faculty Building"
+      },
+      {
+        "label": "PRACTICE SESSION",
+        "title": "Every Saturday",
+        "detail": "3:00 PM · Lab 1, Faculty Building"
+      },
+      {
+        "label": "ONLINE CONTEST",
+        "title": "Monthly",
+        "detail": "8:00 PM · HackerRank Platform"
+      }
+    ],
+    "contact": {
+      "title": "Get in",
+      "accent": "Touch",
+      "text": "Have questions about the club, want to collaborate on a project, or just want to say hello? We'd love to hear from you.",
+      "button_label": "Contact Us →"
+    }
+  }
+}

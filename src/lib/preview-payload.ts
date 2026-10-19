@@ -74,10 +74,13 @@ export function websiteRouteFor(pathname: string): string {
     case "executives":
     case "members":
       return "/exec";
+    case "alumni":
+      return "/alumni";
     case "projects":
     case "events":
     case "courses":
     case "achievements":
+    case "about":
       return `/${section}`;
     case "certificates":
       return "/certificate";

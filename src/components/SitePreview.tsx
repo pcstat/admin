@@ -23,11 +23,8 @@ export function SitePreview() {
 function NotSetUp() {
   return (
     <div className="page-narrow">
-      <h1>Site preview is not set up</h1>
-      <p className="lead">
-        Put the website&apos;s address in the <code>website</code> field of <code>database.json</code> (repo root of this panel), for example{" "}
-        <code>https://pcstat.pages.dev</code>. See <code>docs/DEPLOYMENT.md</code> in the website repo, “Live preview”.
-      </p>
+      <h1>Site preview is not available yet</h1>
+      <p className="lead">The live preview has not been connected to the website. Ask whoever looks after the website to switch it on.</p>
     </div>
   );
 }
@@ -76,9 +73,7 @@ function SiteFrame({ src }: { src: string }) {
       </div>
       {waited && !connected && (
         <div className="site-preview-bar" role="alert">
-          The website is not answering with live drafts yet. Make sure the website is deployed with this panel&apos;s address —{" "}
-          <code>{typeof window === "undefined" ? "" : window.location.origin}</code> — as <code>admin</code> in its <code>database.json</code>, then re-run its
-          deploy workflow. Until then the frame shows the saved version.
+          The preview is not showing your unsaved changes yet — it shows the saved version of the website. If this keeps happening, ask whoever looks after the website to check the preview connection.
         </div>
       )}
       <iframe ref={frame} src={src} title="Live site preview" />

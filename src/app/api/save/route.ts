@@ -40,7 +40,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = await getDataProvider().commit({ message: body.message, files: body.files, deletions, baseSha: body.baseSha ?? null });
+    const result = await getDataProvider().commit({ message: body.message, files: body.files, deletions, baseSha: body.baseSha ?? null, skipCi: body.skipCi === true });
     return NextResponse.json(result);
   } catch (err) {
     const status = err instanceof ConflictError ? 409 : 500;
