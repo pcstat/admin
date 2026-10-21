@@ -13,3 +13,9 @@
 - [ ] Whole-site preview covers every page except the admin-only ones; the website must be deployed with this panel's address as `admin` in its `database.json` for it to work.
 - [ ] JSON mode: key suggestions cover the profile / CV shapes only; the six database files have no JSON mode yet.
 - [ ] Externally hosted profiles are read-only here (the panel has no token for the member's repo).
+
+## Certificates
+- [ ] `src/lib/certificates/core.ts` is a verbatim copy of the file in the certificates repo (`scripts/lib/certificate-core.ts`) and the website (`src/lib/certificates/core.ts`). Keep the three identical (`diff` them after any change).
+- [ ] Editing a set's shared fields changes every certificate of the set, including already issued ones. Consider a "reissue as new set" shortcut for corrections that should be visible in history.
+- [ ] Per-certificate history (who revoked what, when) — today it is the registry repo's git history.
+- [ ] Bulk edit of one per-person field across selected certificates.

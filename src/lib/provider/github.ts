@@ -17,9 +17,24 @@ function readConfig(): Config {
   return { token: process.env.GITHUB_TOKEN?.trim() || undefined, owner, repo: name, branch };
 }
 
+/** Another repository than the database (the certificate registry), and the folder whose files may be deleted there. */
+export interface GithubTarget {
+  owner: string;
+  name: string;
+  branch: string;
+  token?: string;
+  deletionPrefix?: string;
+}
+
 export class GithubProvider implements DataProvider {
   readonly kind = "github" as const;
-  private config = readConfig();
+  private config: Config;
+  private deletionPrefix: string;
+
+  constructor(target?: GithubTarget) {
+    this.config = target ? { token: target.token || process.env.GITHUB_TOKEN?.trim() || undefined, owner: target.owner, repo: target.name, branch: target.branch } : readConfig();
+    this.deletionPrefix = target?.deletionPrefix ?? "photos";
+  }
 
   private get repoPath(): string {
     return `/repos/${this.config.owner}/${this.config.repo}`;
@@ -96,7 +111,7 @@ export class GithubProvider implements DataProvider {
 
     // Deleting a path that is not in the tree makes GitHub reject the whole commit, so only delete what exists.
     const wanted = request.deletions ?? [];
-    const existing = wanted.length ? new Set(await this.listFiles("photos")) : new Set<string>();
+    const existing = wanted.length ? new Set(await this.listFiles(this.deletionPrefix)) : new Set<string>();
     const deletions = wanted.filter((p) => existing.has(p));
 
     const blobs = await Promise.all(
@@ -138,7 +153,7 @@ export class GithubProvider implements DataProvider {
       body: JSON.stringify({ ref: this.config.branch }),
     });
     if (res.status === 403 || res.status === 404) {
-      throw new Error("GitHub refused to start the deploy. Give the database token the “Actions: Read and write” permission (see the admin README), or run “Deploy database and rebuild website” from the repo’s Actions tab.");
+      throw new Error("GitHub refused to start the deploy. Give the token the “Actions: Read and write” permission on this repository (see the admin README), or start the deploy workflow from the repo’s Actions tab.");
     }
     if (!res.ok) throw new Error(`GitHub API ${res.status} ${res.statusText} while starting the deploy.`);
     return { runsUrl: `https://github.com/${this.config.owner}/${this.config.repo}/actions/workflows/deploy.yml` };

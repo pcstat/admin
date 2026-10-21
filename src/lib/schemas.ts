@@ -86,7 +86,7 @@ export interface SectionPart {
   fields: FieldDef[];
 }
 
-export type NavGroup = "pages" | "site" | "prototype";
+export type NavGroup = "pages" | "site";
 
 export interface SectionDef {
   slug: string;
@@ -97,8 +97,10 @@ export interface SectionDef {
   icon: string;
   /** The website page this admin page mirrors (used by "See this page on the website" and the preview). */
   route: string;
-  /** Not listed in the sidebar (prototype features). The page still works at its address. */
+  /** Not listed in the sidebar. The page still works at its address. */
   hidden?: boolean;
+  /** The page is its own screen (src/app/<slug>/page.tsx), not a generated form; `parts` is empty. */
+  custom?: boolean;
   parts: SectionPart[];
 }
 
@@ -107,17 +109,6 @@ const SOCIAL_TYPES = ["linkedin", "github", "facebook", "email", "codeforces", "
 );
 
 const str = (v: unknown) => (typeof v === "string" ? v : "");
-
-/** "SPC-2026-0001", … — the next unused sequential id with the given prefix (used for certificate numbers). */
-export function nextId(prefix: string, taken: string[], pad = 3): string {
-  let n = taken.length + 1;
-  let id = "";
-  do {
-    id = `${prefix}-${String(n).padStart(pad, "0")}`;
-    n += 1;
-  } while (taken.includes(id));
-  return id;
-}
 
 /**
  * A new unique id such as "proj-9f3a1c7e". Random instead of a counter: a counter would hand out the id of a
@@ -180,7 +171,8 @@ const NAV_PAGES: Option[] = [
   { value: "/achievements", label: "Achievements" },
   { value: "/events", label: "Events" },
   { value: "/about", label: "About / contact" },
-  { value: "/courses", label: "Courses & certificates" },
+  { value: "/courses", label: "Courses" },
+  { value: "/certificate", label: "Verify certificate" },
 ];
 
 export const TERMINAL_COMMANDS: Option[] = [
@@ -191,6 +183,7 @@ export const TERMINAL_COMMANDS: Option[] = [
   { value: "achievements" },
   { value: "events" },
   { value: "alumni" },
+  { value: "verify" },
   { value: "join" },
 ];
 
@@ -639,7 +632,7 @@ export const SECTIONS: SectionDef[] = [
             title: (n) => str(n.label) || "New entry",
             uniqueKey: "path",
             orderNote: "Shown top to bottom in this order, in the sidebar and in the mobile menu.",
-            create: ({ taken }) => ({ path: NAV_PAGES.find((o) => !taken.includes(o.value) && o.value !== "/courses")?.value ?? "/", label: "", icon: "info" }),
+            create: ({ taken }) => ({ path: NAV_PAGES.find((o) => !taken.includes(o.value))?.value ?? "/", label: "", icon: "info" }),
             fields: [
               { kind: "select", key: "path", label: "Page", required: true, options: NAV_PAGES },
               { kind: "text", key: "label", label: "Label", required: true },
@@ -651,17 +644,17 @@ export const SECTIONS: SectionDef[] = [
     ],
   },
 
-  // ── Prototypes: kept working at their address, left out of the sidebar ─────
   {
     slug: "courses",
     title: "Courses",
-    description: "Courses and certificates completed by members. (Prototype — not shown on the website menu yet.)",
-    group: "prototype",
+    description: "Courses and certifications — the cards on the website’s Courses page.",
+    group: "pages",
     icon: "book",
     route: "/courses",
-    hidden: true,
     parts: [
+      pageHeadingPart("courses"),
       {
+        heading: "Courses",
         file: "courses.json",
         fields: [
           {
@@ -693,50 +686,14 @@ export const SECTIONS: SectionDef[] = [
   {
     slug: "certificates",
     title: "Certificates",
-    description: "Issued certificates, checked by the website's verification page. (Prototype — not shown on the website menu yet.)",
-    group: "prototype",
+    description: "Certificates the club issued, checked on the website’s verification page — one file per set, in their own repository.",
+    group: "pages",
     icon: "badge",
     route: "/certificate",
-    hidden: true,
-    parts: [
-      {
-        file: "certificates.json",
-        fields: [
-          {
-            kind: "list",
-            key: "issued_certificates",
-            label: "Issued certificates",
-            itemLabel: "certificate",
-            title: (c) => [str(c.id), str(c.recipient)].filter(Boolean).join(" · ") || "New certificate",
-            uniqueKey: "id",
-            collapsedByDefault: true,
-            order: "auto",
-            orderNote: "Certificates are not listed on the website — each one is looked up by its ID — so the order here does not matter.",
-            create: ({ taken }) => ({ id: nextId(`SPC-${new Date().getFullYear()}`, taken, 4), recipient: "", course: "", date: "", status: "verified", template: "Certificate_A.svg" }),
-            fields: [
-              { kind: "text", key: "id", label: "Certificate ID", required: true, mono: true, help: "Printed on the certificate and typed in by whoever verifies it, so it is proposed but can be changed." },
-              { kind: "text", key: "recipient", label: "Recipient", required: true },
-              { kind: "text", key: "course", label: "Course", help: "Use either Course, or Course line 1 + 2 for a two-line title." },
-              { kind: "text", key: "course1", label: "Course (line 1)" },
-              { kind: "text", key: "course2", label: "Course (line 2)" },
-              { kind: "date", key: "date", label: "Date", format: "long", required: true },
-              { kind: "select", key: "template", label: "Template", options: [{ value: "Certificate_A.svg" }, { value: "Certificate_B.svg" }, { value: "Certificate_C.svg" }] },
-              { kind: "text", key: "status", label: "Status", placeholder: "verified" },
-              { kind: "text", key: "reason", label: "Reason (line 1)" },
-              { kind: "text", key: "reason2", label: "Reason (line 2)" },
-              { kind: "text", key: "person1", label: "Signatory 1" },
-              { kind: "text", key: "post1", label: "Position 1" },
-              { kind: "text", key: "person2", label: "Signatory 2" },
-              { kind: "text", key: "post2", label: "Position 2" },
-              { kind: "text", key: "modules", label: "Modules" },
-              { kind: "text", key: "hours", label: "Hours" },
-              { kind: "text", key: "score", label: "Score" },
-              { kind: "text", key: "grade", label: "Grade" },
-            ],
-          },
-        ],
-      },
-    ],
+    custom: true,
+    // The registry is its own screen (src/components/certificates) with its own store and its own repository.
+    // Only the verification page's heading is a normal form, and it is edited here:
+    parts: [pageHeadingPart("certificate", "Verification page heading")],
   },
 ];
 
@@ -799,5 +756,5 @@ export function ensureAutoIds<T>(file: DocFile, doc: T): T {
 }
 
 /** The admin menu lists the pages in the same order as the website's sidebar. */
-const MENU_ORDER = ["home", "executives", "projects", "achievements", "events", "about", "settings", "courses", "certificates"];
+const MENU_ORDER = ["home", "executives", "projects", "achievements", "events", "courses", "certificates", "about", "settings"];
 SECTIONS.sort((a, b) => MENU_ORDER.indexOf(a.slug) - MENU_ORDER.indexOf(b.slug));

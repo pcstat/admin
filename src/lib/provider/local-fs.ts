@@ -8,7 +8,12 @@ import type { CommitRequest, CommitResult, DataProvider } from "./types";
  */
 export class LocalFsProvider implements DataProvider {
   readonly kind = "local-fs" as const;
-  private root = path.resolve(/* turbopackIgnore: true */ process.cwd(), /* turbopackIgnore: true */ process.env.DATA_LOCAL_DIR || "local-data");
+  private root: string;
+
+  /** `dir` defaults to DATA_LOCAL_DIR (the database stand-in); the certificate registry passes its own folder. */
+  constructor(dir?: string) {
+    this.root = path.resolve(/* turbopackIgnore: true */ process.cwd(), /* turbopackIgnore: true */ dir || process.env.DATA_LOCAL_DIR || "local-data");
+  }
 
   /** Resolves a repo-relative path and refuses anything that escapes the data folder. */
   private resolve(relative: string): string {

@@ -109,11 +109,6 @@ export function validateDocs(docs: Partial<DocMap>, existingFiles: Set<string>):
   }
   const courses = docs["courses.json"]?.courses ?? [];
   for (const d of dupes(courses.map((c) => c.id))) add("courses.json", `The course ID "${d}" is used more than once.`);
-  const certs = docs["certificates.json"]?.issued_certificates ?? [];
-  for (const d of dupes(certs.map((c) => c.id))) add("certificates.json", `The certificate ID "${d}" is used more than once.`);
-  for (const c of certs) {
-    if (!c.course && !c.course1) add("certificates.json", `Certificate ${c.id}: fill in either "Course" or "Course (line 1)".`);
-  }
 
   const site = docs["site.json"];
   if (site) {

@@ -50,6 +50,8 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           DATABASE_REPO_TOKEN: ${{ secrets.DATABASE_REPO_TOKEN }}
+          # Optional: only when the certificate registry needs a different token than the database (see .env.example).
+          CERTIFICATES_REPO_TOKEN: ${{ secrets.CERTIFICATES_REPO_TOKEN }}
           ADMIN_PASSWORD_HASH: ${{ secrets.ADMIN_PASSWORD_HASH }}
           AUTH_SESSION_SECRET: ${{ secrets.AUTH_SESSION_SECRET }}
         run: |
@@ -64,9 +66,10 @@ jobs:
           umask 077
           jq -n \
             --arg GITHUB_TOKEN "$DATABASE_REPO_TOKEN" \
+            --arg CERTIFICATES_TOKEN "$CERTIFICATES_REPO_TOKEN" \
             --arg ADMIN_PASSWORD_HASH "$ADMIN_PASSWORD_HASH" \
             --arg AUTH_SESSION_SECRET "$AUTH_SESSION_SECRET" \
-            '{GITHUB_TOKEN: $GITHUB_TOKEN, ADMIN_PASSWORD_HASH: $ADMIN_PASSWORD_HASH, AUTH_SESSION_SECRET: $AUTH_SESSION_SECRET}' \
+            '{GITHUB_TOKEN: $GITHUB_TOKEN, ADMIN_PASSWORD_HASH: $ADMIN_PASSWORD_HASH, AUTH_SESSION_SECRET: $AUTH_SESSION_SECRET} + (if $CERTIFICATES_TOKEN != "" then {CERTIFICATES_TOKEN: $CERTIFICATES_TOKEN} else {} end)' \
             > "$RUNNER_TEMP/worker-secrets.json"
 
       # Creates the Worker (name in wrangler.toml) when it does not exist yet, uploads the build and

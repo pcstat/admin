@@ -10,7 +10,6 @@ export interface DatabaseIndex {
   events: string;
   courses: string;
   achievements: string;
-  certificates: string;
   home: string;
   site: string;
 }
@@ -96,27 +95,6 @@ export interface Course {
   featured?: boolean;
 }
 
-export interface IssuedCertificate {
-  id: string;
-  recipient: string;
-  course?: string;
-  course1?: string;
-  course2?: string;
-  date: string;
-  status?: string;
-  template?: string;
-  reason?: string;
-  reason2?: string;
-  person1?: string;
-  post1?: string;
-  person2?: string;
-  post2?: string;
-  modules?: string;
-  hours?: string;
-  score?: string;
-  grade?: string;
-}
-
 /** `home.json` — what the home page pins. */
 export interface HomeConfig {
   pinned_executives: string[];
@@ -139,7 +117,6 @@ export interface DocMap {
   "events.json": { note?: string; events: ClubEvent[] };
   "courses.json": { courses: Course[] };
   "achievements.json": { tally: { value: string; label: string }[]; achievements: Achievement[] };
-  "certificates.json": { issued_certificates: IssuedCertificate[] };
   "home.json": HomeConfig;
   "site.json": SiteDoc;
 }
@@ -151,7 +128,6 @@ export const DOC_FILES: DocFile[] = [
   "events.json",
   "courses.json",
   "achievements.json",
-  "certificates.json",
   "home.json",
   "site.json",
 ];

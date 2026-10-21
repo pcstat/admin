@@ -8,7 +8,9 @@ import { SECTIONS, type NavGroup } from "@/lib/schemas";
 import { changedSections } from "@/lib/changes";
 import { useTheme } from "@/lib/theme";
 import { WEBSITE_URL } from "@/lib/site-config";
+import { dirtyCodes, useCertificatesStore } from "@/store/certificates-store";
 import { useContentStore } from "@/store/content-store";
+import { saveAll } from "@/store/save-all";
 import { SaveBar } from "./SaveBar";
 import { SitePreview } from "./SitePreview";
 import { Icon } from "./Icon";
@@ -33,7 +35,9 @@ interface Tip {
  */
 export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const dirty = useContentStore((s) => s.dirty);
+  const contentDirty = useContentStore((s) => s.dirty);
+  const certDirty = useCertificatesStore((s) => dirtyCodes(s).length > 0);
+  const dirty = contentDirty || certDirty;
   const collapsed = useContentStore((s) => s.navCollapsed);
   const previewMode = useContentStore((s) => s.previewMode);
   const clubName = useContentStore((s) => (s.docs["site.json"]?.draft as { club?: { name?: string } } | undefined)?.club?.name ?? "Club");
@@ -44,7 +48,7 @@ export function Shell({ children }: { children: ReactNode }) {
   // Files with unsaved edits, to put a dot next to the pages that edit them.
   const changedSlugs = useContentStore(useShallow((s) => changedSections(s.docs).map((c) => c.slug)));
   const memberFilesChanged = useContentStore((s) => Object.values(s.memberDrafts).some((m) => m.original === null || m.draft !== m.original));
-  const sectionChanged = (slug: string) => changedSlugs.includes(slug);
+  const sectionChanged = (slug: string) => changedSlugs.includes(slug) || (slug === "certificates" && certDirty);
 
   // Remember the folded sidebar and the "publish on save" choice between visits (read after mount so the server and first client render agree).
   useEffect(() => {
@@ -62,7 +66,7 @@ export function Shell({ children }: { children: ReactNode }) {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
         event.preventDefault();
         const st = useContentStore.getState();
-        if (st.dirty && st.saveStatus !== "saving") void st.save();
+        if (st.saveStatus !== "saving" && useCertificatesStore.getState().saveStatus !== "saving") void saveAll();
       }
     };
     window.addEventListener("keydown", onKey);

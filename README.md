@@ -21,7 +21,7 @@ Next.js 16 · React 19 · TypeScript · pnpm · Zustand · deployed to **Cloudfl
 **Member files search:** type words (all must match; small typos are forgiven), use quotes for a phrase, or operators such as `committee:2025`, `role:president`, `id:2020`, `has:cv`, `no:profile`, `is:current`, `is:edited`. Results come in two groups — matches in the name / role / committee, and matches in the details (bio, links, and, when *Search inside profiles & CVs* is on, the text of the files). Press `/` to jump to the search box.
 **Search boxes** (the filter above a long list, the pin pickers on Home, Member files) search what you can read in the editor: names instead of ids (a project is found by its members' names), tags, dates ("june", "monday"), ticked options such as *Featured*, and — in Member files — the member's projects and achievements. Technical values (ids, field names, image paths) are never matched. Several words all have to match; small typos and accents are forgiven; the line under a result says where the match was found. The engine is `src/lib/smart-search.ts`.
 **Dates and times** can be typed or picked: type `2026-12-31`, `31 Dec 2026`, `31/12/2026` or `tomorrow` (times: `2:30 PM`, `14:30`, `2pm`, `noon`) and it is tidied up when you leave the box, or press the calendar / clock button. On a phone the picker opens from the bottom of the screen. Parsing lives in `src/lib/datetime.ts`.
-**Prototypes** — Courses and Certificates still exist at `/courses` and `/certificates` but are **not in the sidebar** (and not in the website's menu) until those features are finished. To bring them back, remove `hidden: true` from their entries in `src/lib/schemas.ts` and add “Courses” to the website menu under *Site settings → Sidebar menu*.
+**Courses** is a normal page (the cards of the website's Courses page). **Certificates** is its own screen — the *certificate registry* — because there will be thousands of certificates and they live in their own repository (`pcstat/certificates`, one JSON file per *set*). See [Certificates](#certificates).
 
 Ids of projects, events and courses are **assigned automatically** (`proj-9f3a1c7e`) and never typed by hand. Pinning projects on the home page uses a search box (title, tag, year, status).
 
@@ -55,6 +55,17 @@ Everything is set up from GitHub — the full walk-through (Cloudflare account, 
 * Optional repository variable `NEXT_PUBLIC_WEBSITE_URL` — overrides the `website` field of `database.json`.
 
 Environment variables for local runs are listed in `.env.example`.
+
+## Certificates
+
+The menu entry **Certificates** opens the registry. The data is **not** part of the website database: it is read from and committed to the certificates repo on GitHub (`certificates` in `database.json`, which must be a public repository the token can write to; locally the folder `local-certificates/`, or `CERTIFICATES_LOCAL_DIR`).
+
+* **Sets.** A set is a group of certificates that share everything except the person — a course run (`PY26`), a contest (`CONTEST26`), a year of membership. It is one file, `sets/<code>.json`, with two parts: what is the same on every certificate (title, date, design, signatories …) and one entry per person. **New set** creates the file on demand (it is written when you press Save). A set does **not** need a course: the title is whatever the certificates are for; linking a course is optional. *Start from an earlier set* copies the design and signatories.
+* **People.** Paste one name per line, paste cells copied from a spreadsheet (name first, then the design's per-person fields such as score and grade), or choose a `.csv` file with a header row (`name`, `score`, `grade`, `note`). A preview and warnings (duplicates, empty lines) come first. Each person gets a 5-character id that is unique inside the set's file, so the certificate ID is `SPC-<set code>-<person id>` (`SPC-PY26-7W34N`): the website opens exactly one file to verify it, and the last character is a check character that lets it tell a mistyped ID from an unknown one.
+* **Find a certificate.** One search box over every set: names (typo-tolerant), IDs (any part, any case, with or without dashes), course, set, dates. Operators: `set:py26` `course:python` `year:2026` `id:k7m4` `is:revoked` `is:new` `has:note` `no:grade`; chips for All / Valid / Revoked / Unsaved; press `/` to jump to the box. Click a row to open it: edit the name and per-person fields, see it exactly as printed, copy its ID and its share link (`<website>/c/<ID>`), revoke or restore it. Select rows to revoke / restore many at once or export them as CSV.
+* **Revoking, not deleting.** An issued certificate cannot be deleted from the panel: *Revoke* (with an optional reason) makes the verification page say it is no longer valid, and the record stays. A certificate added in this session and not saved yet can be taken back.
+* **One Save.** The save bar saves the database and the registry together (two repositories, two commits, whichever have changes). *Publish on save* covers both; the website reads the registry straight from GitHub, so it is **not** rebuilt and nothing is published.
+* **Large registries.** The panel loads each set with its own small request (a few at a time), so it stays within Cloudflare Workers' request limits, and searches in memory. Tens of thousands of certificates are fine.
 
 ## Editing a member's profile and CV
 
@@ -100,15 +111,17 @@ One shared password (like the reference project): the panel stores only its SHA-
 ## Structure
 
 ```
-database.json            which repo is the database (repo, branch, published url)
+database.json            which repo is the database, and which is the certificate registry (repo, branch, published url)
 middleware.ts            redirects anonymous visitors to /login
-src/app/                 pages: [section] (generic editor), members, login · api/: auth, data, file, save, photo
-src/components/          Shell, SaveBar, FieldRenderer (generic form), MemberFiles
+src/app/                 pages: [section] (generic editor), members, certificates, login · api/: auth, data, file, save, photo, certs/*
+src/components/          Shell, SaveBar, FieldRenderer (generic form), MemberFiles · certificates/ (registry screens)
+src/lib/certificates/    core.ts (ID/date/template rules, identical in the certificates and website repos) · search, csv, validate
 src/lib/schemas.ts       what is editable and how (the only file to touch for new fields)
 src/lib/validate.ts      pre-save checks
 src/lib/provider/        local-fs.ts · github.ts — the only code that knows where files live
 src/lib/database-config.ts  reads database.json
-src/store/               Zustand store: drafts, history, staged photos, save
+src/store/               Zustand stores: content (drafts, history, photos, save), certificates (sets, save), save-all
+local-certificates/       snapshot of the certificate registry for local test mode
 local-data/              snapshot of the database for local test mode
 ```
 

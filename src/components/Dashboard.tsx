@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useCertificatesStore } from "@/store/certificates-store";
 import { useContentStore } from "@/store/content-store";
 import type { ClubEvent, ExecutivesDoc, HomeConfig, Project } from "@/lib/types";
 import { Icon } from "./Icon";
@@ -15,6 +16,9 @@ export function Dashboard() {
   const events = (docs["events.json"]?.draft as { events?: ClubEvent[] } | undefined)?.events ?? [];
   const achievements = (docs["achievements.json"]?.draft as { achievements?: unknown[] } | undefined)?.achievements ?? [];
   const home = docs["home.json"]?.draft as HomeConfig | undefined;
+  const courses = (docs["courses.json"]?.draft as { courses?: unknown[] } | undefined)?.courses ?? [];
+  const certsReady = useCertificatesStore((s) => s.status === "ready");
+  const certCount = useCertificatesStore((s) => Object.values(s.sets).reduce((n, x) => n + Object.keys(x.draft.people).length, 0));
 
   const current = executives?.committees.find((c) => c.session === executives.current_committee);
   const upcoming = events.filter((e) => e.date >= today()).sort((a, b) => a.date.localeCompare(b.date));
@@ -27,6 +31,8 @@ export function Dashboard() {
     { href: "/projects", icon: "box", title: "Projects & Publications", value: String(projects.length), detail: `${projects.filter((p) => p.status === "publication" || p.status === "research").length} are research or publications` },
     { href: "/achievements", icon: "trophy", title: "Achievements", value: String(achievements.length), detail: "listed on the website" },
     { href: "/events", icon: "calendar", title: "Events", value: String(upcoming.length), detail: upcoming[0] ? `upcoming — next is ${upcoming[0].date}` : "upcoming — none scheduled" },
+    { href: "/courses", icon: "book", title: "Courses", value: String(courses.length), detail: "courses and certifications on the website" },
+    { href: "/certificates", icon: "badge", title: "Certificates", value: certsReady ? String(certCount) : "", detail: "issued by the club — search, issue, revoke" },
     { href: "/about", icon: "info", title: "About / Contact", value: "", detail: "mission cards, meetups, contact banner" },
     { href: "/settings", icon: "gear", title: "Site settings", value: "", detail: "club name, e-mail, sidebar menu" },
   ];

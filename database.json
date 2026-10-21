@@ -2,5 +2,10 @@
   "repo": "pcstat/database",
   "branch": "main",
   "url": "https://pcstat-database.pages.dev",
-  "website": "https://pcstat.pages.dev"
+  "website": "https://pcstat.pages.dev",
+  "certificates": {
+    "repo": "pcstat/certificates",
+    "branch": "main",
+    "url": ""
+  }
 }

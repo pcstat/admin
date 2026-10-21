@@ -5,7 +5,6 @@
   "events": "events.json",
   "courses": "courses.json",
   "achievements": "achievements.json",
-  "certificates": "certificates.json",
   "home": "home.json",
   "site": "site.json"
 }

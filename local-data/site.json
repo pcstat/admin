@@ -43,6 +43,16 @@
       "icon": "calendar"
     },
     {
+      "path": "/courses",
+      "label": "Courses",
+      "icon": "book"
+    },
+    {
+      "path": "/certificate",
+      "label": "Verify Certificate",
+      "icon": "badge"
+    },
+    {
       "path": "/about",
       "label": "About / Contact",
       "icon": "info"
@@ -112,6 +122,7 @@
       "achievements",
       "events",
       "alumni",
+      "verify",
       "join"
     ]
   },
@@ -145,6 +156,18 @@
       "title": "Upcoming",
       "accent": "Events",
       "description": "Workshops, contests, and meetups. Open to all members — some open to the public."
+    },
+    "courses": {
+      "eyebrow": "Learning",
+      "title": "Courses &",
+      "accent": "Certificates",
+      "description": "Professional certifications and specialized courses completed by our members."
+    },
+    "certificate": {
+      "eyebrow": "Verification",
+      "title": "Verify",
+      "accent": "Certificate",
+      "description": "Enter the unique certificate ID to validate the achievement and authenticity of the issued document."
     }
   },
   "about": {
